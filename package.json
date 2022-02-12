@@ -1,6 +1,7 @@
 {
   "name": "session-organizer",
   "private": true,
+  "license": "unlicensed",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,10 +10,15 @@
     "prettier": "prettier -write. ",
     "db-dev-gen": "prisma generate",
     "db-dev-push": "prisma db push",
-    "db-dev-pull": "prisma db pull"
+    "db-dev-pull": "prisma db pull",
+    "db-dev-format": "prisma format",
+    "db-dev-seed": "ts-node prisma/seed.ts",
+    "db-dev-reset": "prisma migrate reset && yarn db-dev-seed",
+    "type-check": "tsc --pretty --noEmit"
   },
   "author": "Piotr Wrobel <https://piotrwrobel.vercel.app/>",
   "dependencies": {
+    "@prisma/client": "^3.9.2",
     "next": "12.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -26,6 +32,7 @@
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
     "prisma": "^3.9.2",
-    "typescript": "4.5.5"
+    "typescript": "4.5.5",
+    "ts-node": "10.1.0"
   }
 }
