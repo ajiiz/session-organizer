@@ -2,15 +2,30 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  scroll-behavior: smooth;
+  font-family: LatoRegular;
 }
 
 * {
   box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "LatoRegular";
+  src: url("../public/fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "LatoBlack";
+  src: url("../public/fonts/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: "LatoBold";
+  src: url("../public/fonts/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: "LatoLight";
+  src: url("../public/fonts/Lato-Light.ttf");
 }
