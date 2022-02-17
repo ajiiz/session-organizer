@@ -1,16 +1,22 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 
 const Home: NextPage = () => {
   return (
     <div>
-      <Head>
-        <title>session-organizer</title>
-        <meta name="description" content="App to organise exam sessions" />
-      </Head>
-      <div>Hello world!</div>
+      <div>There will be an app!</div>
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  // There will be session check
+
+  return {
+    redirect: {
+      pernament: false,
+      destination: "/login"
+    }
+  };
+}
 
 export default Home;
