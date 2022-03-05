@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BlackColor } from "styled/base/Colors";
+import { BlackColor } from "src/styled/base/Colors";
 
 export const HeaderText = styled.h2`
   color: ${BlackColor};
