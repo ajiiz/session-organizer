@@ -1,15 +1,18 @@
 import Head from "next/head";
-import "../src/styles/globals.css";
 import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
+import "../src/styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <>
       <Head>
         <title>session-organizer</title>
         <meta name="description" content="App to organise exam sessions" />
-      </Head>{" "}
-      <Component {...pageProps} />
+      </Head>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
     </>
   );
 }
