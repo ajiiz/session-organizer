@@ -8,7 +8,7 @@ export const path = "api/auth/signin";
 
 const prisma = new PrismaClient();
 
-export const postHello: NextApiHandler<SigninRequest> = async (req, res) => {
+export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
   const requestedData = req.body.params as SigninRequest;
 
   if (!requestedData) {
@@ -53,4 +53,4 @@ export const postHello: NextApiHandler<SigninRequest> = async (req, res) => {
   return;
 };
 
-export default postHello;
+export default signup;
