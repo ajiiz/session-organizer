@@ -6,10 +6,9 @@ export type SigninRequest = { firstName: string; lastName: string; email: string
 
 export const path = "api/auth/signin";
 
-const prisma = new PrismaClient();
-
 export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
   const requestedData = req.body.params as SigninRequest;
+  const prisma = new PrismaClient();
 
   if (!requestedData) {
     res.statusMessage = `Malformed request data`;
@@ -47,6 +46,8 @@ export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
     res.status(400).end();
     return;
   }
+
+  prisma.$disconnect();
 
   res.statusMessage = `User has been created!`;
   res.status(200).end();
