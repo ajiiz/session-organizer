@@ -7,10 +7,10 @@ const load = async (): Promise<void> => {
   const hashedPassword = await hash("password", 12);
   await prisma.user.create({
     data: {
+      email: "ajiiz@gmail.com",
       firstName: "Piotr",
       lastName: "Wrobel",
-      email: "ajiiz@gmail.com",
-      phoneNumber: "000111222",
+      group: "default",
       password: hashedPassword,
       role: "admin"
     }
