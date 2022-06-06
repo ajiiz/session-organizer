@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { getCsrfToken } from "next-auth/react";
-import Input from "src/styled/components/shared/Input";
-import { HeaderText } from "src/styled/elements/authentication-page/HeaderText";
-import BlueBackground from "assets/blue-background.jpg";
+import Input from "styled/components/shared/Input";
+import { HeaderText } from "styled/elements/authentication-page/HeaderText";
 
 interface SigninProps {
   csrfToken: string | undefined;
@@ -22,9 +21,6 @@ const signIn: NextPage<SigninProps> = ({ csrfToken }) => {
             <button type="submit">Sign in</button>
           </form>
         </div>
-      </div>
-      <div style={{ display: "flex", width: "60%", height: "100%" }}>
-        <img style={{ width: "100%", height: "100%" }} src={BlueBackground.src} alt="blue-background" />
       </div>
     </div>
   );

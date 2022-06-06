@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Property } from "csstype";
-import { LightGrayColor } from "src/styled/base/Colors";
+import { LightGrayColor } from "styled/base/Colors";
 
 interface InputElementProps {
   width?: Property.Width;

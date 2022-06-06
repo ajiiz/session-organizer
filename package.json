@@ -1,7 +1,8 @@
 {
-  "name": "session-organizer",
-  "private": true,
-  "license": "unlicensed",
+  "name": "exam-tree",
+  "private": false,
+  "license": "MIT",
+  "version": "0.0.1",
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
@@ -12,11 +13,11 @@
     "db-dev-push": "prisma db push",
     "db-dev-pull": "prisma db pull",
     "db-dev-format": "prisma format",
-    "db-dev-seed": "ts-node prisma/seed.ts",
-    "db-dev-reset": "prisma migrate reset && yarn db-dev-seed",
+    "db-dev-seed": "yarn db-dev-push && ts-node prisma/seed.ts",
+    "db-dev-reset": "prisma migrate reset",
     "type-check": "tsc --pretty --noEmit"
   },
-  "author": "Piotr Wrobel <https://piotrwrobel.vercel.app/>",
+  "author": "Piotr Wrobel <https://github.com/ajiiz>",
   "dependencies": {
     "@prisma/client": "^3.9.2",
     "@types/bcryptjs": "^2.4.2",
