@@ -6,7 +6,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: InterRegular;
+  font-family: InterRegular, sans-serif;
+  background: #fffefc;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
@@ -37,46 +38,46 @@ a {
 }
 
 @font-face {
-  font-family: "InterThin";
+  font-family: "InterThin", sans-serif;
   src: url("/fonts/Inter-Thin.ttf");
 }
 
 @font-face {
-  font-family: "InterExtraLight";
+  font-family: "InterExtraLight", sans-serif;
   src: url("/fonts/Inter-ExtraLight.ttf");
 }
 
 @font-face {
-  font-family: "InterLight";
+  font-family: "InterLight", sans-serif;
   src: url("/fonts/Inter-Light.ttf");
 }
 
 @font-face {
-  font-family: "InterRegular";
+  font-family: "InterRegular", sans-serif;
   src: url("/fonts/Inter-Regular.ttf");
 }
 
 @font-face {
-  font-family: "InterMedium";
+  font-family: "InterMedium", sans-serif;
   src: url("/fonts/Inter-Medium.ttf");
 }
 
 @font-face {
-  font-family: "InterBold";
+  font-family: "InterBold", sans-serif;
   src: url("/fonts/Inter-Bold.ttf");
 }
 
 @font-face {
-  font-family: "InterSemiBold";
+  font-family: "InterSemiBold", sans-serif;
   src: url("/fonts/Inter-SemiBold.ttf");
 }
 
 @font-face {
-  font-family: "InterExtraBold";
+  font-family: "InterExtraBold", sans-serif;
   src: url("/fonts/Inter-ExtraBold.ttf");
 }
 
 @font-face {
-  font-family: "InterBlack";
+  font-family: "InterBlack", sans-serif;
   src: url("/fonts/Inter-Black.ttf");
 }
