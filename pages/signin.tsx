@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { getCsrfToken } from "next-auth/react";
-import Input from "src/styled/components/shared/Input";
-import { HeaderText } from "src/styled/elements/authentication-page/HeaderText";
+import Input from "styled/components/shared/Input";
+import { HeaderText } from "styled/elements/authentication-page/HeaderText";
 import BlueBackground from "assets/blue-background.jpg";
 
 interface SigninProps {
