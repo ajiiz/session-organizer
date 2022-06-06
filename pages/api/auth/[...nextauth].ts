@@ -1,9 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
-import { PrismaClient } from "@prisma/client";
 import { compare } from "bcryptjs";
-
-const prisma = new PrismaClient();
+import prisma from "../../../prisma/client";
 
 export default NextAuth({
   providers: [
@@ -25,31 +23,45 @@ export default NextAuth({
           return null;
         }
 
-        const user = await prisma.user.findFirst({ where: { email: credentials.email } });
-        if (!user?.email || !user?.password) {
-          return null;
-        }
+        try {
+          const user = await prisma.user.findFirst({ where: { email: credentials.email } });
 
-        const checkPassword = await compare(credentials.password, user.password);
-        if (checkPassword && user.email === credentials.email) {
-          return { id: user.id, email: user.email };
+          if (!user) {
+            return null;
+          }
+
+          if (!user?.email || !user?.password) {
+            return null;
+          }
+
+          const checkPassword = await compare(credentials.password, user.password);
+          if (checkPassword && user.email === credentials.email) {
+            return { id: user.id, email: user.email, role: user.role };
+          }
+        } catch (error) {
+          console.error(error);
+          return null;
         }
 
         return null;
       }
     })
   ],
+  secret: process.env.SECRET,
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
         token.id = user.id;
+        token.picture = user.role;
       }
       return token;
     },
     session: ({ session, token }) => {
       if (token) {
-        session.id = token.id;
+        session.id = token.sub;
+        session.user.role = token.picture as string;
       }
+
       return session;
     }
   },
