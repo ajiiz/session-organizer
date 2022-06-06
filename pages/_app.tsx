@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <>
       <Head>
-        <title>session-organizer</title>
+        <title>exam-tree</title>
         <meta name="description" content="App to organise exam sessions" />
       </Head>
       <SessionProvider session={session}>
