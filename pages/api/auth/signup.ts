@@ -2,7 +2,13 @@ import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
 import type { NextApiHandler } from "next";
 
-export type SigninRequest = { firstName: string; lastName: string; email: string; password: string; phoneNumber: string };
+export type SigninRequest = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+};
 
 export const path = "api/auth/signin";
 
@@ -39,7 +45,7 @@ export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
       lastName: lastName,
       email: email,
       password: hashedPassword,
-      phoneNumber: phoneNumber
+      number: phoneNumber
     }
   });
   if (!newUser) {
