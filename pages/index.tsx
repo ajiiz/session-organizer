@@ -1,12 +1,9 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
+import Landing from "styled/components/landing";
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <div>Landing page</div>
-    </div>
-  );
+  return <Landing />;
 };
 
 export default Home;
@@ -19,15 +16,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       redirect: {
         permanent: false,
         destination: "/dashboard"
-      }
-    };
-  }
-
-  if (!session?.user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/signin"
       }
     };
   }
