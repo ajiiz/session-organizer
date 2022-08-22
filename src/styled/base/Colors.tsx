@@ -13,3 +13,19 @@ export const GreenColor: Property.Color = "#0F7B6C";
 export const PurpleColor: Property.Color = "#6940A5";
 export const BlueColor: Property.Color = "#0B6E99";
 export const BrownColor: Property.Color = "#64473A";
+
+export const Colors = {
+  WhiteColor,
+  DarkGrayColor,
+  LightGrayColor,
+  GrayColor,
+  BlackColor,
+  PinkColor,
+  RedColor,
+  OrangeColor,
+  YellowColor,
+  GreenColor,
+  PurpleColor,
+  BlueColor,
+  BrownColor
+};
