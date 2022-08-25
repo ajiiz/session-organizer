@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "styled/base/Responsive";
 
 export const Wrapper = styled.div`
   height: 12%;
@@ -16,7 +17,7 @@ export const LogoWrapper = styled.div`
   justify-content: center;
 `;
 
-export const LogoContent = styled.h3`ś
+export const LogoContent = styled.h3`
   margin-left: 0.5em;
   font-family: InterMedium;
   font-size: 1em;
@@ -29,4 +30,14 @@ export const ButtonsWrapper = styled.div`
   justify-content: space-evenly;
   align-items: center;
   gap: 1em;
+
+  ${device.mobile} {
+    font-size: 1.2em;
+  }
+`;
+
+export const RegisterButtonWrapper = styled.div`
+  ${device.mobile} {
+    display: none;
+  }
 `;

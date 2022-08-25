@@ -13,10 +13,20 @@ const Navbar = () => {
         <S.LogoContent>Listic</S.LogoContent>
       </S.LogoWrapper>
       <S.ButtonsWrapper>
-        <Button fontColor={Colors.BlackColor}>Log in</Button>
-        <Button fontColor={Colors.WhiteColor} backgroundColor={Colors.GreenColor}>
-          Register now
+        <Button backgroundColor="" backgroundOpacity="1" hoverColor={Colors.GrayColor} hoverOpacity="0.1">
+          Log in
         </Button>
+        <S.RegisterButtonWrapper>
+          <Button
+            fontColor={Colors.WhiteColor}
+            backgroundColor={Colors.GreenColor}
+            backgroundOpacity="0.8"
+            hoverColor={Colors.GreenColor}
+            hoverOpacity="1"
+          >
+            Register now
+          </Button>
+        </S.RegisterButtonWrapper>
       </S.ButtonsWrapper>
     </S.Wrapper>
   );
