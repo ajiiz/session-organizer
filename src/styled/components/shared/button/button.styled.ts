@@ -1,35 +1,48 @@
 import hexToRgba from "hex-to-rgba";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { Colors } from "styled/base/Colors";
 
-interface ButtonProps {
-  backgroundColor?: string & {};
-  fontColor: string & {};
+export interface StyledButtonProps {
+  backgroundColor: string & {};
+  backgroundOpacity: string;
+  fontColor?: string & {};
+  hoverColor: string & {};
+  hoverOpacity: string;
+  focusColor?: string & {};
+  focusOpacity?: string;
+  padding?: string;
 }
 
-export const StyledButton = styled.button<ButtonProps>`
-  padding: 0.2em 1em;
+const SharedButtonStyles = css`
+  padding: 0.4rem 1.5rem;
   font-size: 0.9em;
   font-family: InterMedium;
-  line-height: 1.4em;
   display: flex;
   align-items: center;
   text-align: center;
-  background: ${({ backgroundColor }) => (backgroundColor ? hexToRgba(backgroundColor, "0.7") : "none")};
   border-radius: 4px;
-  color: ${({ fontColor }) => fontColor};
+
+  &:hover,
+  &:focus {
+    font-family: InterMedium;
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9em;
+  }
+`;
+
+export const StyledButton = styled.button<StyledButtonProps>`
+  ${SharedButtonStyles};
+  background: ${({ backgroundColor, backgroundOpacity }) => hexToRgba(backgroundColor, backgroundOpacity)};
+  color: ${({ fontColor }) => (fontColor ? fontColor : Colors.BlackColor)};
 
   &:hover {
-    font-family: InterMedium;
-    background: ${({ backgroundColor }) => (backgroundColor ? hexToRgba(backgroundColor, "0.7") : "none")};
-    color: ${({ fontColor }) => fontColor};
-    font-size: 0.9em;
-    padding: 0.2em 1em;
+    background: ${({ hoverColor, hoverOpacity }) => hexToRgba(hoverColor, hoverOpacity)};
+    color: ${({ fontColor }) => (fontColor ? fontColor : Colors.BlackColor)};
   }
 
   &:focus {
-    background: ${({ backgroundColor }) => (backgroundColor ? hexToRgba(backgroundColor, "0.7") : "none")};
-    color: ${({ fontColor }) => fontColor};
-    font-size: 0.9em;
-    padding: 0.2em 1em;
+    background: ${({ hoverColor, hoverOpacity, focusColor, focusOpacity }) =>
+      focusColor && focusOpacity ? hexToRgba(focusColor, focusOpacity) : hexToRgba(hoverColor, hoverOpacity)};
+    color: ${({ fontColor }) => (fontColor ? fontColor : Colors.BlackColor)};
   }
 `;

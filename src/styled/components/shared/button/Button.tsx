@@ -1,17 +1,11 @@
-import { StyledButton } from "./button.styled";
+import { StyledButton, StyledButtonProps } from "./button.styled";
 
-interface ButtonProps {
+interface ButtonProps extends StyledButtonProps {
   children: string;
-  backgroundColor?: string & {};
-  fontColor: string & {};
 }
 
-const Button = ({ children, fontColor, backgroundColor }: ButtonProps) => {
-  return (
-    <StyledButton fontColor={fontColor} backgroundColor={backgroundColor}>
-      {children}
-    </StyledButton>
-  );
+const Button = (props: ButtonProps) => {
+  return <StyledButton {...props}>{props.children}</StyledButton>;
 };
 
 export default Button;
