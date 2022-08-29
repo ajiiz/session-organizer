@@ -1,7 +1,7 @@
 import { StyledLogo } from "styled/elements/shared/logo/Logo";
 import Logo from "assets/Logo.svg";
 
-import * as S from "./navbar.styled";
+import * as S from "./Navbar.styled";
 import Button from "../shared/button/Button";
 import { Colors } from "styled/base/Colors";
 

@@ -1,4 +1,4 @@
-import { StyledButton, StyledButtonProps } from "./button.styled";
+import { StyledButton, StyledButtonProps } from "./Button.styled";
 
 interface ButtonProps extends StyledButtonProps {
   children: string;
