@@ -1,8 +1,8 @@
 const size = {
   mobile: "500px",
   tablet: "768px",
-  desktop: "1500px",
-  smalldesktop: "1200px"
+  smalldesktop: "1200px",
+  desktop: "1500px"
 };
 export const device = {
   desktop: `@media (max-width: ${size.desktop})`,
