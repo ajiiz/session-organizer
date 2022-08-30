@@ -2,7 +2,7 @@ import { Property } from "csstype";
 
 export const WhiteColor: Property.Color = "#FFFEFC";
 export const DarkGrayColor: Property.Color = "#9B9A97";
-export const LightGrayColor: Property.Color = "#666666";
+export const LightGrayColor: Property.Color = "#666665";
 export const GrayColor: Property.Color = "#37352F";
 export const BlackColor: Property.Color = "#111111";
 export const PinkColor: Property.Color = "#AD1A72";
