@@ -1,6 +1,6 @@
-import { InputElement } from "styled/elements/shared/InputElement";
-import { InputText } from "styled/elements/shared/InputText";
-import { InputWrapper } from "styled/elements/shared/InputWrapper";
+import { InputElement } from "styled/elements/shared/inputs/InputElement";
+import { InputText } from "styled/elements/shared/inputs/InputText";
+import { InputWrapper } from "styled/elements/shared/inputs/InputWrapper";
 
 interface InputProps {
   type: string;
