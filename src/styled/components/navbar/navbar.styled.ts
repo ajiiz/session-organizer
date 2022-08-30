@@ -8,6 +8,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  ${device.smalldesktop} {
+    padding: 0 10%;
+  }
 `;
 
 export const LogoWrapper = styled.div`

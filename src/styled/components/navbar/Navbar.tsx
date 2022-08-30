@@ -1,6 +1,5 @@
 import { StyledLogo } from "styled/elements/shared/logo/Logo";
 import Logo from "assets/Logo.svg";
-
 import * as S from "./Navbar.styled";
 import Button from "../shared/button/Button";
 import { Colors } from "styled/base/Colors";
@@ -13,7 +12,7 @@ const Navbar = ({ removeButtons }: Props) => {
   return (
     <S.Wrapper>
       <S.LogoWrapper>
-        <StyledLogo src={Logo} />
+        <StyledLogo src={Logo} alt="Logo" />
         <S.LogoContent>Listic</S.LogoContent>
       </S.LogoWrapper>
       {!removeButtons && (
