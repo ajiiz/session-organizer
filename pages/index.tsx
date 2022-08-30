@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
-import Landing from "styled/components/landing";
+import Landing from "styled/components/landing/Landing";
 
 const Home: NextPage = () => {
   return <Landing />;
