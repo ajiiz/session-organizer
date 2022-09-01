@@ -5,19 +5,22 @@ import { device } from "styled/base/Responsive";
 import { Property } from "csstype";
 
 export const HeroWrapper = styled.div`
-  height: 88%;
+  height: 80%;
   width: 100%;
   padding: 0 15% 10% 15%;
   display: flex;
   align-items: center;
 
   ${device.smalldesktop} {
-    height: fit-content;
     padding: 10%;
   }
 
   ${device.tablet} {
     flex-direction: column-reverse;
+  }
+
+  ${device.mobile} {
+    justify-content: center;
   }
 `;
 

@@ -10,8 +10,8 @@ const load = async (): Promise<void> => {
       email: "ajiiz@gmail.com",
       firstName: "Piotr",
       lastName: "Wrobel",
-      group: "default",
       password: hashedPassword,
+      number: "888999111",
       role: "admin"
     }
   });
