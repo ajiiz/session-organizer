@@ -33,8 +33,13 @@ button:focus-within {
   cursor: pointer;
 }
 
-a {
+a,
+a:hover,
+a:visited,
+a:focus {
   cursor: pointer;
+  text-decoration: inherit;
+  color: inherit;
 }
 
 @font-face {
