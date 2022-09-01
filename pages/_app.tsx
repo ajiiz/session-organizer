@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <Head>
         <title>Listic</title>
         <meta name="description" content="App to organise exam sessions" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <SessionProvider session={session}>
         <Component {...pageProps} />
