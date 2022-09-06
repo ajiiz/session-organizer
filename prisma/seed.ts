@@ -12,7 +12,7 @@ const load = async (): Promise<void> => {
       lastName: "Wrobel",
       password: hashedPassword,
       number: "888999111",
-      role: "admin"
+      role: "administrator"
     }
   });
   console.log("Added default user");
