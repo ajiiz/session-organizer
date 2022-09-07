@@ -1,21 +1,29 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
 import * as S from "./Authentication.styled";
 import { signIn } from "next-auth/react";
+import { validateEmail } from "network/auth/validateEmail";
 
 interface Props {
   csrfToken: string | undefined;
 }
 
 const Login = ({ csrfToken }: Props) => {
-  // eslint-disable-next-line no-unused-vars
-  const [isEmailValid, setIsEmailValid] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [statusMessage, setStatusMessage] = useState("Your provided email is valid. Insert your password and sign in.");
+  const [isEmailValid, setIsEmailValid] = useState<boolean | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const statusMessage = useMemo(
+    () =>
+      isEmailValid === null
+        ? ""
+        : !isEmailValid
+        ? "Your provided email is invalid. Provide correct email or sign up."
+        : "Your provided email is valid. Insert your password and sign in.",
+    [isEmailValid]
+  );
 
   const login = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,8 +34,14 @@ const Login = ({ csrfToken }: Props) => {
     });
   };
 
-  const handleEmailValidation = () => {
-    console.log("Check the email from the database");
+  const handleEmailValidation = async () => {
+    try {
+      const data = await validateEmail({ email });
+      setIsEmailValid(data.isEmailValid);
+    } catch (error) {
+      console.error("User not found");
+      setIsEmailValid(false);
+    }
   };
 
   return (
@@ -60,7 +74,11 @@ const Login = ({ csrfToken }: Props) => {
                 </S.Button>
               </>
             ) : (
-              <S.Button type={"button"} onClick={handleEmailValidation}>
+              <S.Button
+                type={"button"}
+                onClick={handleEmailValidation}
+                margin={isEmailValid !== null && !isEmailValid ? "" : "1rem 0 0 0"}
+              >
                 {"Continue with your email"}
               </S.Button>
             )}
