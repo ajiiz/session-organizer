@@ -1,29 +1,14 @@
 import type { NextPage } from "next";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { getCsrfToken } from "next-auth/react";
-import Input from "styled/components/shared/Input";
-import { HeaderText } from "styled/elements/authentication-page/HeaderText";
+import Login from "styled/components/authentication/Login";
 
 interface SigninProps {
   csrfToken: string | undefined;
 }
 
 const signIn: NextPage<SigninProps> = ({ csrfToken }) => {
-  return (
-    <div style={{ width: "100%", height: "100vh", display: "flex" }}>
-      <div style={{ width: "40%", height: "100%", display: "flex", justifyContent: "center" }}>
-        <div style={{ marginTop: "20vh" }}>
-          <HeaderText>Sign in to your account</HeaderText>
-          <form method="post" action="/api/auth/callback/credentials">
-            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-            <Input text="Email adress" type="text" placeholder="E-mail" value={"ajiiz@gmail.com"} name="email" />
-            <Input text="Password" type="password" placeholder="password" value={"password"} name="password" />
-            <button type="submit">Sign in</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
+  return <Login csrfToken={csrfToken} />;
 };
 
 export default signIn;

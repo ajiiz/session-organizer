@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "styled/base/Responsive";
 
 export const Wrapper = styled.div`
-  height: 12%;
+  height: 12vh;
   width: 100%;
   padding: 0 15%;
   display: flex;

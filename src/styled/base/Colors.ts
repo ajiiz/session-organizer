@@ -1,9 +1,11 @@
 import { Property } from "csstype";
 
 export const WhiteColor: Property.Color = "#FFFEFC";
+export const DarkWhiteColor: Property.Color = "#F7F7F4";
 export const DarkGrayColor: Property.Color = "#9B9A97";
 export const LightGrayColor: Property.Color = "#666665";
 export const GrayColor: Property.Color = "#37352F";
+export const LightBlackColor: Property.Color = "#E0E0DD";
 export const BlackColor: Property.Color = "#111111";
 export const PinkColor: Property.Color = "#AD1A72";
 export const RedColor: Property.Color = "#E03E3E";
@@ -16,9 +18,11 @@ export const BrownColor: Property.Color = "#64473A";
 
 export const Colors = {
   WhiteColor,
+  DarkWhiteColor,
   DarkGrayColor,
   LightGrayColor,
   GrayColor,
+  LightBlackColor,
   BlackColor,
   PinkColor,
   RedColor,
