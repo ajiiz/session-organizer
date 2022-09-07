@@ -1,6 +1,7 @@
 import hexToRgba from "hex-to-rgba";
 import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
+import { device } from "styled/base/Responsive";
 
 export const SectionWrapper = styled.section`
   height: 80%;
@@ -8,6 +9,10 @@ export const SectionWrapper = styled.section`
   padding-top: 8rem;
   display: flex;
   justify-content: center;
+
+  ${device.mobile} {
+    padding-top: 6rem;
+  }
 `;
 
 export const ContentWrapper = styled.div`
