@@ -43,7 +43,7 @@ const Signup = () => {
   return (
     <Wrapper flexDirection="column" height="100vh" alignItems="flex-start" justifyContent="flex-start">
       <Navbar removeRegisterButton={true} />
-      <S.SectionWrapper>
+      <S.RegisterWrapper>
         <S.ContentWrapper>
           <S.Header>Register</S.Header>
           <S.Form onSubmit={event => handleSignup(event)}>
@@ -99,7 +99,7 @@ const Signup = () => {
             </S.Button>
           </S.Form>
         </S.ContentWrapper>
-      </S.SectionWrapper>
+      </S.RegisterWrapper>
       <Footer />
     </Wrapper>
   );
