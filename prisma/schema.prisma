@@ -14,7 +14,7 @@ model User {
   firstName String
   lastName  String
   password  String
-  number    String
+  number    String?
   // Roles Type: student | examinator | administrator
   role      String          @default("student")
   groups    GroupsOnUsers[]
