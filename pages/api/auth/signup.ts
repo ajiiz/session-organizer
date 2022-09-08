@@ -2,20 +2,19 @@ import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
 import type { NextApiHandler } from "next";
 
-export type SigninRequest = {
+export type SignupRequest = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  phoneNumber: string;
+  groupCode: string;
 };
 
-export const path = "api/auth/signin";
+export const path = "api/auth/signup";
 
-const prisma = new PrismaClient();
-
-export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
-  const requestedData = req.body.params as SigninRequest;
+export const signup: NextApiHandler<SignupRequest> = async (req, res) => {
+  const prisma = new PrismaClient();
+  const requestedData = req.body.params as SignupRequest;
 
   if (!requestedData) {
     res.statusMessage = `Malformed request data`;
@@ -23,9 +22,9 @@ export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
     return;
   }
 
-  const { firstName, lastName, email, password, phoneNumber } = requestedData;
+  const { firstName, lastName, email, password, groupCode } = requestedData;
 
-  if (!firstName || !lastName || !email || !password || !phoneNumber || !email.includes("@")) {
+  if (!firstName || !lastName || !email || !password || !email.includes("@")) {
     res.statusMessage = `Malformed request data`;
     res.status(400).end();
     return;
@@ -44,8 +43,7 @@ export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: hashedPassword,
-      number: phoneNumber
+      password: hashedPassword
     }
   });
   if (!newUser) {
@@ -54,6 +52,7 @@ export const signup: NextApiHandler<SigninRequest> = async (req, res) => {
     return;
   }
 
+  prisma.$disconnect();
   res.statusMessage = `User has been created!`;
   res.status(200).end();
   return;
