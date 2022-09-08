@@ -7,7 +7,7 @@ import { signIn } from "next-auth/react";
 import { validateEmail } from "network/auth/validateEmail";
 import { isEmail } from "utils/FormUtilities";
 import { goToLink } from "utils/NavigationUtilities";
-import { ResponseMessages } from "./ResponseMessages";
+import { LoginResponseMessages } from "./ResponseMessages";
 
 interface Props {
   csrfToken: string | undefined;
@@ -19,7 +19,7 @@ const Login = ({ csrfToken }: Props) => {
   const [password, setPassword] = useState("");
   const [statusMessage, setStatusMessage] = useState<null | string>(null);
 
-  const login = async (event: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const status: any = await signIn("credentials", {
@@ -28,7 +28,7 @@ const Login = ({ csrfToken }: Props) => {
         redirect: false
       });
       if (!status?.ok) {
-        setStatusMessage(ResponseMessages.Error);
+        setStatusMessage(LoginResponseMessages.Error);
         return;
       }
       goToLink({ link: "/" });
@@ -39,20 +39,20 @@ const Login = ({ csrfToken }: Props) => {
 
   const handleEmailValidation = async () => {
     if (!isEmail(email)) {
-      setStatusMessage(ResponseMessages.Invalid);
+      setStatusMessage(LoginResponseMessages.Invalid);
       return;
     }
     try {
       const data = await validateEmail({ email });
       setIsEmailValid(data.isEmailValid);
       if (data.isEmailValid) {
-        setStatusMessage(ResponseMessages.Valid);
+        setStatusMessage(LoginResponseMessages.Valid);
       } else {
-        setStatusMessage(ResponseMessages.Invalid);
+        setStatusMessage(LoginResponseMessages.Invalid);
       }
     } catch (error) {
       console.error("User not found");
-      setStatusMessage(ResponseMessages.Invalid);
+      setStatusMessage(LoginResponseMessages.Invalid);
     }
   };
 
@@ -62,7 +62,7 @@ const Login = ({ csrfToken }: Props) => {
       <S.SectionWrapper>
         <S.ContentWrapper>
           <S.Header>Log in</S.Header>
-          <S.Form onSubmit={event => login(event)}>
+          <S.Form onSubmit={event => handleLogin(event)}>
             <S.Input name="csrfToken" type="hidden" defaultValue={csrfToken ?? ""} />
             <S.InputLabel>Email</S.InputLabel>
             <S.Input
@@ -89,7 +89,7 @@ const Login = ({ csrfToken }: Props) => {
               <S.Button
                 type={"button"}
                 onClick={handleEmailValidation}
-                margin={statusMessage === ResponseMessages.Null ? "" : "1rem 0 0 0"}
+                margin={statusMessage === LoginResponseMessages.Null ? "" : "1rem 0 0 0"}
               >
                 {"Continue with your email"}
               </S.Button>
