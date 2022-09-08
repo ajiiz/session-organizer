@@ -46,13 +46,21 @@ export const Button = styled.button<ButtonProps>`
   background: ${hexToRgba(Colors.GreenColor, 0.25)};
   font-size: 0.9em;
   color: ${Colors.GreenColor};
+  transition: 0.2s background linear;
 
-  &:hover,
-  &:focus {
+  &:hover {
     padding: 0.4rem 1.5rem;
     font-size: 0.9em;
     border: 1px solid ${Colors.GreenColor};
     background: ${hexToRgba(Colors.GreenColor, 0.3)};
+    color: ${Colors.GreenColor};
+  }
+
+  &:focus {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9em;
+    border: 1px solid ${Colors.GreenColor};
+    background: ${hexToRgba(Colors.GreenColor, 0.25)};
     color: ${Colors.GreenColor};
   }
 `;
