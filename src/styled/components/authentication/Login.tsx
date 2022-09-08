@@ -1,10 +1,13 @@
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
 import * as S from "./Authentication.styled";
 import { signIn } from "next-auth/react";
 import { validateEmail } from "network/auth/validateEmail";
+import { isEmail } from "utils/FormUtilities";
+import { goToLink } from "utils/NavigationUtilities";
+import { ResponseMessages } from "./ResponseMessages";
 
 interface Props {
   csrfToken: string | undefined;
@@ -14,33 +17,42 @@ const Login = ({ csrfToken }: Props) => {
   const [isEmailValid, setIsEmailValid] = useState<boolean | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [statusMessage, setStatusMessage] = useState<null | string>(null);
 
-  const statusMessage = useMemo(
-    () =>
-      isEmailValid === null
-        ? ""
-        : !isEmailValid
-        ? "Your provided email is invalid. Provide correct email or sign up."
-        : "Your provided email is valid. Insert your password and sign in.",
-    [isEmailValid]
-  );
-
-  const login = (event: FormEvent<HTMLFormElement>) => {
+  const login = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    signIn("credentials", {
-      email,
-      password,
-      callbackUrl: `${window.location.origin}/`
-    });
+    try {
+      const status: any = await signIn("credentials", {
+        email,
+        password,
+        redirect: false
+      });
+      if (!status?.ok) {
+        setStatusMessage(ResponseMessages.Error);
+        return;
+      }
+      goToLink({ link: "/" });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleEmailValidation = async () => {
+    if (!isEmail(email)) {
+      setStatusMessage(ResponseMessages.Invalid);
+      return;
+    }
     try {
       const data = await validateEmail({ email });
       setIsEmailValid(data.isEmailValid);
+      if (data.isEmailValid) {
+        setStatusMessage(ResponseMessages.Valid);
+      } else {
+        setStatusMessage(ResponseMessages.Invalid);
+      }
     } catch (error) {
       console.error("User not found");
-      setIsEmailValid(false);
+      setStatusMessage(ResponseMessages.Invalid);
     }
   };
 
@@ -77,7 +89,7 @@ const Login = ({ csrfToken }: Props) => {
               <S.Button
                 type={"button"}
                 onClick={handleEmailValidation}
-                margin={isEmailValid !== null && !isEmailValid ? "" : "1rem 0 0 0"}
+                margin={statusMessage === ResponseMessages.Null ? "" : "1rem 0 0 0"}
               >
                 {"Continue with your email"}
               </S.Button>
