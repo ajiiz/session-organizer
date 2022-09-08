@@ -58,7 +58,7 @@ const Login = ({ csrfToken }: Props) => {
 
   return (
     <Wrapper flexDirection="column" height="100vh" alignItems="flex-start" justifyContent="flex-start">
-      <Navbar removeButtons={true} />
+      <Navbar removeLoginButton={true} />
       <S.SectionWrapper>
         <S.ContentWrapper>
           <S.Header>Log in</S.Header>

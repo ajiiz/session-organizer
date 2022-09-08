@@ -10,7 +10,7 @@ import { goToLink } from "utils/NavigationUtilities";
 const Landing = () => {
   return (
     <Wrapper flexDirection="column" height="100vh" alignItems="flex-start" justifyContent="flex-start">
-      <Navbar />
+      <Navbar hideRegisterButtonOnMobile={true} />
       <S.HeroWrapper>
         <S.HeroContent>
           <S.HeaderWrapper>

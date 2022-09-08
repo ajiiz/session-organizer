@@ -6,18 +6,21 @@ import { Colors } from "styled/base/Colors";
 import { goToLink } from "utils/NavigationUtilities";
 
 interface Props {
-  removeButtons?: boolean;
+  removeLoginButton?: boolean;
+  removeRegisterButton?: boolean;
+  hideRegisterButtonOnMobile?: boolean;
 }
 
-const Navbar = ({ removeButtons }: Props) => {
+const Navbar = ({ removeLoginButton, removeRegisterButton, hideRegisterButtonOnMobile }: Props) => {
   return (
     <S.Wrapper>
       <S.LogoWrapper onClick={() => goToLink({ link: "/" })}>
         <StyledLogo src={Logo} alt="Logo" />
         <S.LogoContent>Listic</S.LogoContent>
       </S.LogoWrapper>
-      {!removeButtons && (
-        <S.ButtonsWrapper>
+
+      <S.ButtonsWrapper>
+        {!removeLoginButton && (
           <Button
             backgroundColor=""
             backgroundOpacity="1"
@@ -27,7 +30,9 @@ const Navbar = ({ removeButtons }: Props) => {
           >
             Log in
           </Button>
-          <S.RegisterButtonWrapper>
+        )}
+        {!removeRegisterButton && (
+          <S.RegisterButtonWrapper shouldHide={hideRegisterButtonOnMobile}>
             <Button
               fontColor={Colors.WhiteColor}
               backgroundColor={Colors.GreenColor}
@@ -39,8 +44,8 @@ const Navbar = ({ removeButtons }: Props) => {
               Register now
             </Button>
           </S.RegisterButtonWrapper>
-        </S.ButtonsWrapper>
-      )}
+        )}
+      </S.ButtonsWrapper>
     </S.Wrapper>
   );
 };
