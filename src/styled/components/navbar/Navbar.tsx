@@ -3,6 +3,7 @@ import Logo from "assets/Logo.svg";
 import * as S from "./Navbar.styled";
 import Button from "../shared/button/Button";
 import { Colors } from "styled/base/Colors";
+import { goToLink } from "utils/NavigationUtilities";
 
 interface Props {
   removeButtons?: boolean;
@@ -11,13 +12,19 @@ interface Props {
 const Navbar = ({ removeButtons }: Props) => {
   return (
     <S.Wrapper>
-      <S.LogoWrapper>
+      <S.LogoWrapper onClick={() => goToLink({ link: "/" })}>
         <StyledLogo src={Logo} alt="Logo" />
         <S.LogoContent>Listic</S.LogoContent>
       </S.LogoWrapper>
       {!removeButtons && (
         <S.ButtonsWrapper>
-          <Button backgroundColor="" backgroundOpacity="1" hoverColor={Colors.GrayColor} hoverOpacity="0.1">
+          <Button
+            backgroundColor=""
+            backgroundOpacity="1"
+            hoverColor={Colors.GrayColor}
+            hoverOpacity="0.1"
+            onClick={() => goToLink({ link: "/signin" })}
+          >
             Log in
           </Button>
           <S.RegisterButtonWrapper>
@@ -27,6 +34,7 @@ const Navbar = ({ removeButtons }: Props) => {
               backgroundOpacity="0.8"
               hoverColor={Colors.GreenColor}
               hoverOpacity="1"
+              onClick={() => goToLink({ link: "/signup" })}
             >
               Register now
             </Button>
