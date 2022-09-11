@@ -6,12 +6,15 @@ import { device } from "styled/base/Responsive";
 export const SectionWrapper = styled.section`
   height: 80%;
   width: 100%;
-  padding-top: 8rem;
+  padding-top: 6rem;
   display: flex;
   justify-content: center;
+`;
 
+export const RegisterWrapper = styled(SectionWrapper)`
   ${device.mobile} {
-    padding-top: 6rem;
+    padding: 2rem 0;
+    min-height: 80%;
   }
 `;
 
@@ -46,20 +49,33 @@ export const Button = styled.button<ButtonProps>`
   background: ${hexToRgba(Colors.GreenColor, 0.25)};
   font-size: 0.9em;
   color: ${Colors.GreenColor};
+  transition: 0.2s background linear;
 
-  &:hover,
-  &:focus {
+  &:hover {
     padding: 0.4rem 1.5rem;
     font-size: 0.9em;
     border: 1px solid ${Colors.GreenColor};
     background: ${hexToRgba(Colors.GreenColor, 0.3)};
     color: ${Colors.GreenColor};
   }
+
+  &:focus {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9em;
+    border: 1px solid ${Colors.GreenColor};
+    background: ${hexToRgba(Colors.GreenColor, 0.25)};
+    color: ${Colors.GreenColor};
+  }
 `;
 
-export const Input = styled.input`
-  width: 100%;
-  margin: 0.4rem 0 0 0;
+interface InputProps {
+  margin?: string;
+  width?: string;
+}
+
+export const Input = styled.input<InputProps>`
+  width: ${props => (props.width ? props.width : "100%")};
+  margin: ${props => (props.margin ? props.margin : "0.4rem 0 0 0")};
   padding: 0.7em 0 0.7em 1em;
   display: flex;
   border: 1px solid ${Colors.LightBlackColor};
@@ -86,6 +102,15 @@ export const InputLabel = styled.label`
   user-select: none;
   font-size: 0.8em;
   color: ${Colors.LightGrayColor};
+`;
+
+export const NameInputsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const NameInputWrapper = styled.div`
+  width: 48%;
 `;
 
 export const StatusMessage = styled.p`

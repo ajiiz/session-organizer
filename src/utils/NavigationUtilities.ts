@@ -4,6 +4,6 @@ interface LinkProp {
   link: string;
 }
 
-export function goToLink({ link }: LinkProp): void {
+export const goToLink = ({ link }: LinkProp): void => {
   router.push(link);
-}
+};

@@ -16,6 +16,14 @@ const load = async (): Promise<void> => {
     }
   });
   console.log("Added default user");
+
+  await prisma.group.create({
+    data: {
+      name: "TestGroup",
+      invitationCode: "GRP12345679"
+    }
+  });
+  console.log("Added default group");
 };
 
 load()

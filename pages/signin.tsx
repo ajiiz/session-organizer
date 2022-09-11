@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { CtxOrReq } from "next-auth/client/_utils";
-import { getCsrfToken } from "next-auth/react";
+import { getCsrfToken, getSession } from "next-auth/react";
 import Login from "styled/components/authentication/Login";
 
 interface SigninProps {
@@ -14,6 +14,17 @@ const signIn: NextPage<SigninProps> = ({ csrfToken }) => {
 export default signIn;
 
 export const getServerSideProps = async (context: CtxOrReq | undefined) => {
+  const session = await getSession(context);
+
+  if (session?.user) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false
+      }
+    };
+  }
+
   return {
     props: {
       csrfToken: await getCsrfToken(context)

@@ -5,11 +5,12 @@ import Footer from "styled/components/footer/Footer";
 import Button from "styled/components/shared/button/Button";
 import { Colors } from "styled/base/Colors";
 import HeroImage from "assets/Hero-Image.svg";
+import { goToLink } from "utils/NavigationUtilities";
 
 const Landing = () => {
   return (
     <Wrapper flexDirection="column" height="100vh" alignItems="flex-start" justifyContent="flex-start">
-      <Navbar />
+      <Navbar hideRegisterButtonOnMobile={true} />
       <S.HeroWrapper>
         <S.HeroContent>
           <S.HeaderWrapper>
@@ -26,6 +27,7 @@ const Landing = () => {
             hoverColor={Colors.GreenColor}
             hoverOpacity="1"
             padding="0.65rem 3rem"
+            onClick={() => goToLink({ link: "/signup" })}
           >
             Register now
           </Button>

@@ -7,7 +7,7 @@ const Dashboard: NextPage = () => {
   return (
     <div>
       <div>Dashboard available!</div>
-      {session.data?.user && <button onClick={() => signOut()}>Sign out</button>}
+      {session.data?.user && <button onClick={() => signOut({ callbackUrl: "/signin" })}>Sign out</button>}
     </div>
   );
 };

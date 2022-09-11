@@ -19,6 +19,7 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const LogoContent = styled.h3`
@@ -40,8 +41,13 @@ export const ButtonsWrapper = styled.div`
   }
 `;
 
-export const RegisterButtonWrapper = styled.div`
+interface RegisterButtonWrapperProps {
+  shouldHide?: boolean;
+}
+
+export const RegisterButtonWrapper = styled.div<RegisterButtonWrapperProps>`
   ${device.mobile} {
-    display: none;
+    font-size: 0.7em;
+    display: ${props => (props.shouldHide ? "none" : "")};
   }
 `;
