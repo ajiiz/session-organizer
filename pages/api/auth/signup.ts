@@ -30,8 +30,8 @@ export const signup: NextApiHandler<SignupRequest> = async (req, res) => {
     return;
   }
 
-  const isUser = await prisma.user.findFirst({ where: { email: email } });
-  if (isUser) {
+  const foundUser = await prisma.user.findFirst({ where: { email: email } });
+  if (foundUser) {
     res.statusMessage = `User already exists!`;
     res.status(422).end();
     return;
@@ -50,6 +50,18 @@ export const signup: NextApiHandler<SignupRequest> = async (req, res) => {
     res.statusMessage = `User could not be created`;
     res.status(400).end();
     return;
+  }
+
+  if (groupCode) {
+    const foundGroup = await prisma.group.findFirst({ where: { invitationCode: groupCode } });
+    if (foundGroup) {
+      await prisma.user.update({
+        where: { id: newUser.id },
+        data: {
+          groups: { connect: { id: foundGroup.id } }
+        }
+      });
+    }
   }
 
   prisma.$disconnect();
