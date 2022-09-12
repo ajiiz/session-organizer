@@ -6,7 +6,7 @@ import { device } from "styled/base/Responsive";
 export const SectionWrapper = styled.section`
   height: 80%;
   width: 100%;
-  padding-top: 6rem;
+  padding-top: 4rem;
   display: flex;
   justify-content: center;
 `;
