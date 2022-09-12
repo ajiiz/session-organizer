@@ -20,6 +20,7 @@ const Login = ({ csrfToken }: Props) => {
   const [statusMessage, setStatusMessage] = useState<null | string>(null);
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+    console.log("a");
     event.preventDefault();
     try {
       const status: any = await signIn("credentials", {
@@ -37,7 +38,11 @@ const Login = ({ csrfToken }: Props) => {
     }
   };
 
-  const handleEmailValidation = async () => {
+  const handleEmailValidation = async (event?: FormEvent<HTMLFormElement>) => {
+    if (event) {
+      event.preventDefault();
+    }
+
     if (!isEmail(email)) {
       setStatusMessage(LoginResponseMessages.Invalid);
       return;
@@ -62,7 +67,7 @@ const Login = ({ csrfToken }: Props) => {
       <S.SectionWrapper>
         <S.ContentWrapper>
           <S.Header>Log in</S.Header>
-          <S.Form onSubmit={event => handleLogin(event)}>
+          <S.Form onSubmit={event => (isEmailValid ? handleLogin(event) : handleEmailValidation(event))}>
             <S.Input name="csrfToken" type="hidden" defaultValue={csrfToken ?? ""} />
             <S.InputLabel>Email</S.InputLabel>
             <S.Input
@@ -88,7 +93,7 @@ const Login = ({ csrfToken }: Props) => {
             ) : (
               <S.Button
                 type={"button"}
-                onClick={handleEmailValidation}
+                onClick={() => handleEmailValidation()}
                 margin={statusMessage === LoginResponseMessages.Null ? "" : "1rem 0 0 0"}
               >
                 {"Continue with your email"}
