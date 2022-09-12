@@ -18,7 +18,6 @@ const Navbar = ({ removeLoginButton, removeRegisterButton, hideRegisterButtonOnM
         <StyledLogo src={Logo} alt="Logo" />
         <S.LogoContent>Listic</S.LogoContent>
       </S.LogoWrapper>
-
       <S.ButtonsWrapper>
         {!removeLoginButton && (
           <Button
