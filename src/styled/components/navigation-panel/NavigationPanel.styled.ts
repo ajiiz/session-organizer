@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import hexToRgba from "hex-to-rgba";
 import { Colors } from "styled/base/Colors";
+import Image from "next/image";
 
 export const SectionWrapper = styled.section`
   width: 20vw;
@@ -39,17 +40,28 @@ export const LogoContent = styled.h3`
   text-align: center;
 `;
 
-export const CreationButtonWrapper = styled.div``;
-
-export const CreationButton = styled.div``;
+export const CreationButtonWrapper = styled.div`
+  width: 100%;
+  padding: 1rem 0;
+  margin-left: 0.5rem;
+  display: flex;
+`;
 
 export const LinksWrapper = styled.div``;
 
-export const Link = styled.div``;
+export const Link = styled.div`
+  width: 75%;
+  display: flex;
+  cursor: pointer;
+
+  &:hover {
+    background-color: black;
+  }
+`;
 
 export const LinkParagraph = styled.span``;
 
-export const LinkIcon = styled.img``;
+export const LinkIcon = styled(Image)``;
 
 export const AuthorizationWrapper = styled.div``;
 
