@@ -1,6 +1,7 @@
-import Logo from "assets/Logo.svg";
 import { StyledLogo } from "styled/elements/shared/logo/Logo";
 import { goToLink } from "utils/NavigationUtilities";
+import Logo from "assets/Logo.svg";
+import { LinksContent } from "./LinksContent";
 import * as S from "./NavigationPanel.styled";
 
 const NavigationPanel = () => {
@@ -14,14 +15,18 @@ const NavigationPanel = () => {
           </S.LogoWrapper>
         </S.LogoContainer>
         <S.CreationButtonWrapper>
-          <S.LinkIcon />
-          <S.LinkParagraph></S.LinkParagraph>
+          <S.Link onClick={() => goToLink({ link: LinksContent[0].url })}>
+            <S.LinkIcon src={LinksContent[0].src} alt={LinksContent[0].alt} />
+            <S.LinkParagraph>{LinksContent[0].paragraph}</S.LinkParagraph>
+          </S.Link>
         </S.CreationButtonWrapper>
         <S.LinksWrapper>
-          <S.Link>
-            <S.LinkIcon />
-            <S.LinkParagraph></S.LinkParagraph>
-          </S.Link>
+          {LinksContent.slice(1).map((element, index) => (
+            <S.Link key={index} onClick={() => goToLink({ link: element.url })}>
+              <S.LinkIcon src={element.src} alt={element.alt} />
+              <S.LinkParagraph>{element.paragraph}</S.LinkParagraph>
+            </S.Link>
+          ))}
         </S.LinksWrapper>
       </S.ContentWrapper>
       <S.AuthorizationWrapper>
