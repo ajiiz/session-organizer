@@ -3,11 +3,7 @@ import { getSession } from "next-auth/react";
 import DashboardComponent from "styled/components/dashboard/DashboardComponent";
 
 const Dashboard: NextPage = () => {
-  return (
-    <>
-      <DashboardComponent />
-    </>
-  );
+  return <DashboardComponent />;
 };
 
 export default Dashboard;
