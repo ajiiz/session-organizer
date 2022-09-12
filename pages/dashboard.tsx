@@ -1,14 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
-import { getSession, signOut, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import DashboardComponent from "styled/components/dashboard/DashboardComponent";
 
 const Dashboard: NextPage = () => {
-  const session = useSession();
-
   return (
-    <div>
-      <div>Dashboard available!</div>
-      {session.data?.user && <button onClick={() => signOut({ callbackUrl: "/signin" })}>Sign out</button>}
-    </div>
+    <>
+      <DashboardComponent />
+    </>
   );
 };
 
