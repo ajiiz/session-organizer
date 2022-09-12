@@ -1,9 +1,9 @@
 import { StyledLogo } from "styled/elements/shared/logo/Logo";
-import Logo from "assets/Logo.svg";
-import * as S from "./Navbar.styled";
-import Button from "../shared/button/Button";
 import { Colors } from "styled/base/Colors";
 import { goToLink } from "utils/NavigationUtilities";
+import Button from "../shared/button/Button";
+import Logo from "assets/Logo.svg";
+import * as S from "./Navbar.styled";
 
 interface Props {
   removeLoginButton?: boolean;

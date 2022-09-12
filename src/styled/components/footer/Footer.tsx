@@ -1,6 +1,6 @@
-import * as S from "./Footer.styled";
 import GithubIcon from "assets/icons/github-icon.svg";
 import LinkedinIcon from "assets/icons/linkedin-icon.svg";
+import * as S from "./Footer.styled";
 
 const Footer = () => {
   return (

@@ -1,13 +1,13 @@
 import { FormEvent, useState } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
-import Navbar from "styled/components/navbar/Navbar";
-import Footer from "styled/components/footer/Footer";
-import * as S from "./Authentication.styled";
 import { signIn } from "next-auth/react";
 import { validateEmail } from "network/auth/validateEmail";
 import { isEmail } from "utils/FormUtilities";
 import { goToLink } from "utils/NavigationUtilities";
 import { LoginResponseMessages } from "./ResponseMessages";
+import Navbar from "styled/components/navbar/Navbar";
+import Footer from "styled/components/footer/Footer";
+import * as S from "./Authentication.styled";
 
 interface Props {
   csrfToken: string | undefined;
