@@ -3,8 +3,11 @@ import { goToLink } from "utils/NavigationUtilities";
 import Logo from "assets/Logo.svg";
 import { LinksContent } from "./LinksContent";
 import * as S from "./NavigationPanel.styled";
+import { signOut, useSession } from "next-auth/react";
 
 const NavigationPanel = () => {
+  const { data } = useSession();
+
   return (
     <S.SectionWrapper>
       <S.ContentWrapper>
@@ -22,7 +25,7 @@ const NavigationPanel = () => {
         </S.CreationButtonWrapper>
         <S.LinksWrapper>
           {LinksContent.slice(1).map((element, index) => (
-            <S.Link key={index} onClick={() => goToLink({ link: element.url })}>
+            <S.Link key={index} onClick={() => goToLink({ link: element.url })} margin="0.3rem 0">
               <S.LinkIcon src={element.src} alt={element.alt} />
               <S.LinkParagraph>{element.paragraph}</S.LinkParagraph>
             </S.Link>
@@ -31,9 +34,11 @@ const NavigationPanel = () => {
       </S.ContentWrapper>
       <S.AuthorizationWrapper>
         <S.UserInformation>
-          Loggd in as <S.UserEmail>email@gmail.com</S.UserEmail>
+          Loggd in as <S.UserEmail>{data?.user.email}</S.UserEmail>
         </S.UserInformation>
-        <S.LogoutButton>Logout</S.LogoutButton>
+        <S.LogoutButton type="button" onClick={() => signOut({ callbackUrl: "/signin" })}>
+          Logout
+        </S.LogoutButton>
       </S.AuthorizationWrapper>
     </S.SectionWrapper>
   );
