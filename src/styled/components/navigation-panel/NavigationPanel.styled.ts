@@ -2,8 +2,13 @@ import styled from "styled-components";
 import hexToRgba from "hex-to-rgba";
 import { Colors } from "styled/base/Colors";
 import Image from "next/image";
+import { device } from "styled/base/Responsive";
 
-export const SectionWrapper = styled.section`
+interface SectionWrapperProps {
+  isOpen: boolean;
+}
+
+export const SectionWrapper = styled.section<SectionWrapperProps>`
   width: 20rem;
   height: 100%;
   display: flex;
@@ -11,6 +16,34 @@ export const SectionWrapper = styled.section`
   background-color: ${hexToRgba(Colors.DarkWhiteColor, 0.5)};
   border-right: 0.5px solid ${hexToRgba(Colors.DarkGrayColor, 0.5)};
   color: ${Colors.BlackColor};
+  z-index: 10;
+  transition: 0.2s transform linear;
+
+  ${device.smalldesktop} {
+    width: 25rem;
+    position: fixed;
+    border: none;
+    background-color: ${hexToRgba(Colors.DarkWhiteColor, 1)};
+    transform: ${props => (props.isOpen ? "translate(0)" : "translateX(-25rem)")};
+  }
+
+  ${device.tablet} {
+    width: 100%;
+    transform: ${props => (props.isOpen ? "translate(0)" : "translateX(-100%)")};
+  }
+`;
+
+export const CloseIcon = styled.div`
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 5;
+  cursor: pointer;
+
+  ${device.smalldesktop} {
+    display: block;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -80,7 +113,7 @@ export const LinkParagraph = styled.span`
   font-size: 0.9em;
 `;
 
-export const LinkIcon = styled(Image)``;
+export const Icon = styled(Image)``;
 
 export const AuthorizationWrapper = styled.div`
   display: flex;
