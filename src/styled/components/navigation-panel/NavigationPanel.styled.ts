@@ -90,6 +90,7 @@ export const LinksWrapper = styled.div`
 
 interface LinkProps {
   margin?: string;
+  isCurrentPath?: boolean;
 }
 
 export const Link = styled.div<LinkProps>`
@@ -101,6 +102,7 @@ export const Link = styled.div<LinkProps>`
   cursor: pointer;
   border-radius: 4px;
   transition: 0.2s background linear;
+  background: ${props => (props.isCurrentPath ? hexToRgba(Colors.DarkGrayColor, 0.15) : "")};
 
   &:hover {
     background: ${hexToRgba(Colors.DarkGrayColor, 0.15)};

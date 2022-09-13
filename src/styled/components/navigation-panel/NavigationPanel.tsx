@@ -1,10 +1,11 @@
 import { StyledLogo } from "styled/elements/shared/logo/Logo";
-import { goToLink } from "utils/NavigationUtilities";
+import { goToLink, isCurrentPath } from "utils/NavigationUtilities";
 import Logo from "assets/Logo.svg";
 import { LinksContent } from "./LinksContent";
 import { signOut, useSession } from "next-auth/react";
 import CloseIcon from "assets/icons/navigation-panel/close-icon.svg";
 import * as S from "./NavigationPanel.styled";
+import { useRouter } from "next/router";
 
 interface Props {
   isOpen: boolean;
@@ -13,6 +14,7 @@ interface Props {
 
 const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
   const { data } = useSession();
+  const router = useRouter();
 
   return (
     <S.SectionWrapper isOpen={isOpen}>
@@ -34,7 +36,12 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
         </S.CreationButtonWrapper>
         <S.LinksWrapper>
           {LinksContent.slice(1).map((element, index) => (
-            <S.Link key={index} onClick={() => goToLink({ link: element.url })} margin="0.3rem 0">
+            <S.Link
+              key={index}
+              onClick={() => goToLink({ link: element.url })}
+              margin="0.3rem 0"
+              isCurrentPath={isCurrentPath({ routerPath: router.pathname, currentPath: element.url })}
+            >
               <S.Icon src={element.src} alt={element.alt} />
               <S.LinkParagraph>{element.paragraph}</S.LinkParagraph>
             </S.Link>
