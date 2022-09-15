@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NavigationPanel from "styled/components/navigation-panel/NavigationPanel";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
+import DashboardMain from "./dashboard-main/DashboardMain";
 import DashboardNavbar from "./dashboard-navbar/DashboardNavbar";
 import * as S from "./Dashboard.styled";
 
@@ -29,10 +30,10 @@ const DashboardComponent = () => {
   return (
     <Wrapper flexDirection="row" height="100vh" alignItems="flex-start" justifyContent="flex-start">
       <NavigationPanel isOpen={isControlPanel} handleOpen={handleNavigationPanel} />
-      <S.Section>
+      <S.SectionWrapper>
         <DashboardNavbar handleNavigationPanel={handleNavigationPanel} handleCallendarPanel={handleCallendarPanel} />
-        Dashboard available!
-      </S.Section>
+        <DashboardMain />
+      </S.SectionWrapper>
     </Wrapper>
   );
 };
