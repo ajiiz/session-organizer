@@ -33,7 +33,7 @@ const Landing = () => {
             Register now
           </Button>
         </S.HeroContent>
-        <S.ImageWrapper width="50%" height="75%">
+        <S.ImageWrapper width="40%" height="75%">
           <S.HeroImage src={HeroImage} alt="Hero" placeholder="blur" blurDataURL={HeroImage} />
         </S.ImageWrapper>
       </S.HeroWrapper>

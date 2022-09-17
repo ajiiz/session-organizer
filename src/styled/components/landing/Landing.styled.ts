@@ -16,16 +16,18 @@ export const HeroWrapper = styled.div`
   }
 
   ${device.tablet} {
+    height: fit-content;
     flex-direction: column-reverse;
   }
 
   ${device.mobile} {
+    height: 100%;
     justify-content: center;
   }
 `;
 
 export const HeroContent = styled.div`
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
