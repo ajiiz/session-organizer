@@ -4,6 +4,14 @@ import { hash } from "bcryptjs";
 const prisma = new PrismaClient();
 
 const load = async (): Promise<void> => {
+  const newGroup = await prisma.group.create({
+    data: {
+      name: "TestGroup",
+      invitationCode: "GRP12345679"
+    }
+  });
+  console.log("Added default group");
+
   const hashedPassword = await hash("password", 12);
   const newUser = await prisma.user.create({
     data: {
@@ -12,18 +20,11 @@ const load = async (): Promise<void> => {
       lastName: "Wrobel",
       password: hashedPassword,
       number: "888999111",
-      role: "administrator"
+      role: "administrator",
+      groups: { connect: { id: newGroup.id } }
     }
   });
   console.log("Added default user");
-
-  const newGroup = await prisma.group.create({
-    data: {
-      name: "TestGroup",
-      invitationCode: "GRP12345679"
-    }
-  });
-  console.log("Added default group");
 
   await prisma.event.createMany({
     data: [
