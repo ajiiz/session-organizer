@@ -28,7 +28,6 @@ export const Header = styled.h1`
 
 export const Paragraph = styled.p`
   margin: 1.5rem 0 0 0.3rem;
-  user-select: none;
   font-size: 0.9em;
   letter-spacing: 0.05em;
   color: ${Colors.LightGrayColor};
