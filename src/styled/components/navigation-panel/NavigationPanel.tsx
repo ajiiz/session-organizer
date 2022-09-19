@@ -4,8 +4,8 @@ import Logo from "assets/Logo.svg";
 import { LinksContent } from "./LinksContent";
 import { signOut, useSession } from "next-auth/react";
 import CloseIcon from "assets/icons/navigation-panel/close-icon.svg";
-import * as S from "./NavigationPanel.styled";
 import { useRouter } from "next/router";
+import * as S from "./NavigationPanel.styled";
 
 interface Props {
   isOpen: boolean;
