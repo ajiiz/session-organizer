@@ -1,13 +1,18 @@
+import hexToRgba from "hex-to-rgba";
 import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 
 export const ContentWrapper = styled.div`
-  width: 100%;
+  width: 80%;
+  height: 100%;
   padding: 8rem 0 0 5rem;
+  transform: translateX(20rem);
 
   ${device.smalldesktop} {
-    padding: 3rem 0 0 5rem;
+    width: 100%;
+    padding: 3rem 5rem 0 5rem;
+    transform: translateX(0);
   }
 
   ${device.tablet} {
@@ -18,6 +23,7 @@ export const ContentWrapper = styled.div`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 `;
 
 export const Header = styled.h1`
@@ -32,3 +38,41 @@ export const Paragraph = styled.p`
   letter-spacing: 0.05em;
   color: ${Colors.LightGrayColor};
 `;
+
+export const EventsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EventCard = styled.div`
+  width: 80%;
+  padding: 1rem;
+  display: flex;
+  margin: 0.5rem 0;
+  flex-direction: column;
+  background: ${hexToRgba(Colors.DarkGrayColor, 0.1)};
+`;
+
+export const EventHeader = styled.h3`
+  margin: 0;
+  font-family: InterRegular;
+  font-size: 1.4em;
+`;
+
+export const EventParagraph = styled.p``;
+
+export const EventDateTime = styled.div`
+  display: flex;
+`;
+
+export const EventTime = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const EventTimeName = styled.span``;
+
+export const EventTimeDetails = styled.span``;
