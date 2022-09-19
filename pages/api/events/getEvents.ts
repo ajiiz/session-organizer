@@ -26,8 +26,6 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
     return;
   }
 
-  console.log(user.groups);
-
   const allEvents = [...user.events, ...user.groups.map(group => group.events)].flat();
 
   prisma.$disconnect();
