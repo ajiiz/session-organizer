@@ -9,6 +9,7 @@ interface SectionWrapperProps {
 }
 
 export const SectionWrapper = styled.section<SectionWrapperProps>`
+  position: fixed;
   width: 20rem;
   height: 100%;
   display: flex;
@@ -21,8 +22,6 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
 
   ${device.smalldesktop} {
     width: 25rem;
-    position: fixed;
-    border: none;
     background-color: ${hexToRgba(Colors.DarkWhiteColor, 1)};
     transform: ${props => (props.isOpen ? "translate(0)" : "translateX(-25rem)")};
   }
