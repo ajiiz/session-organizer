@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Event } from "@prisma/client";
 import { getEvents } from "network/events/getEvents";
-import moment from "moment";
 import * as S from "./DashboardMain.styled";
-import { getTime } from "utils/DateUtilities";
+import EventCard from "../event-card/EventCard";
 
 const DashboardMain = () => {
   const [events, setEvents] = useState<null | Event[]>();
@@ -38,21 +37,7 @@ const DashboardMain = () => {
         {currentShowedEvents ? (
           <>
             {currentShowedEvents.map(event => (
-              /* This should be another component */
-              <S.EventCard key={event.id}>
-                <S.EventHeader>{event.name}</S.EventHeader>
-                <S.EventParagraph>{event.description}</S.EventParagraph>
-                <S.EventDateTime>
-                  <S.EventTime>
-                    <S.EventTimeName>Start time</S.EventTimeName>
-                    <S.EventTimeDetails>{getTime(event.startDate)}</S.EventTimeDetails>
-                  </S.EventTime>
-                  <S.EventTime>
-                    <S.EventTimeName>End time</S.EventTimeName>
-                    <S.EventTimeDetails>{getTime(event.endDate)}</S.EventTimeDetails>
-                  </S.EventTime>
-                </S.EventDateTime>
-              </S.EventCard>
+              <EventCard event={event} key={event.id} />
             ))}
             <S.Button type="button" onClick={() => setShouldShowAll(!shouldShowAll)}>
               {shouldShowAll ? "Show only first three" : "Show all"}
