@@ -31,24 +31,24 @@ const load = async (): Promise<void> => {
       {
         name: "Test Case User Event 1",
         description: "Test Case Event 1 description - keep going. One step closer to the end.",
-        startDate: new Date(),
-        endDate: new Date(2023, 5, 22),
+        startDate: new Date(2023, 1, 22),
+        endDate: new Date(2024, 5, 22),
         status: "Future",
         userId: newUser.id
       },
       {
         name: "Test Case User Event 2",
         description: "Test Case Event 2 description - keep going. One step closer to the end.",
-        startDate: new Date(),
-        endDate: new Date(2023, 5, 22),
+        startDate: new Date(2022, 11, 22),
+        endDate: new Date(2024, 11, 22),
         status: "Future",
         userId: newUser.id
       },
       {
         name: "Test Case User Event 3",
         description: "Test Case Event 3 description - keep going. One step closer to the end.",
-        startDate: new Date(),
-        endDate: new Date(2023, 5, 22),
+        startDate: new Date(2022, 11, 28),
+        endDate: new Date(2024, 11, 28),
         status: "Future",
         userId: newUser.id
       }
@@ -61,16 +61,16 @@ const load = async (): Promise<void> => {
       {
         name: "Test Case Group Event 1",
         description: "Test Case Event 1 description - keep going. One step closer to the end.",
-        startDate: new Date(),
-        endDate: new Date(2023, 5, 22),
+        startDate: new Date(2022, 11, 19),
+        endDate: new Date(2024, 11, 20),
         status: "Future",
         groupId: newGroup.id
       },
       {
         name: "Test Case Group Event 2",
         description: "Test Case Event 2 description - keep going. One step closer to the end.",
-        startDate: new Date(),
-        endDate: new Date(2023, 5, 22),
+        startDate: new Date(2023, 5, 22),
+        endDate: new Date(2024, 5, 22),
         status: "Future",
         groupId: newGroup.id
       }
