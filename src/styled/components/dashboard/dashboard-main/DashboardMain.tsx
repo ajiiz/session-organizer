@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Event } from "@prisma/client";
 import { getEvents } from "network/events/getEvents";
-import * as S from "./DashboardMain.styled";
 import EventCard from "../event-card/EventCard";
+import EventsNotFound from "../events-not-found/EventsNotFound";
+import * as S from "./DashboardMain.styled";
 
 const DashboardMain = () => {
   const [events, setEvents] = useState<null | Event[]>();
@@ -44,8 +45,7 @@ const DashboardMain = () => {
             </S.Button>
           </>
         ) : (
-          /* This should be another component */
-          <div>There will be component that shows not found</div>
+          <EventsNotFound />
         )}
       </S.EventsWrapper>
     </S.ContentWrapper>
