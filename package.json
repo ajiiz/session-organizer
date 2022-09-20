@@ -25,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "csstype": "^3.0.10",
     "hex-to-rgba": "^2.0.1",
+    "moment": "^2.29.4",
     "next": "12.0.10",
     "next-auth": "^4.2.1",
     "react": "17.0.2",
