@@ -26,7 +26,9 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
     return;
   }
 
-  const allEvents = [...user.events, ...user.groups.map(group => group.events)].flat();
+  const allEvents = [...user.events, ...user.groups.map(group => group.events)]
+    .flat()
+    .sort((a, b) => Number(a.startDate) - Number(b.endDate));
 
   prisma.$disconnect();
 
