@@ -18,6 +18,11 @@ export const ContentWrapper = styled.div`
   ${device.tablet} {
     padding: 2.5rem 2.5rem 0 2.5rem;
   }
+
+  ${device.mobile} {
+    padding: 1rem 2.5rem 0 2.5rem;
+    height: fit-content;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -54,18 +59,29 @@ export const EventCard = styled.div`
   margin: 0.5rem 0;
   flex-direction: column;
   background: ${hexToRgba(Colors.DarkGrayColor, 0.1)};
+
+  ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const EventHeader = styled.h3`
   margin: 0;
-  font-family: InterRegular;
+  font-family: InterSemiBold;
   font-size: 1.4em;
 `;
 
-export const EventParagraph = styled.p``;
+export const EventParagraph = styled.p`
+  margin: 1.2em 0;
+  font-family: InterRegular;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  color: ${Colors.LightGrayColor};
+`;
 
 export const EventDateTime = styled.div`
   display: flex;
+  gap: 3rem;
 `;
 
 export const EventTime = styled.div`
@@ -73,6 +89,53 @@ export const EventTime = styled.div`
   flex-direction: column;
 `;
 
-export const EventTimeName = styled.span``;
+export const EventTimeName = styled.span`
+  margin: 0 0 0.5em 0;
+  font-family: InterRegular;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  color: ${Colors.LightGrayColor};
+`;
 
-export const EventTimeDetails = styled.span``;
+export const EventTimeDetails = styled.span`
+  font-family: InterSemiBold;
+  font-size: 0.85em;
+  color: ${Colors.BlackColor};
+`;
+
+export const Button = styled.button`
+  width: 35%;
+  margin: 2.5rem 0;
+  padding: 0.4rem 1.5rem;
+  text-align: center;
+  border: 1px solid ${Colors.BlueColor};
+  border-radius: 4px;
+  background: ${hexToRgba(Colors.BlueColor, 0.25)};
+  font-size: 0.9em;
+  color: ${Colors.BlueColor};
+  transition: 0.2s background linear;
+
+  &:hover {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9em;
+    border: 1px solid ${Colors.BlueColor};
+    background: ${hexToRgba(Colors.BlueColor, 0.3)};
+    color: ${Colors.BlueColor};
+  }
+
+  &:focus {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9em;
+    border: 1px solid ${Colors.BlueColor};
+    background: ${hexToRgba(Colors.BlueColor, 0.25)};
+    color: ${Colors.BlueColor};
+  }
+
+  ${device.tablet} {
+    width: 50%;
+  }
+
+  ${device.mobile} {
+    width: 75%;
+  }
+`;
