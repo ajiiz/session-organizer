@@ -32,7 +32,7 @@ const DashboardNavbar = ({ handleNavigationPanel, handleCallendarPanel }: Props)
           hoverOpacity="0.1"
           onClick={() => handleCallendarPanel()}
         >
-          Callendar
+          Calendar
         </Button>
       </S.ButtonsWrapper>
     </S.Wrapper>
