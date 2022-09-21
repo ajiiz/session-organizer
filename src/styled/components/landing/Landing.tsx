@@ -5,7 +5,6 @@ import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
 import Button from "styled/components/shared/button/Button";
 import HeroImage from "assets/Hero-Image.svg";
-
 import * as S from "./Landing.styled";
 
 const Landing = () => {
