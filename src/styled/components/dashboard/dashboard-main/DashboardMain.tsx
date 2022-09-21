@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Event } from "@prisma/client";
 import { getEvents } from "network/events/getEvents";
-import EventCard from "../event-card/EventCard";
 import EventsNotFound from "../events-not-found/EventsNotFound";
 import * as S from "./DashboardMain.styled";
+import EventSection from "../events-section/EventSection";
 
 const DashboardMain = () => {
   const [events, setEvents] = useState<null | Event[]>();
@@ -30,24 +30,16 @@ const DashboardMain = () => {
 
   return (
     <S.ContentWrapper>
-      <S.TextWrapper>
-        <S.Header>Your todays upcoming events</S.Header>
-        <S.Paragraph>View your future events and filter them by date.</S.Paragraph>
-      </S.TextWrapper>
-      <S.EventsWrapper>
-        {currentShowedEvents ? (
-          <>
-            {currentShowedEvents.map(event => (
-              <EventCard event={event} key={event.id} />
-            ))}
-            <S.Button type="button" onClick={() => setShouldShowAll(!shouldShowAll)}>
-              {shouldShowAll ? "Show only first three" : "Show all"}
-            </S.Button>
-          </>
-        ) : (
-          <EventsNotFound />
-        )}
-      </S.EventsWrapper>
+      {currentShowedEvents && currentShowedEvents.length > 0 ? (
+        <S.EventsWrapper>
+          <EventSection events={currentShowedEvents} />
+          <S.Button type="button" onClick={() => setShouldShowAll(!shouldShowAll)}>
+            {shouldShowAll ? "Show only first three" : "Show all"}
+          </S.Button>
+        </S.EventsWrapper>
+      ) : (
+        <EventsNotFound />
+      )}
     </S.ContentWrapper>
   );
 };
