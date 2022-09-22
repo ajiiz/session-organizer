@@ -350,6 +350,13 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.4.tgz"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
+"@types/react-calendar@^3.5.2":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@types/react-calendar/-/react-calendar-3.5.2.tgz#e401034e4bb82f4510ba87aa490e98b5746e16e0"
+  integrity sha512-8gkU9KaE33VVbu3YWvxXjEk4BsalgSYR3c/5XF9XNJiQ/2MKxiGkTg/PfOHUX/BvcADykRBMAEJiCi6jFPEE3A==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@17.0.39":
   version "17.0.39"
   resolved "https://registry.npmjs.org/@types/react/-/react-17.0.39.tgz"
