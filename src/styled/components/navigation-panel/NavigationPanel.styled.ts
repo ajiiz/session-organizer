@@ -9,8 +9,10 @@ interface SectionWrapperProps {
 }
 
 export const SectionWrapper = styled.section<SectionWrapperProps>`
-  position: fixed;
-  width: 20rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 30rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -21,14 +23,20 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
   transition: 0.2s transform linear;
 
   ${device.smalldesktop} {
+    position: fixed;
     width: 25rem;
     background-color: ${hexToRgba(Colors.DarkWhiteColor, 1)};
-    transform: ${props => (props.isOpen ? "translate(0)" : "translateX(-25rem)")};
+    transform: ${props => (props.isOpen ? "translateX(0)" : "translateX(-25rem)")};
   }
 
   ${device.tablet} {
+    position: fixed;
     width: 100%;
-    transform: ${props => (props.isOpen ? "translate(0)" : "translateX(-100%)")};
+    transform: ${props => (props.isOpen ? "translateX(0)" : "translateX(-100%)")};
+  }
+
+  ${device.mobile} {
+    position: fixed;
   }
 `;
 

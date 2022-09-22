@@ -4,15 +4,13 @@ import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 
 export const ContentWrapper = styled.div`
-  width: 80%;
+  width: 100%;
   height: 100%;
   padding: 8rem 5rem 0 5rem;
-  transform: translateX(20rem);
 
   ${device.smalldesktop} {
     width: 100%;
     padding: 3rem 5rem 0 5rem;
-    transform: translateX(0);
   }
 
   ${device.tablet} {
