@@ -1,16 +1,17 @@
 import hexToRgba from "hex-to-rgba";
 import styled, { css } from "styled-components";
 import { Colors } from "styled/base/Colors";
+import { Property } from "csstype";
 
 export interface StyledButtonProps {
-  backgroundColor: string & {};
-  backgroundOpacity: string;
-  fontColor?: string & {};
-  hoverColor: string & {};
-  hoverOpacity: string;
-  focusColor?: string & {};
-  focusOpacity?: string;
-  padding?: string;
+  backgroundColor: Property.BackgroundColor;
+  backgroundOpacity: Property.Opacity;
+  fontColor?: Property.Color;
+  hoverColor: Property.Color;
+  hoverOpacity: Property.Opacity;
+  focusColor?: Property.Color;
+  focusOpacity?: Property.Opacity;
+  padding?: Property.Padding;
 }
 
 const SharedButtonStyles = css`

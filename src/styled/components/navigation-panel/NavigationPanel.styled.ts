@@ -3,6 +3,7 @@ import hexToRgba from "hex-to-rgba";
 import { Colors } from "styled/base/Colors";
 import Image from "next/image";
 import { device } from "styled/base/Responsive";
+import { Property } from "csstype";
 
 interface SectionWrapperProps {
   isOpen: boolean;
@@ -96,7 +97,7 @@ export const LinksWrapper = styled.div`
 `;
 
 interface LinkProps {
-  margin?: string;
+  margin?: Property.Margin;
   isCurrentPath?: boolean;
 }
 
