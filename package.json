@@ -20,6 +20,7 @@
   "author": "Piotr Wrobel <https://github.com/ajiiz>",
   "dependencies": {
     "@prisma/client": "^3.9.2",
+    "@reduxjs/toolkit": "^1.8.5",
     "@types/bcryptjs": "^2.4.2",
     "@types/react-calendar": "^3.5.2",
     "axios": "^0.26.0",
@@ -32,6 +33,7 @@
     "react": "17.0.2",
     "react-calendar": "^3.9.0",
     "react-dom": "17.0.2",
+    "react-redux": "^8.0.4",
     "styled-components": "^5.3.3",
     "uuid": "^8.3.2"
   },

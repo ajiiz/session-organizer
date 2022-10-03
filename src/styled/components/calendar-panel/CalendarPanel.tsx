@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import CloseIcon from "assets/icons/navigation-panel/close-icon.svg";
+import { RootState } from "redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { changeDate } from "redux/dateSlice";
 import * as S from "./CalendarPanel.styled";
 
 interface Props {
@@ -9,11 +12,12 @@ interface Props {
 }
 
 const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
-  const [calendarValue, onCalendarValueChange] = useState(new Date());
+  const currentDate = useSelector((state: RootState) => state.calendar.date);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(calendarValue);
-  }, [calendarValue]);
+  const handleDateChange = (value: Date) => {
+    dispatch(changeDate(value));
+  };
 
   return (
     <S.SectionWrapper isOpen={isOpen}>
@@ -21,7 +25,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
         <S.Icon src={CloseIcon} alt="Close icon" onClick={() => handleOpen(false)} />
       </S.CloseIcon>
       <S.CallendarWrapper>
-        <Calendar onChange={onCalendarValueChange} value={calendarValue} />
+        <Calendar onChange={(date: Date) => handleDateChange(date)} value={currentDate} />
       </S.CallendarWrapper>
     </S.SectionWrapper>
   );
