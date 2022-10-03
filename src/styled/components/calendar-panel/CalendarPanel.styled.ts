@@ -1,3 +1,4 @@
+import Image from "next/image";
 import hexToRgba from "hex-to-rgba";
 import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
@@ -38,6 +39,7 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
 
   ${device.mobile} {
     position: fixed;
+    padding-top: 5rem;
   }
 `;
 
@@ -46,3 +48,18 @@ export const CallendarWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const CloseIcon = styled.div`
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 5;
+  cursor: pointer;
+
+  ${device.smalldesktop} {
+    display: block;
+  }
+`;
+
+export const Icon = styled(Image)``;

@@ -1,7 +1,7 @@
+import Image from "next/image";
 import styled from "styled-components";
 import hexToRgba from "hex-to-rgba";
 import { Colors } from "styled/base/Colors";
-import Image from "next/image";
 import { device } from "styled/base/Responsive";
 import { Property } from "csstype";
 

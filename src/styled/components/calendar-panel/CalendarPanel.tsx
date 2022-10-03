@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
+import CloseIcon from "assets/icons/navigation-panel/close-icon.svg";
 import * as S from "./CalendarPanel.styled";
 
 interface Props {
@@ -16,6 +17,9 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
 
   return (
     <S.SectionWrapper isOpen={isOpen}>
+      <S.CloseIcon>
+        <S.Icon src={CloseIcon} alt="Close icon" onClick={() => handleOpen(false)} />
+      </S.CloseIcon>
       <S.CallendarWrapper>
         <Calendar onChange={onCalendarValueChange} value={calendarValue} />
       </S.CallendarWrapper>
