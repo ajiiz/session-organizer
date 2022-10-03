@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 import * as S from "./CalendarPanel.styled";
 
 interface Props {
@@ -17,7 +16,9 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
 
   return (
     <S.SectionWrapper isOpen={isOpen}>
-      <Calendar onChange={onCalendarValueChange} value={calendarValue} />
+      <S.CallendarWrapper>
+        <Calendar onChange={onCalendarValueChange} value={calendarValue} />
+      </S.CallendarWrapper>
     </S.SectionWrapper>
   );
 };

@@ -13,6 +13,7 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
   top: 0;
   width: 30rem;
   height: 100%;
+  padding-top: 3rem;
   display: flex;
   flex-direction: column;
   background-color: ${hexToRgba(Colors.DarkWhiteColor, 0.5)};
@@ -38,4 +39,10 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
   ${device.mobile} {
     position: fixed;
   }
+`;
+
+export const CallendarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
