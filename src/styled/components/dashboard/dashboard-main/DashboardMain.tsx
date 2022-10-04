@@ -3,9 +3,12 @@ import { Event } from "@prisma/client";
 import { getEvents } from "network/events/getEvents";
 import EventsNotFound from "../events-not-found/EventsNotFound";
 import EventSection from "../events-section/EventSection";
+import { RootState } from "redux/store";
+import { useSelector } from "react-redux";
 import * as S from "./DashboardMain.styled";
 
 const DashboardMain = () => {
+  const currentDate = useSelector((state: RootState) => state.calendar.date);
   const [events, setEvents] = useState<null | Event[]>();
   const [shouldShowAll, setShouldShowAll] = useState(false);
   const currentShowedEvents = useMemo(() => {
@@ -17,11 +20,11 @@ const DashboardMain = () => {
 
   useEffect(() => {
     fetchEvents();
-  }, []);
+  }, [currentDate]);
 
   const fetchEvents = async () => {
     try {
-      const data = await getEvents();
+      const data = await getEvents({ date: currentDate });
       setEvents(data.events);
     } catch (error) {
       console.error(error);

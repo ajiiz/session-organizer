@@ -2,12 +2,22 @@ import { Event, PrismaClient } from "@prisma/client";
 import type { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 
+export type GetEventsRequest = { date: Date };
+
 export type GetEventsResponse = { events: Event[] };
 
 export const path = "api/events/getEvents";
 
 export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => {
   const prisma = new PrismaClient();
+
+  const requestedData = req.query as unknown as GetEventsRequest;
+
+  if (!requestedData.date) {
+    res.statusMessage = `Malformed request data`;
+    res.status(400).end();
+    return;
+  }
 
   const session = await getSession({ req });
   if (!session?.user?.email) {

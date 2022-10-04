@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import CloseIcon from "assets/icons/navigation-panel/close-icon.svg";
 import { RootState } from "redux/store";
