@@ -17,6 +17,7 @@ const DashboardMain = () => {
     }
     return events;
   }, [events, shouldShowAll]);
+  const shouldShowButton = (events?.length ?? 0) > 3;
 
   useEffect(() => {
     fetchEvents();
@@ -36,9 +37,11 @@ const DashboardMain = () => {
       {currentShowedEvents && currentShowedEvents.length > 0 ? (
         <S.EventsWrapper>
           <EventSection events={currentShowedEvents} />
-          <S.Button type="button" onClick={() => setShouldShowAll(!shouldShowAll)}>
-            {shouldShowAll ? "Show only first three" : "Show all"}
-          </S.Button>
+          {shouldShowButton && (
+            <S.Button type="button" onClick={() => setShouldShowAll(!shouldShowAll)}>
+              {shouldShowAll ? "Show only first three" : "Show all"}
+            </S.Button>
+          )}
         </S.EventsWrapper>
       ) : (
         <EventsNotFound />
