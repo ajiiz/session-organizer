@@ -20,7 +20,6 @@ const Login = ({ csrfToken }: Props) => {
   const [statusMessage, setStatusMessage] = useState<null | string>(null);
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
-    console.log("a");
     event.preventDefault();
     try {
       const status: any = await signIn("credentials", {
