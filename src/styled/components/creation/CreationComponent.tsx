@@ -1,9 +1,10 @@
 import PageTemplate from "styled/components/page-template/PageTemplate";
+import CreationMain from "./creation-main/CreationMain";
 
 const CreationComponent = () => {
   return (
     <PageTemplate>
-      <p>Creation Here</p>
+      <CreationMain />
     </PageTemplate>
   );
 };
