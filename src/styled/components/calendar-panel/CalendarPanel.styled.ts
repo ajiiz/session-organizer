@@ -18,7 +18,7 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
   display: flex;
   flex-direction: column;
   background-color: ${hexToRgba(Colors.DarkWhiteColor, 0.5)};
-  border-right: 0.5px solid ${hexToRgba(Colors.DarkGrayColor, 0.5)};
+  border-left: 0.5px solid ${hexToRgba(Colors.DarkGrayColor, 0.5)};
   color: ${Colors.BlackColor};
   z-index: 10;
   transition: 0.2s transform linear;
