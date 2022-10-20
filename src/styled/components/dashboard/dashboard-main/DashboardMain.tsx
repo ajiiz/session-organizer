@@ -33,7 +33,7 @@ const DashboardMain = () => {
   };
 
   return (
-    <S.ContentWrapper>
+    <S.ContentWrapper customMargin={!shouldShowButton}>
       {currentShowedEvents && currentShowedEvents.length > 0 ? (
         <S.EventsWrapper>
           <EventSection events={currentShowedEvents} />

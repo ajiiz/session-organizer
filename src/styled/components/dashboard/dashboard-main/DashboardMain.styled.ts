@@ -3,10 +3,15 @@ import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 
-export const ContentWrapper = styled.div`
+type ContentWrapperProps = {
+  customMargin?: boolean;
+};
+
+export const ContentWrapper = styled.div<ContentWrapperProps>`
   width: 100%;
   height: 100%;
   padding: 8rem 5rem 0 5rem;
+  margin-bottom: ${props => (props.customMargin ? "2.5rem" : null)};
 
   ${device.smalldesktop} {
     width: 100%;
