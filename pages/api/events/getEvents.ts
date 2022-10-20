@@ -1,4 +1,5 @@
 import { Event, PrismaClient } from "@prisma/client";
+import moment from "moment";
 import type { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 
@@ -11,9 +12,9 @@ export const path = "api/events/getEvents";
 export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => {
   const prisma = new PrismaClient();
 
-  const requestedData = req.query as unknown as GetEventsRequest;
+  const { date } = req.query as unknown as GetEventsRequest;
 
-  if (!requestedData.date) {
+  if (!date) {
     res.statusMessage = `Malformed request data`;
     res.status(400).end();
     return;
@@ -38,7 +39,13 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
 
   const allEvents = [...user.events, ...user.groups.map(group => group.events)]
     .flat()
-    .sort((a, b) => Number(a.startDate) - Number(b.endDate));
+    .sort((a, b) => Number(a.startDate) - Number(b.endDate))
+    .filter(event => {
+      const selectedDate = moment(date).format("YYYY MM DD");
+      const startDate = moment(event.startDate).format("YYYY MM DD");
+      const endDate = moment(event.endDate).format("YYYY MM DD");
+      return selectedDate >= startDate && selectedDate <= endDate;
+    });
 
   prisma.$disconnect();
 
