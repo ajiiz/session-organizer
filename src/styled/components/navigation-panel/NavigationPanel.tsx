@@ -29,7 +29,10 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
           </S.LogoWrapper>
         </S.LogoContainer>
         <S.CreationButtonWrapper>
-          <S.Link onClick={() => goToLink({ link: LinksContent[0].url })}>
+          <S.Link
+            onClick={() => goToLink({ link: LinksContent[0].url })}
+            isCurrentPath={isCurrentPath({ routerPath: router.pathname, currentPath: LinksContent[0].url })}
+          >
             <S.Icon src={LinksContent[0].src} alt={LinksContent[0].alt} />
             <S.LinkParagraph>{LinksContent[0].paragraph}</S.LinkParagraph>
           </S.Link>
