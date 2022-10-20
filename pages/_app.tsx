@@ -1,7 +1,10 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import "../src/styles/globals.css";
+import { Provider } from "react-redux";
+import { store } from "redux/store";
+import "styles/globals.css";
+import "styles/calendar.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -12,7 +15,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </SessionProvider>
     </>
   );

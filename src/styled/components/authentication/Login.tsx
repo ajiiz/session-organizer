@@ -1,13 +1,13 @@
 import { FormEvent, useState } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
-import Navbar from "styled/components/navbar/Navbar";
-import Footer from "styled/components/footer/Footer";
-import * as S from "./Authentication.styled";
 import { signIn } from "next-auth/react";
 import { validateEmail } from "network/auth/validateEmail";
 import { isEmail } from "utils/FormUtilities";
 import { goToLink } from "utils/NavigationUtilities";
 import { LoginResponseMessages } from "./ResponseMessages";
+import Navbar from "styled/components/navbar/Navbar";
+import Footer from "styled/components/footer/Footer";
+import * as S from "./Authentication.styled";
 
 interface Props {
   csrfToken: string | undefined;
@@ -37,7 +37,11 @@ const Login = ({ csrfToken }: Props) => {
     }
   };
 
-  const handleEmailValidation = async () => {
+  const handleEmailValidation = async (event?: FormEvent<HTMLFormElement>) => {
+    if (event) {
+      event.preventDefault();
+    }
+
     if (!isEmail(email)) {
       setStatusMessage(LoginResponseMessages.Invalid);
       return;
@@ -62,7 +66,7 @@ const Login = ({ csrfToken }: Props) => {
       <S.SectionWrapper>
         <S.ContentWrapper>
           <S.Header>Log in</S.Header>
-          <S.Form onSubmit={event => handleLogin(event)}>
+          <S.Form onSubmit={event => (isEmailValid ? handleLogin(event) : handleEmailValidation(event))}>
             <S.Input name="csrfToken" type="hidden" defaultValue={csrfToken ?? ""} />
             <S.InputLabel>Email</S.InputLabel>
             <S.Input
@@ -88,7 +92,7 @@ const Login = ({ csrfToken }: Props) => {
             ) : (
               <S.Button
                 type={"button"}
-                onClick={handleEmailValidation}
+                onClick={() => handleEmailValidation()}
                 margin={statusMessage === LoginResponseMessages.Null ? "" : "1rem 0 0 0"}
               >
                 {"Continue with your email"}

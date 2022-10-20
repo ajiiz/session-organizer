@@ -2,11 +2,12 @@ import hexToRgba from "hex-to-rgba";
 import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
+import { Property } from "csstype";
 
 export const SectionWrapper = styled.section`
   height: 80%;
   width: 100%;
-  padding-top: 6rem;
+  padding-top: 4rem;
   display: flex;
   justify-content: center;
 `;
@@ -36,7 +37,7 @@ export const Header = styled.h1`
 export const Form = styled.form``;
 
 type ButtonProps = {
-  margin?: string;
+  margin?: Property.Margin;
 };
 
 export const Button = styled.button<ButtonProps>`
@@ -69,8 +70,8 @@ export const Button = styled.button<ButtonProps>`
 `;
 
 interface InputProps {
-  margin?: string;
-  width?: string;
+  margin?: Property.Margin;
+  width?: Property.Width;
 }
 
 export const Input = styled.input<InputProps>`
@@ -81,7 +82,7 @@ export const Input = styled.input<InputProps>`
   border: 1px solid ${Colors.LightBlackColor};
   border-radius: 4px;
   background: ${Colors.DarkWhiteColor};
-  color: ${Colors.BlackColor}
+  color: ${Colors.BlackColor};
   font-size: 0.8em;
   transition: 0.2s border linear;
 

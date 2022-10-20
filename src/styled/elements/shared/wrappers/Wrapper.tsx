@@ -21,4 +21,5 @@ export const Wrapper = styled.div<WrapperProps>`
   align-items: ${props => (props.alignItems ? props.alignItems : "center")};
   margin: ${props => (props.margin ? props.margin : "0 0 0 0")};
   padding: ${props => (props.padding ? props.padding : "0 0 0 0")};
+  overflow: auto;
 `;

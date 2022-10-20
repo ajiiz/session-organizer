@@ -3,11 +3,11 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { goToLink } from "utils/NavigationUtilities";
 import { SignupRequest } from "../../../../pages/api/auth/signup";
+import { isEmail } from "utils/FormUtilities";
+import { RegisterResponseMessages } from "./ResponseMessages";
 import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
 import * as S from "./Authentication.styled";
-import { isEmail } from "utils/FormUtilities";
-import { RegisterResponseMessages } from "./ResponseMessages";
 
 const Signup = () => {
   const [formData, setFormData] = useState<SignupRequest>({
@@ -26,7 +26,6 @@ const Signup = () => {
       return;
     }
     try {
-      console.log(formData);
       await signup(formData);
       goToLink({ link: "/signin" });
     } catch (error) {

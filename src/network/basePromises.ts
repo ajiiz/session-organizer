@@ -16,7 +16,10 @@ export const getEmptyPromise = async <ResponseType>(path: string): Promise<Respo
   return axios.get(path).then(response => readValue<ResponseType>(response));
 };
 
-export const getPromise = async <PayloadType, ResponseType>(path: string, payload: PayloadType): Promise<ResponseType> => {
+export const getPromise = async <PayloadType, ResponseType>(
+  path: string,
+  payload: PayloadType
+): Promise<ResponseType> => {
   return axios.get(path, { params: { ...payload } }).then(response => readValue<ResponseType>(response));
 };
 

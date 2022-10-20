@@ -1,11 +1,11 @@
-import * as S from "./Landing.styled";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
+import { Colors } from "styled/base/Colors";
+import { goToLink } from "utils/NavigationUtilities";
 import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
 import Button from "styled/components/shared/button/Button";
-import { Colors } from "styled/base/Colors";
 import HeroImage from "assets/Hero-Image.svg";
-import { goToLink } from "utils/NavigationUtilities";
+import * as S from "./Landing.styled";
 
 const Landing = () => {
   return (
@@ -32,7 +32,7 @@ const Landing = () => {
             Register now
           </Button>
         </S.HeroContent>
-        <S.ImageWrapper width="50%" height="75%">
+        <S.ImageWrapper width="40%" height="75%">
           <S.HeroImage src={HeroImage} alt="Hero" placeholder="blur" blurDataURL={HeroImage} />
         </S.ImageWrapper>
       </S.HeroWrapper>
