@@ -26,6 +26,8 @@ const load = async (): Promise<void> => {
   });
   console.log("Added default user");
 
+  await prisma.group.update({ where: { id: newGroup.id }, data: { foremanId: newUser.id } });
+
   await prisma.event.createMany({
     data: [
       {
