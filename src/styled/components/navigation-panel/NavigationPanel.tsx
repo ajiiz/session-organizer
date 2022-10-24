@@ -24,7 +24,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
       <S.ContentWrapper>
         <S.LogoContainer>
           <S.LogoWrapper onClick={() => goToLink({ link: "/" })}>
-            <StyledLogo src={Logo} alt="Logo" />
+            <StyledLogo src={Logo} alt="Logo" priority />
             <S.LogoContent>Listic</S.LogoContent>
           </S.LogoWrapper>
         </S.LogoContainer>
