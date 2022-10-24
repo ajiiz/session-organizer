@@ -51,7 +51,6 @@ export const isGroupAdmin: NextApiHandler<IsGroupAdminResponse> = async (req, re
   }
 
   const userGroupsWithAdmin = await prisma.group.findMany({ where: { foremanId: user.id } });
-  console.log(userGroupsWithAdmin);
   if (userGroupsWithAdmin.length > 0) {
     return res.json({ isGroupAdmin: true });
   }
