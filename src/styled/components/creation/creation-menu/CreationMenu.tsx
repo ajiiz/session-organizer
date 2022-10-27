@@ -1,9 +1,12 @@
-import { useCreation } from "styled/components/creation/useCreation";
 import * as S from "styled/components/creation/creation-menu/CreationMenu.styled";
 
-const CreationMenu = () => {
-  const { selectedOption, options, handleOptionChange } = useCreation();
+type Props = {
+  selectedOption: string;
+  options: string[];
+  handleOptionChange: (option: string) => void;
+};
 
+const CreationMenu = ({ selectedOption, options, handleOptionChange }: Props) => {
   return (
     <S.OptionsWrapper>
       {options.map((option, key) => (
