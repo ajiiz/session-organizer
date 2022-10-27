@@ -5,7 +5,7 @@ import { useCreation } from "styled/components/creation/useCreation";
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const CreationMain = () => {
-  const { selectedOption, options, handleOptionChange } = useCreation();
+  const { selectedOption, options, formData, handleOptionChange, handleFormDataChange } = useCreation();
 
   return (
     <SS.ContentWrapper>
@@ -17,7 +17,11 @@ const CreationMain = () => {
           }
         />
         <CreationMenu selectedOption={selectedOption} handleOptionChange={handleOptionChange} options={options} />
-        <CreationInputs selectedOption={selectedOption} />
+        <CreationInputs
+          selectedOption={selectedOption}
+          formData={formData}
+          handleFormDataChange={handleFormDataChange}
+        />
       </SS.ContentContainer>
     </SS.ContentWrapper>
   );
