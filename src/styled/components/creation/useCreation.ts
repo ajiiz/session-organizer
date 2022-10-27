@@ -3,9 +3,10 @@ import { useSession } from "next-auth/react";
 import { isGroupAdmin } from "network/users/isGroupAdmin";
 import { USER_ROLES } from "utils/Constants";
 
-interface useCreationProps {
+export interface useCreationProps {
   selectedOption: string;
   options: string[];
+  handleOptionChange: (option: string) => void;
 }
 
 const DEFAULT_OPTIONS = ["custom", "group", "group event", "request"];
@@ -39,6 +40,10 @@ export const useCreation = (): useCreationProps => {
     setOptions(filteredOptions);
   };
 
+  const handleOptionChange = (option: string) => {
+    setSelectedOption(option);
+  };
+
   useEffect(() => {
     if (status !== "loading") {
       handleGetOptions();
@@ -47,6 +52,7 @@ export const useCreation = (): useCreationProps => {
 
   return {
     selectedOption,
-    options
+    options,
+    handleOptionChange
   };
 };
