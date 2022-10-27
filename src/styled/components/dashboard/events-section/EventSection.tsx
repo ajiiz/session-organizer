@@ -2,11 +2,11 @@ import EventCard from "./event-card/EventCard";
 import { Event } from "@prisma/client";
 import PageInformation from "styled/components/shared/page-info/PageInformation";
 
-interface EventSectionProps {
+interface Props {
   events: Event[];
 }
 
-const EventSection = ({ events }: EventSectionProps) => {
+const EventSection = ({ events }: Props) => {
   return (
     <>
       <PageInformation
