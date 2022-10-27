@@ -5,7 +5,7 @@ type ContentWrapperProps = {
   customMargin?: boolean;
 };
 
-export const ContentWrapper = styled.div<ContentWrapperProps>`
+export const ContentWrapper = styled.section<ContentWrapperProps>`
   width: 100%;
   height: 100%;
   padding: 8rem 5rem 0 5rem;

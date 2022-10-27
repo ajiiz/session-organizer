@@ -10,6 +10,7 @@ const EventSection = ({ events }: EventSectionProps) => {
   return (
     <>
       <PageInformation
+        shouldCenterOnMobile={true}
         header={"Your todays upcoming events"}
         paragraph={"View your future events and filter them by date."}
       />
