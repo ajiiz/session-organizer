@@ -9,13 +9,14 @@ export const InputsWrapper = styled.section`
   padding: 1rem 0;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 `;
 
-type InputWrapperProps = {
+type InputsContainerProps = {
   margin?: Property.Margin;
 };
 
-export const InputWrapper = styled.div<InputWrapperProps>`
+export const InputsContainer = styled.div<InputsContainerProps>`
   margin: ${props => props.margin ?? "0"};
   display: flex;
   flex-direction: column;
@@ -23,24 +24,28 @@ export const InputWrapper = styled.div<InputWrapperProps>`
 
 type InputContainerProps = {
   margin?: Property.Margin;
+  isSmall?: boolean;
 };
 
 export const InputContainer = styled.div<InputContainerProps>`
-  width: 100%;
+  width: ${props => (props.isSmall ? "10rem" : "20rem")};
   margin: ${props => props.margin ?? "0"};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  ${device.mobile} {
+    width: ${props => (props.isSmall ? "45%" : "100%")};
+  }
 `;
 
 interface InputProps {
   margin?: Property.Margin;
-  isSmall?: boolean;
 }
 
 export const Input = styled.input<InputProps>`
-  width: ${props => (props.isSmall ? "10rem" : "20rem")};
+  width: 100%;
   margin: ${props => (props.margin ? props.margin : "0.4rem 0 0 0")};
   padding: 0.7em 0 0.7em 1em;
   display: flex;
@@ -58,10 +63,6 @@ export const Input = styled.input<InputProps>`
   &:focus,
   &:hover {
     border: 1px solid ${Colors.GreenColor};
-  }
-
-  ${device.mobile} {
-    width: ${props => (props.isSmall ? "45%" : "100%")};
   }
 `;
 
