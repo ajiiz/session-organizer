@@ -5,12 +5,19 @@ type Props = {
   selectedOption: string;
   formData: FormData | null;
   handleFormDataChange: (data: FormData) => void;
+  handleFormSubmit: () => void;
 };
 
-const CreationInputs = ({ selectedOption, formData, handleFormDataChange }: Props) => {
+const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handleFormSubmit }: Props) => {
   return (
     <>
-      {selectedOption === "custom" && <CustomInputs formData={formData} handleFormDataChange={handleFormDataChange} />}
+      {selectedOption === "custom" && (
+        <CustomInputs
+          formData={formData}
+          handleFormDataChange={handleFormDataChange}
+          handleFormSubmit={handleFormSubmit}
+        />
+      )}
     </>
   );
 };
