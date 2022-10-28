@@ -1,5 +1,8 @@
-import CustomInputs from "styled/components/creation/creation-inputs/inputs/CustomInputs";
+import { useMemo } from "react";
 import { FormData } from "styled/components/creation/useCreation";
+import CustomEventInputs from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
+import RequestOrGroupInputs from "styled/components/creation/creation-inputs/inputs/RequestOrGroupInputs";
+import GroupInputs from "styled/components/creation/creation-inputs/inputs/GroupInputs";
 
 type Props = {
   selectedOption: string;
@@ -9,10 +12,33 @@ type Props = {
 };
 
 const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handleFormSubmit }: Props) => {
+  const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
+  const isRequestOrGroupEvent = useMemo(
+    () => selectedOption === "request" || selectedOption === "group event",
+    [selectedOption]
+  );
+  const isGroup = useMemo(() => selectedOption === "group", [selectedOption]);
+  const isRequest = useMemo(() => selectedOption === "request", [selectedOption]);
+
   return (
     <>
-      {selectedOption === "custom" && (
-        <CustomInputs
+      {isCustom && (
+        <CustomEventInputs
+          formData={formData}
+          handleFormDataChange={handleFormDataChange}
+          handleFormSubmit={handleFormSubmit}
+        />
+      )}
+      {isRequestOrGroupEvent && (
+        <RequestOrGroupInputs
+          formData={formData}
+          handleFormDataChange={handleFormDataChange}
+          handleFormSubmit={handleFormSubmit}
+          buttonText={isRequest ? "Request Event" : "Create Group Event"}
+        />
+      )}
+      {isGroup && (
+        <GroupInputs
           formData={formData}
           handleFormDataChange={handleFormDataChange}
           handleFormSubmit={handleFormSubmit}
