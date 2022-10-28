@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Property } from "csstype";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
+import hexToRgba from "hex-to-rgba";
 
 export const InputsWrapper = styled.section`
   width: 100%;
@@ -10,16 +11,33 @@ export const InputsWrapper = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+
+  ${device.tablet} {
+    flex-direction: column;
+  }
 `;
 
 type InputsContainerProps = {
   margin?: Property.Margin;
+  isSmall?: boolean;
 };
 
 export const InputsContainer = styled.div<InputsContainerProps>`
+  width: ${props => (props.isSmall ? "15%" : "30%")};
   margin: ${props => props.margin ?? "0"};
   display: flex;
   flex-direction: column;
+
+  ${device.desktop} {
+    width: ${props => (props.isSmall ? "25%" : "40%")};
+  }
+
+  ${device.tablet} {
+    width: 100%;
+    flex-direction: ${props => (props.isSmall ? "row" : "column")};
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 type InputContainerProps = {
@@ -28,15 +46,16 @@ type InputContainerProps = {
 };
 
 export const InputContainer = styled.div<InputContainerProps>`
-  width: ${props => (props.isSmall ? "10rem" : "20rem")};
+  width: 100%;
   margin: ${props => props.margin ?? "0"};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 
-  ${device.mobile} {
-    width: ${props => (props.isSmall ? "45%" : "100%")};
+  ${device.tablet} {
+    width: ${props => (props.isSmall ? "48%" : "100%")};
+    margin: 0;
   }
 `;
 
@@ -73,4 +92,41 @@ export const InputLabel = styled.label`
   user-select: none;
   font-size: 0.8em;
   color: ${Colors.LightGrayColor};
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+`;
+
+export const Button = styled.button`
+  width: 20rem;
+  margin-top: 2.5rem;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  border: 1px solid ${Colors.BlueColor};
+  border-radius: 4px;
+  background-color: ${hexToRgba(Colors.BlueColor, 0.25)};
+  font-size: 0.8em;
+  color: ${Colors.BlueColor};
+  transition: background-color 0.2s linear;
+
+  &:hover,
+  &:focus {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.8em;
+    border: 1px solid ${Colors.GreenColor};
+    background-color: ${hexToRgba(Colors.BlueColor, 0.35)};
+    color: ${Colors.BlueColor};
+  }
+
+  &:focus {
+    background-color: ${hexToRgba(Colors.BlueColor, 0.3)};
+  }
+
+  ${device.tablet} {
+    width: 100%;
+    margin-bottom: 2.5rem;
+  }
 `;
