@@ -9,6 +9,7 @@ export interface useCreationProps {
   formData: FormData;
   handleOptionChange: (option: string) => void;
   handleFormDataChange: (data: FormData) => void;
+  handleFormSubmit: () => void;
 }
 
 export type CustomEventFormData = {
@@ -31,6 +32,9 @@ type GroupFormData = {
 export type FormData = CustomEventFormData | RequestAndGroupEventFormData | GroupFormData | null;
 
 const DEFAULT_OPTIONS = ["custom", "group", "group event", "request"];
+const DEFAULT_CUSTOM_FORM_DATA = { name: "", details: "", startDate: "", endDate: "", startTime: "", endTime: "" };
+const DEFAULT_REQUEST_AND_GROUP_EVENT_FORM_DATA = { ...DEFAULT_CUSTOM_FORM_DATA, groupId: "" };
+const DEFAULT_GROUP_FORM_DATA = { name: "", details: "", groupCode: "" };
 
 export const useCreation = (): useCreationProps => {
   const { data: session, status } = useSession();
@@ -70,12 +74,24 @@ export const useCreation = (): useCreationProps => {
     setFormData(data);
   };
 
+  const handleFormSubmit = () => {
+    console.log("Form submitted");
+  };
+
   useEffect(() => {
     console.log(formData);
   }, [formData]);
 
   useEffect(() => {
-    setFormData(null);
+    if (selectedOption === "custom") {
+      setFormData(DEFAULT_CUSTOM_FORM_DATA);
+    }
+    if (selectedOption === "group") {
+      setFormData(DEFAULT_GROUP_FORM_DATA);
+    }
+    if (selectedOption === "group event" || selectedOption === "request") {
+      setFormData(DEFAULT_REQUEST_AND_GROUP_EVENT_FORM_DATA);
+    }
   }, [selectedOption]);
 
   useEffect(() => {
@@ -89,6 +105,7 @@ export const useCreation = (): useCreationProps => {
     options,
     formData,
     handleOptionChange,
-    handleFormDataChange
+    handleFormDataChange,
+    handleFormSubmit
   };
 };
