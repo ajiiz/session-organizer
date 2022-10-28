@@ -57,12 +57,12 @@ export const Button = styled.button<ButtonProps>`
     padding: 0.4rem 1.5rem;
     font-size: 0.9em;
     border: 1px solid ${Colors.GreenColor};
-    background-color: ${hexToRgba(Colors.GreenColor, 0.3)};
+    background-color: ${hexToRgba(Colors.GreenColor, 0.35)};
     color: ${Colors.GreenColor};
   }
 
   &:focus {
-    background-color: ${hexToRgba(Colors.GreenColor, 0.25)};
+    background-color: ${hexToRgba(Colors.GreenColor, 0.3)};
   }
 `;
 
