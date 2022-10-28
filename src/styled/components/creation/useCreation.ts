@@ -21,9 +21,9 @@ export type CustomEventFormData = {
   endTime: string;
 };
 
-type RequestAndGroupEventFormData = CustomEventFormData & { groupId: string };
+export type RequestAndGroupEventFormData = CustomEventFormData & { groupId: string };
 
-type GroupFormData = {
+export type GroupFormData = {
   name: string;
   details: string;
   groupCode: string;
