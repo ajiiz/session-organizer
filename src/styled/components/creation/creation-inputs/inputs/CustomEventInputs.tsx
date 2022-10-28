@@ -2,13 +2,14 @@ import { ChangeEvent } from "react";
 import { CustomEventFormData, FormData } from "styled/components/creation/useCreation";
 import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
 
-type Props = {
+export interface InputsProps {
   formData: FormData | null;
   handleFormDataChange: (data: FormData) => void;
   handleFormSubmit: () => void;
-};
+  buttonText?: string;
+}
 
-const CustomInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Props) => {
+const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }: InputsProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     handleFormDataChange({ ...formData, [name]: value } as CustomEventFormData);
@@ -18,7 +19,7 @@ const CustomInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Prop
     <>
       <S.InputsWrapper>
         <S.InputsContainer margin="0 4rem 0 0">
-          <S.InputContainer margin="0 0 1.5rem 0">
+          <S.InputContainer margin="0 0 1rem 0">
             <S.InputLabel>Name</S.InputLabel>
             <S.Input
               name="name"
@@ -38,7 +39,7 @@ const CustomInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Prop
           </S.InputContainer>
         </S.InputsContainer>
         <S.InputsContainer margin="0 4rem 0 0" isSmall={true}>
-          <S.InputContainer margin="0 0 1.5rem 0" isSmall={true}>
+          <S.InputContainer margin="0 0 1rem 0" isSmall={true}>
             <S.InputLabel>Start date</S.InputLabel>
             <S.Input
               name="startDate"
@@ -58,7 +59,7 @@ const CustomInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Prop
           </S.InputContainer>
         </S.InputsContainer>
         <S.InputsContainer isSmall={true}>
-          <S.InputContainer margin="0 0 1.5rem 0" isSmall={true}>
+          <S.InputContainer margin="0 0 1rem 0" isSmall={true}>
             <S.InputLabel>Start time</S.InputLabel>
             <S.Input
               name="startTime"
@@ -70,7 +71,7 @@ const CustomInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Prop
           <S.InputContainer isSmall={true}>
             <S.InputLabel>End time</S.InputLabel>
             <S.Input
-              name="startTime"
+              name="endTime"
               placeholder="Enter start time..."
               type="text"
               onChange={event => handleChange(event)}
@@ -87,4 +88,4 @@ const CustomInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Prop
   );
 };
 
-export default CustomInputs;
+export default CustomEventInputs;
