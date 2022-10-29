@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import { isGroupAdmin } from "network/users/isGroupAdmin";
 import { USER_ROLES } from "utils/Constants";
+import { createCustomEvent } from "network/events/createCustomEvent";
 
 export interface useCreationProps {
   selectedOption: string;
@@ -41,6 +42,12 @@ export const useCreation = (): useCreationProps => {
   const [selectedOption, setSelectedOption] = useState("custom");
   const [options, setOptions] = useState<string[]>([]);
   const [formData, setFormData] = useState<FormData>(DEFAULT_CUSTOM_FORM_DATA);
+  const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
+  const isRequestOrGroupEvent = useMemo(
+    () => selectedOption === "request" || selectedOption === "group event",
+    [selectedOption]
+  );
+  const isGroup = useMemo(() => selectedOption === "group", [selectedOption]);
 
   const getOptions = async () => {
     const userRole = session?.user.role;
@@ -74,13 +81,19 @@ export const useCreation = (): useCreationProps => {
     setFormData(data);
   };
 
-  const handleFormSubmit = () => {
-    console.log("Form submitted");
+  const handleFormSubmit = async () => {
+    if (isCustom) {
+      await handleCreateCustomEvent();
+    }
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  const handleCreateCustomEvent = async () => {
+    try {
+      await createCustomEvent(formData as CustomEventFormData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     if (selectedOption === "custom") {
