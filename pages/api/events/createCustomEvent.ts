@@ -27,7 +27,6 @@ export const createCustomEvent: NextApiHandler<CustomEventFormData> = async (req
   const { name, details, startDate, endDate, startTime, endTime } = req.body.params as CustomEventFormData;
 
   if (!name || !details || !startDate || !endDate || !startTime || !endTime) {
-    console.log(req.body);
     res.statusMessage = `Malformed request data`;
     res.status(400).end();
     return;
@@ -51,8 +50,6 @@ export const createCustomEvent: NextApiHandler<CustomEventFormData> = async (req
     endTimeArray[0],
     endTimeArray[1]
   );
-
-  console.log(convertedStartDate, convertedEndDate);
 
   const newEvent = await prisma.event.create({
     data: {
