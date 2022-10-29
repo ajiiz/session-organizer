@@ -53,7 +53,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
       </S.ContentWrapper>
       <S.AuthorizationWrapper>
         <S.UserInformation>
-          Loggd in as <S.UserEmail>{data?.user.email}</S.UserEmail>
+          Logged in as <S.UserEmail>{data?.user.email}</S.UserEmail>
         </S.UserInformation>
         <S.LogoutButton type="button" onClick={() => signOut({ callbackUrl: "/signin" })}>
           Logout
