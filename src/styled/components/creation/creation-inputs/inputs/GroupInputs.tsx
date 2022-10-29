@@ -1,12 +1,12 @@
 import { ChangeEvent } from "react";
-import { CustomEventFormData } from "styled/components/creation/useCreation";
+import { GroupFormData } from "styled/components/creation/useCreation";
 import { InputsProps } from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
 import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
 
 const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit }: InputsProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    handleFormDataChange({ ...formData, [name]: value } as CustomEventFormData);
+    handleFormDataChange({ ...formData, [name]: value } as GroupFormData);
   };
 
   return (
@@ -17,6 +17,7 @@ const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Input
             <S.InputLabel>Name</S.InputLabel>
             <S.Input
               name="name"
+              value={(formData as GroupFormData).name}
               placeholder="Enter event name..."
               type="text"
               onChange={event => handleChange(event)}
@@ -26,6 +27,7 @@ const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Input
             <S.InputLabel>Details</S.InputLabel>
             <S.Input
               name="details"
+              value={(formData as GroupFormData).details}
               placeholder="Enter details..."
               type="text"
               onChange={event => handleChange(event)}
@@ -35,6 +37,7 @@ const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Input
             <S.InputLabel>Group code</S.InputLabel>
             <S.Input
               name="groupCode"
+              value={(formData as GroupFormData).groupCode}
               placeholder="Enter group code..."
               type="text"
               onChange={event => handleChange(event)}

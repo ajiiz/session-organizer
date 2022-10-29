@@ -23,6 +23,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Name</S.InputLabel>
             <S.Input
               name="name"
+              value={(formData as CustomEventFormData)?.name}
               placeholder="Enter event name..."
               type="text"
               onChange={event => handleChange(event)}
@@ -32,6 +33,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Details</S.InputLabel>
             <S.Input
               name="details"
+              value={(formData as CustomEventFormData)?.details}
               placeholder="Enter details..."
               type="text"
               onChange={event => handleChange(event)}
@@ -43,6 +45,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Start date</S.InputLabel>
             <S.Input
               name="startDate"
+              value={(formData as CustomEventFormData)?.startDate}
               placeholder="Enter start date..."
               type="text"
               onChange={event => handleChange(event)}
@@ -52,6 +55,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>End date</S.InputLabel>
             <S.Input
               name="endDate"
+              value={(formData as CustomEventFormData)?.endDate}
               placeholder="Enter end date..."
               type="text"
               onChange={event => handleChange(event)}
@@ -63,6 +67,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Start time</S.InputLabel>
             <S.Input
               name="startTime"
+              value={(formData as CustomEventFormData)?.startTime}
               placeholder="Enter start time..."
               type="text"
               onChange={event => handleChange(event)}
@@ -72,6 +77,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>End time</S.InputLabel>
             <S.Input
               name="endTime"
+              value={(formData as CustomEventFormData)?.endTime}
               placeholder="Enter start time..."
               type="text"
               onChange={event => handleChange(event)}

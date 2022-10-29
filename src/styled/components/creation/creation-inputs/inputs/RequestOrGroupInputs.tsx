@@ -1,12 +1,12 @@
 import { ChangeEvent } from "react";
-import { CustomEventFormData } from "styled/components/creation/useCreation";
+import { RequestAndGroupEventFormData } from "styled/components/creation/useCreation";
 import { InputsProps } from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
 import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
 
 const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }: InputsProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    handleFormDataChange({ ...formData, [name]: value } as CustomEventFormData);
+    handleFormDataChange({ ...formData, [name]: value } as RequestAndGroupEventFormData);
   };
 
   return (
@@ -17,6 +17,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Name</S.InputLabel>
             <S.Input
               name="name"
+              value={(formData as RequestAndGroupEventFormData).name}
               placeholder="Enter event name..."
               type="text"
               onChange={event => handleChange(event)}
@@ -26,6 +27,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Details</S.InputLabel>
             <S.Input
               name="details"
+              value={(formData as RequestAndGroupEventFormData).details}
               placeholder="Enter details..."
               type="text"
               onChange={event => handleChange(event)}
@@ -35,6 +37,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Group</S.InputLabel>
             <S.Input
               name="groupId"
+              value={(formData as RequestAndGroupEventFormData).groupId}
               placeholder="There will be group dropdown"
               type="text"
               onChange={event => handleChange(event)}
@@ -46,6 +49,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Start date</S.InputLabel>
             <S.Input
               name="startDate"
+              value={(formData as RequestAndGroupEventFormData).startDate}
               placeholder="Enter start date..."
               type="text"
               onChange={event => handleChange(event)}
@@ -55,6 +59,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>End date</S.InputLabel>
             <S.Input
               name="endDate"
+              value={(formData as RequestAndGroupEventFormData).endDate}
               placeholder="Enter end date..."
               type="text"
               onChange={event => handleChange(event)}
@@ -66,6 +71,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>Start time</S.InputLabel>
             <S.Input
               name="startTime"
+              value={(formData as RequestAndGroupEventFormData).startTime}
               placeholder="Enter start time..."
               type="text"
               onChange={event => handleChange(event)}
@@ -75,6 +81,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
             <S.InputLabel>End time</S.InputLabel>
             <S.Input
               name="endTime"
+              value={(formData as RequestAndGroupEventFormData).endTime}
               placeholder="Enter start time..."
               type="text"
               onChange={event => handleChange(event)}
