@@ -40,7 +40,7 @@ export const useCreation = (): useCreationProps => {
   const { data: session, status } = useSession();
   const [selectedOption, setSelectedOption] = useState("custom");
   const [options, setOptions] = useState<string[]>([]);
-  const [formData, setFormData] = useState<FormData>(null);
+  const [formData, setFormData] = useState<FormData>(DEFAULT_CUSTOM_FORM_DATA);
 
   const getOptions = async () => {
     const userRole = session?.user.role;
