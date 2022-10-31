@@ -7,7 +7,7 @@ const load = async (): Promise<void> => {
   const newGroup = await prisma.group.create({
     data: {
       name: "TestGroup",
-      invitationCode: "GRP12345679"
+      groupCode: "GRP12345679"
     }
   });
   console.log("Added default group");
