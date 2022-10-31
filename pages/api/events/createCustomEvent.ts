@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 import { CustomEventFormData } from "styled/components/creation/useCreation";
+import { getDateTimeFromString } from "utils/DateUtilities";
 
 export const path = "api/events/createCustomEvent";
 
@@ -32,24 +33,8 @@ export const createCustomEvent: NextApiHandler<CustomEventFormData> = async (req
     return;
   }
 
-  const startDateArray = startDate.split(".").map(Number);
-  const startTimeArray = startTime.split(":").map(Number);
-  const convertedStartDate = new Date(
-    startDateArray[2],
-    startDateArray[1] - 1,
-    startDateArray[0],
-    startTimeArray[0],
-    startTimeArray[1]
-  );
-  const endDateArray = endDate.split(".").map(Number);
-  const endTimeArray = endTime.split(":").map(Number);
-  const convertedEndDate = new Date(
-    endDateArray[2],
-    endDateArray[1] - 1,
-    endDateArray[0],
-    endTimeArray[0],
-    endTimeArray[1]
-  );
+  const convertedStartDate = getDateTimeFromString(startDate, startTime);
+  const convertedEndDate = getDateTimeFromString(endDate, endTime);
 
   const newEvent = await prisma.event.create({
     data: {
