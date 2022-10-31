@@ -7,7 +7,7 @@ import { getEventStatus } from "utils/EventUtilities";
 
 export const path = "api/events/createRequestAndGroupEvent";
 
-type RequestAndGroupEventType = RequestAndGroupEventFormData & { statusType: string };
+export type RequestAndGroupEventType = RequestAndGroupEventFormData & { statusType: string };
 
 export const createRequestAndGroupEvent: NextApiHandler<RequestAndGroupEventType> = async (req, res) => {
   const prisma = new PrismaClient();
