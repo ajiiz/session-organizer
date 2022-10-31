@@ -7,6 +7,7 @@ const load = async (): Promise<void> => {
   const newGroup = await prisma.group.create({
     data: {
       name: "TestGroup",
+      description: "TestDescription",
       groupCode: "GRP12345679"
     }
   });
