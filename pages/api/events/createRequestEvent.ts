@@ -50,7 +50,7 @@ export const createRequestEvent: NextApiHandler<RequestAndGroupEventFormData> = 
   });
 
   if (!newEvent) {
-    res.statusMessage = `Event could not be created`;
+    res.statusMessage = `Request could not be created`;
     res.status(400).end();
     return;
   }
