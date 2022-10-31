@@ -3,10 +3,13 @@ import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 import { RequestAndGroupEventFormData } from "styled/components/creation/useCreation";
 import { getDateTimeFromString } from "utils/DateUtilities";
+import { getEventStatus } from "utils/EventUtilities";
 
-export const path = "api/events/createRequestEvent";
+export const path = "api/events/createRequestAndGroupEvent";
 
-export const createRequestEvent: NextApiHandler<RequestAndGroupEventFormData> = async (req, res) => {
+type RequestAndGroupEventType = RequestAndGroupEventFormData & { statusType: string };
+
+export const createRequestAndGroupEvent: NextApiHandler<RequestAndGroupEventType> = async (req, res) => {
   const prisma = new PrismaClient();
 
   const session = await getSession({ req });
@@ -25,10 +28,10 @@ export const createRequestEvent: NextApiHandler<RequestAndGroupEventFormData> = 
     return;
   }
 
-  const { name, details, startDate, endDate, startTime, endTime, groupId } = req.body
-    .params as RequestAndGroupEventFormData;
+  const { name, details, startDate, endDate, startTime, endTime, groupId, statusType } = req.body
+    .params as RequestAndGroupEventType;
 
-  if (!name || !details || !startDate || !endDate || !startTime || !endTime || !groupId) {
+  if (!name || !details || !startDate || !endDate || !startTime || !endTime || !groupId || !statusType) {
     res.statusMessage = `Malformed request data`;
     res.status(400).end();
     return;
@@ -37,6 +40,8 @@ export const createRequestEvent: NextApiHandler<RequestAndGroupEventFormData> = 
   const convertedStartDate = getDateTimeFromString(startDate, startTime);
   const convertedEndDate = getDateTimeFromString(endDate, endTime);
 
+  const eventStatus = statusType === "requested" ? "requested" : getEventStatus(convertedStartDate, convertedEndDate);
+
   const newEvent = await prisma.event.create({
     data: {
       name,
@@ -44,7 +49,7 @@ export const createRequestEvent: NextApiHandler<RequestAndGroupEventFormData> = 
       startDate: convertedStartDate,
       endDate: convertedEndDate,
       userId: user.id,
-      status: "request",
+      status: eventStatus,
       groupId: groupId
     }
   });
@@ -60,4 +65,4 @@ export const createRequestEvent: NextApiHandler<RequestAndGroupEventFormData> = 
   res.status(200).end();
 };
 
-export default createRequestEvent;
+export default createRequestAndGroupEvent;
