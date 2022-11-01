@@ -6,6 +6,7 @@ import { createCustomEvent } from "network/events/createCustomEvent";
 import { createRequestAndGroupEvent } from "network/events/createRequestAndGroupEvent";
 import { Status } from "utils/EventUtilities";
 import { createGroup } from "network/groups/createGroup";
+import { generateGroupCode } from "utils/GroupUtilities";
 
 export interface useCreationProps {
   selectedOption: string;
@@ -127,7 +128,8 @@ export const useCreation = (): useCreationProps => {
       setFormData(DEFAULT_CUSTOM_FORM_DATA);
     }
     if (selectedOption === "group") {
-      setFormData(DEFAULT_GROUP_FORM_DATA);
+      const groupCode = generateGroupCode();
+      setFormData({ ...DEFAULT_GROUP_FORM_DATA, groupCode });
     }
     if (selectedOption === "group event" || selectedOption === "request") {
       setFormData(DEFAULT_REQUEST_AND_GROUP_EVENT_FORM_DATA);
