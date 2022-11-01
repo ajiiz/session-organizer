@@ -47,7 +47,7 @@ const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Input
       </S.InputsWrapper>
       <S.ButtonWrapper>
         <S.Button type="button" onClick={handleFormSubmit}>
-          Create Custom Event
+          Create Group
         </S.Button>
       </S.ButtonWrapper>
     </>
