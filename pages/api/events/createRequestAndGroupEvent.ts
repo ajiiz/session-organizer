@@ -3,11 +3,11 @@ import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 import { RequestAndGroupEventFormData } from "styled/components/creation/useCreation";
 import { getDateTimeFromString } from "utils/DateUtilities";
-import { getEventStatus } from "utils/EventUtilities";
+import { getEventStatus, Status } from "utils/EventUtilities";
 
 export const path = "api/events/createRequestAndGroupEvent";
 
-export type RequestAndGroupEventType = RequestAndGroupEventFormData & { statusType: string };
+export type RequestAndGroupEventType = RequestAndGroupEventFormData & { statusType: Status };
 
 export const createRequestAndGroupEvent: NextApiHandler<RequestAndGroupEventType> = async (req, res) => {
   const prisma = new PrismaClient();
@@ -40,7 +40,7 @@ export const createRequestAndGroupEvent: NextApiHandler<RequestAndGroupEventType
   const convertedStartDate = getDateTimeFromString(startDate, startTime);
   const convertedEndDate = getDateTimeFromString(endDate, endTime);
 
-  const eventStatus = statusType === "requested" ? "requested" : getEventStatus(convertedStartDate, convertedEndDate);
+  const eventStatus = statusType === "request" ? "requested" : getEventStatus(convertedStartDate, convertedEndDate);
 
   const newEvent = await prisma.event.create({
     data: {
@@ -48,7 +48,6 @@ export const createRequestAndGroupEvent: NextApiHandler<RequestAndGroupEventType
       description: details,
       startDate: convertedStartDate,
       endDate: convertedEndDate,
-      userId: user.id,
       status: eventStatus,
       groupId: groupId
     }
