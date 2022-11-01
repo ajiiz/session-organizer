@@ -41,6 +41,7 @@ const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit }: Input
               placeholder="Enter group code..."
               type="text"
               onChange={event => handleChange(event)}
+              disabled
             />
           </S.InputContainer>
         </S.InputsContainer>

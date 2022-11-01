@@ -83,6 +83,10 @@ export const Input = styled.input<InputProps>`
   &:hover {
     border: 1px solid ${Colors.GreenColor};
   }
+
+  &:disabled {
+    color: ${Colors.LightGrayColor};
+  }
 `;
 
 export const InputLabel = styled.label`
