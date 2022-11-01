@@ -4,14 +4,30 @@ import { hash } from "bcryptjs";
 const prisma = new PrismaClient();
 
 const load = async (): Promise<void> => {
-  const newGroup = await prisma.group.create({
+  const newFirstGroup = await prisma.group.create({
     data: {
-      name: "TestGroup",
+      name: "FirstTestGroup",
       description: "TestDescription",
       groupCode: "GRP12345679"
     }
   });
-  console.log("Added default group");
+
+  const secondNewGroup = await prisma.group.create({
+    data: {
+      name: "SecondTestGroup",
+      description: "TestDescription",
+      groupCode: "GRP222333444"
+    }
+  });
+
+  const thirdNewGroup = await prisma.group.create({
+    data: {
+      name: "ThirdTestGroup",
+      description: "TestDescription",
+      groupCode: "GRP555666777"
+    }
+  });
+  console.log("Added default groups");
 
   const hashedPassword = await hash("password", 12);
   const newUser = await prisma.user.create({
@@ -22,12 +38,12 @@ const load = async (): Promise<void> => {
       password: hashedPassword,
       number: "888999111",
       role: "administrator",
-      groups: { connect: { id: newGroup.id } }
+      groups: { connect: [{ id: newFirstGroup.id }, { id: secondNewGroup.id }, { id: thirdNewGroup.id }] }
     }
   });
   console.log("Added default user");
 
-  await prisma.group.update({ where: { id: newGroup.id }, data: { foremanId: newUser.id } });
+  await prisma.group.update({ where: { id: newFirstGroup.id }, data: { foremanId: newUser.id } });
 
   await prisma.event.createMany({
     data: [
@@ -67,7 +83,7 @@ const load = async (): Promise<void> => {
         startDate: new Date(2022, 9, 21),
         endDate: new Date(2022, 9, 21),
         status: "Future",
-        groupId: newGroup.id
+        groupId: newFirstGroup.id
       },
       {
         name: "Test Case Group Event 2",
@@ -75,7 +91,7 @@ const load = async (): Promise<void> => {
         startDate: new Date(),
         endDate: new Date(),
         status: "Future",
-        groupId: newGroup.id
+        groupId: newFirstGroup.id
       }
     ]
   });
