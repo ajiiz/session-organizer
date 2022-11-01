@@ -3,7 +3,7 @@ import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 import { RequestAndGroupEventFormData } from "styled/components/creation/useCreation";
 import { getDateTimeFromString } from "utils/DateUtilities";
-import { getEventStatus, Status } from "utils/EventUtilities";
+import { areDatesValid, getEventStatus, Status } from "utils/EventUtilities";
 
 export const path = "api/events/createRequestAndGroupEvent";
 
@@ -39,6 +39,13 @@ export const createRequestAndGroupEvent: NextApiHandler<RequestAndGroupEventType
 
   const convertedStartDate = getDateTimeFromString(startDate, startTime);
   const convertedEndDate = getDateTimeFromString(endDate, endTime);
+
+  const datesValid = areDatesValid(convertedStartDate, convertedEndDate);
+  if (!datesValid) {
+    res.statusMessage = `Start date must be before end date`;
+    res.status(400).end();
+    return;
+  }
 
   const eventStatus = statusType === "request" ? "requested" : getEventStatus(convertedStartDate, convertedEndDate);
 

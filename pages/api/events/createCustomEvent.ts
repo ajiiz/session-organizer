@@ -3,7 +3,7 @@ import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 import { CustomEventFormData } from "styled/components/creation/useCreation";
 import { getDateTimeFromString } from "utils/DateUtilities";
-import { getEventStatus } from "utils/EventUtilities";
+import { areDatesValid, getEventStatus } from "utils/EventUtilities";
 
 export const path = "api/events/createCustomEvent";
 
@@ -36,6 +36,13 @@ export const createCustomEvent: NextApiHandler<CustomEventFormData> = async (req
 
   const convertedStartDate = getDateTimeFromString(startDate, startTime);
   const convertedEndDate = getDateTimeFromString(endDate, endTime);
+
+  const datesValid = areDatesValid(convertedStartDate, convertedEndDate);
+  if (!datesValid) {
+    res.statusMessage = `Start date must be before end date`;
+    res.status(400).end();
+    return;
+  }
 
   const eventStatus = getEventStatus(convertedStartDate, convertedEndDate);
 
