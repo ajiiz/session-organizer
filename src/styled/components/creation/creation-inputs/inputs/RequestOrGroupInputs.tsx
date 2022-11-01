@@ -1,13 +1,39 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { RequestAndGroupEventFormData } from "styled/components/creation/useCreation";
 import { InputsProps } from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
+import Dropdown, { Item } from "styled/components/shared/dropdown/Dropdown";
+import { getGroups } from "network/groups/getGroups";
 import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
 
-const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }: InputsProps) => {
+const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, buttonText }: InputsProps) => {
+  const [dropdownOptions, setDropdownOptions] = useState<Item[]>([]);
+  const [selectedDropdownOption, setSelectedDropdownOption] = useState({ value: "", label: "" });
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     handleFormDataChange({ ...formData, [name]: value } as RequestAndGroupEventFormData);
   };
+
+  const handleGetGroups = async () => {
+    try {
+      const data = await getGroups();
+      const groups = data.groups.map(group => ({ value: group.id, label: group.name }));
+      setDropdownOptions(groups);
+      setSelectedDropdownOption(groups[0]);
+      handleFormDataChange({ ...formData, groupId: groups[0].value } as RequestAndGroupEventFormData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onDropdownChange = (option: Item) => {
+    handleFormDataChange({ ...formData, groupId: option.value } as RequestAndGroupEventFormData);
+    setSelectedDropdownOption(option);
+  };
+
+  useEffect(() => {
+    handleGetGroups();
+  }, []);
 
   return (
     <>
@@ -35,13 +61,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
           </S.InputContainer>
           <S.InputContainer>
             <S.InputLabel>Group</S.InputLabel>
-            <S.Input
-              name="groupId"
-              value={(formData as RequestAndGroupEventFormData).groupId}
-              placeholder="There will be group dropdown"
-              type="text"
-              onChange={event => handleChange(event)}
-            />
+            <Dropdown items={dropdownOptions} onChange={onDropdownChange} selectedItem={selectedDropdownOption} />
           </S.InputContainer>
         </S.InputsContainer>
         <S.InputsContainer margin="0 4rem 0 0" isSmall={true}>
@@ -91,7 +111,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit }:
       </S.InputsWrapper>
       <S.ButtonWrapper>
         <S.Button type="button" onClick={handleFormSubmit}>
-          Create Group
+          {buttonText}
         </S.Button>
       </S.ButtonWrapper>
     </>
