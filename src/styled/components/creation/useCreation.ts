@@ -3,6 +3,9 @@ import { useSession } from "next-auth/react";
 import { isGroupAdmin } from "network/users/isGroupAdmin";
 import { USER_ROLES } from "utils/Constants";
 import { createCustomEvent } from "network/events/createCustomEvent";
+import { createRequestAndGroupEvent } from "network/events/createRequestAndGroupEvent";
+import { Status } from "utils/EventUtilities";
+import { createGroup } from "network/groups/createGroup";
 
 export interface useCreationProps {
   selectedOption: string;
@@ -85,11 +88,35 @@ export const useCreation = (): useCreationProps => {
     if (isCustom) {
       await handleCreateCustomEvent();
     }
+    if (isRequestOrGroupEvent) {
+      await handleCreateRequestAndGroupEvent();
+    }
+    if (isGroup) {
+      await handleCreateGroup();
+    }
   };
 
   const handleCreateCustomEvent = async () => {
     try {
       await createCustomEvent(formData as CustomEventFormData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCreateRequestAndGroupEvent = async () => {
+    const status = (selectedOption === "request" ? "request" : "group event") as Status;
+    const requestData = { ...formData, statusType: status } as RequestAndGroupEventFormData & { statusType: Status };
+    try {
+      await createRequestAndGroupEvent(requestData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCreateGroup = async () => {
+    try {
+      await createGroup(formData as GroupFormData);
     } catch (error) {
       console.error(error);
     }
