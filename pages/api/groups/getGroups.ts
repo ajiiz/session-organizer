@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 
 export const path = "api/groups/getGroups";
 
-export type GetGroupsResponse = { data: Group[] };
+export type GetGroupsResponse = { groups: Group[] };
 
 export const getGroups: NextApiHandler<GetGroupsResponse> = async (req, res) => {
   const prisma = new PrismaClient();
@@ -34,7 +34,7 @@ export const getGroups: NextApiHandler<GetGroupsResponse> = async (req, res) => 
 
   prisma.$disconnect();
 
-  res.json({ data: user.groups });
+  res.json({ groups: user.groups });
 };
 
 export default getGroups;
