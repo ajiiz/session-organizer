@@ -1,9 +1,9 @@
-type Status = "inProgress" | "requested" | "future" | "ended";
+export type Status = "in progress" | "request" | "future" | "ended";
 
 export const getEventStatus = (startDate: Date, endDate: Date): Status => {
   const currentDate = new Date();
   if (startDate > currentDate && endDate > currentDate) {
-    return "inProgress";
+    return "in progress";
   }
   if (startDate > currentDate) {
     return "future";
