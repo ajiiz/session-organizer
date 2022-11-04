@@ -2,11 +2,11 @@ import { Event } from "@prisma/client";
 import { getTime } from "utils/DateUtilities";
 import * as S from "./EventCard.styled";
 
-interface EventCardProps {
+interface Props {
   event: Event;
 }
 
-const EventCard = ({ event }: EventCardProps) => {
+const EventCard = ({ event }: Props) => {
   return (
     <S.EventCard key={event.id}>
       <S.EventHeader>{event.name}</S.EventHeader>

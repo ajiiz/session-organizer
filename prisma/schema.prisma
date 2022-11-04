@@ -8,28 +8,32 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(uuid())
-  email     String      @unique
-  name      String?
-  firstName String
-  lastName  String
-  password  String
-  number    String?
+  id           String      @id @default(uuid())
+  email        String      @unique
+  name         String?
+  firstName    String
+  lastName     String
+  password     String
+  number       String?
   // Roles Type: student | examinator | administrator
-  role      String      @default("student")
-  groups    Group[]
-  events    Event[]
-  todos     DailyToDo[]
+  role         String      @default("student")
+  groups       Group[]
+  events       Event[]
+  todos        DailyToDo[]
+  foremanGroup Group[]     @relation("foreman")
 }
 
 model Group {
   id             String   @id @default(uuid())
   name           String
-  invitationCode String   @unique
+  description    String
+  groupCode      String   @unique
   createdAt      DateTime @default(now())
   users          User[]
   creatorId      String?
   events         Event[]
+  foreman        User?    @relation("foreman", fields: [foremanId], references: [id])
+  foremanId      String?
 }
 
 model Event {
@@ -41,9 +45,9 @@ model Event {
   // Status Type: requested | inProgress | future | ended
   status      String
   hasEnded    Boolean  @default(false)
-  User        User?    @relation(fields: [userId], references: [id])
+  user        User?    @relation(fields: [userId], references: [id])
   userId      String?
-  Group       Group?   @relation(fields: [groupId], references: [id])
+  group       Group?   @relation(fields: [groupId], references: [id])
   groupId     String?
 }
 
@@ -52,7 +56,7 @@ model DailyToDo {
   text      String
   createdAt DateTime @default(now())
   isDeleted Boolean  @default(false)
-  User      User?    @relation(fields: [userId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
   userId    String?
 }
 

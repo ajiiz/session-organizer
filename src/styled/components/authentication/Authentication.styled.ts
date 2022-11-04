@@ -47,25 +47,22 @@ export const Button = styled.button<ButtonProps>`
   text-align: center;
   border: 1px solid ${Colors.GreenColor};
   border-radius: 4px;
-  background: ${hexToRgba(Colors.GreenColor, 0.25)};
+  background-color: ${hexToRgba(Colors.GreenColor, 0.25)};
   font-size: 0.9em;
   color: ${Colors.GreenColor};
-  transition: 0.2s background linear;
+  transition: background-color 0.2s linear;
 
-  &:hover {
-    padding: 0.4rem 1.5rem;
-    font-size: 0.9em;
-    border: 1px solid ${Colors.GreenColor};
-    background: ${hexToRgba(Colors.GreenColor, 0.3)};
-    color: ${Colors.GreenColor};
-  }
-
+  &:hover,
   &:focus {
     padding: 0.4rem 1.5rem;
     font-size: 0.9em;
     border: 1px solid ${Colors.GreenColor};
-    background: ${hexToRgba(Colors.GreenColor, 0.25)};
+    background-color: ${hexToRgba(Colors.GreenColor, 0.35)};
     color: ${Colors.GreenColor};
+  }
+
+  &:focus {
+    background-color: ${hexToRgba(Colors.GreenColor, 0.3)};
   }
 `;
 

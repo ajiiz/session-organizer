@@ -3,34 +3,6 @@ import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 
-export const ContentWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 8rem 5rem 0 5rem;
-
-  ${device.smalldesktop} {
-    width: 100%;
-    padding: 3rem 5rem 0 5rem;
-  }
-
-  ${device.tablet} {
-    padding: 2.5rem 2.5rem 0 2.5rem;
-  }
-
-  ${device.mobile} {
-    padding: 1rem 2.5rem 0 2.5rem;
-    height: fit-content;
-  }
-`;
-
-export const EventsWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Button = styled.button`
   width: 35%;
   margin: 2.5rem 0;

@@ -6,6 +6,7 @@ import EventSection from "../events-section/EventSection";
 import { RootState } from "redux/store";
 import { useSelector } from "react-redux";
 import * as S from "./DashboardMain.styled";
+import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const DashboardMain = () => {
   const currentDate = useSelector((state: RootState) => state.calendar.date);
@@ -33,20 +34,20 @@ const DashboardMain = () => {
   };
 
   return (
-    <S.ContentWrapper>
+    <SS.ContentWrapper customMargin={!shouldShowButton}>
       {currentShowedEvents && currentShowedEvents.length > 0 ? (
-        <S.EventsWrapper>
+        <SS.ContentContainer>
           <EventSection events={currentShowedEvents} />
           {shouldShowButton && (
             <S.Button type="button" onClick={() => setShouldShowAll(!shouldShowAll)}>
               {shouldShowAll ? "Show only first three" : "Show all"}
             </S.Button>
           )}
-        </S.EventsWrapper>
+        </SS.ContentContainer>
       ) : (
         <EventsNotFound />
       )}
-    </S.ContentWrapper>
+    </SS.ContentWrapper>
   );
 };
 

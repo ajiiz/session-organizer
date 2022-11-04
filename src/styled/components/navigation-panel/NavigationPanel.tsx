@@ -24,12 +24,15 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
       <S.ContentWrapper>
         <S.LogoContainer>
           <S.LogoWrapper onClick={() => goToLink({ link: "/" })}>
-            <StyledLogo src={Logo} alt="Logo" />
+            <StyledLogo src={Logo} alt="Logo" priority />
             <S.LogoContent>Listic</S.LogoContent>
           </S.LogoWrapper>
         </S.LogoContainer>
         <S.CreationButtonWrapper>
-          <S.Link onClick={() => goToLink({ link: LinksContent[0].url })}>
+          <S.Link
+            onClick={() => goToLink({ link: LinksContent[0].url })}
+            isCurrentPath={isCurrentPath({ routerPath: router.pathname, currentPath: LinksContent[0].url })}
+          >
             <S.Icon src={LinksContent[0].src} alt={LinksContent[0].alt} />
             <S.LinkParagraph>{LinksContent[0].paragraph}</S.LinkParagraph>
           </S.Link>
@@ -50,7 +53,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
       </S.ContentWrapper>
       <S.AuthorizationWrapper>
         <S.UserInformation>
-          Loggd in as <S.UserEmail>{data?.user.email}</S.UserEmail>
+          Logged in as <S.UserEmail>{data?.user.email}</S.UserEmail>
         </S.UserInformation>
         <S.LogoutButton type="button" onClick={() => signOut({ callbackUrl: "/signin" })}>
           Logout
