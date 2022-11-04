@@ -4,8 +4,15 @@ import { InputsProps } from "styled/components/creation/creation-inputs/inputs/C
 import Dropdown, { Item } from "styled/components/shared/dropdown/Dropdown";
 import { getGroups } from "network/groups/getGroups";
 import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
+import { isDateValid, isDescriptionValid, isNameValid, isTimeValid } from "utils/ValidationUtilities";
 
-const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, buttonText }: InputsProps) => {
+const CustomEventInputs = ({
+  formData,
+  handleFormDataChange,
+  handleFormSubmit,
+  buttonText,
+  isFormValid
+}: InputsProps) => {
   const [dropdownOptions, setDropdownOptions] = useState<Item[]>([]);
   const [selectedDropdownOption, setSelectedDropdownOption] = useState({ value: "", label: "" });
 
@@ -47,6 +54,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, b
               placeholder="Enter event name..."
               type="text"
               onChange={event => handleChange(event)}
+              isValid={isNameValid((formData as RequestAndGroupEventFormData)?.name)}
             />
           </S.InputContainer>
           <S.InputContainer margin="0 0 1rem 0">
@@ -57,6 +65,7 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, b
               placeholder="Enter details..."
               type="text"
               onChange={event => handleChange(event)}
+              isValid={isDescriptionValid((formData as RequestAndGroupEventFormData)?.details)}
             />
           </S.InputContainer>
           <S.InputContainer>
@@ -70,9 +79,10 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, b
             <S.Input
               name="startDate"
               value={(formData as RequestAndGroupEventFormData).startDate}
-              placeholder="Enter start date..."
+              placeholder="DD.MM.YYYY"
               type="text"
               onChange={event => handleChange(event)}
+              isValid={isDateValid((formData as RequestAndGroupEventFormData)?.startDate)}
             />
           </S.InputContainer>
           <S.InputContainer isSmall={true}>
@@ -80,9 +90,10 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, b
             <S.Input
               name="endDate"
               value={(formData as RequestAndGroupEventFormData).endDate}
-              placeholder="Enter end date..."
+              placeholder="DD.MM.YYYY"
               type="text"
               onChange={event => handleChange(event)}
+              isValid={isDateValid((formData as RequestAndGroupEventFormData)?.endDate)}
             />
           </S.InputContainer>
         </S.InputsContainer>
@@ -92,9 +103,10 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, b
             <S.Input
               name="startTime"
               value={(formData as RequestAndGroupEventFormData).startTime}
-              placeholder="Enter start time..."
+              placeholder="hh:mm"
               type="text"
               onChange={event => handleChange(event)}
+              isValid={isTimeValid((formData as RequestAndGroupEventFormData)?.startTime)}
             />
           </S.InputContainer>
           <S.InputContainer isSmall={true}>
@@ -102,15 +114,16 @@ const CustomEventInputs = ({ formData, handleFormDataChange, handleFormSubmit, b
             <S.Input
               name="endTime"
               value={(formData as RequestAndGroupEventFormData).endTime}
-              placeholder="Enter start time..."
+              placeholder="hh:mm"
               type="text"
               onChange={event => handleChange(event)}
+              isValid={isTimeValid((formData as RequestAndGroupEventFormData)?.endTime)}
             />
           </S.InputContainer>
         </S.InputsContainer>
       </S.InputsWrapper>
       <S.ButtonWrapper>
-        <S.Button type="button" onClick={handleFormSubmit}>
+        <S.Button type="button" onClick={handleFormSubmit} disabled={isFormValid}>
           {buttonText}
         </S.Button>
       </S.ButtonWrapper>
