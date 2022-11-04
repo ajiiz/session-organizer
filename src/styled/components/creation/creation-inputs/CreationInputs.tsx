@@ -3,7 +3,7 @@ import { FormData } from "styled/components/creation/useCreation";
 import CustomEventInputs from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
 import RequestOrGroupInputs from "styled/components/creation/creation-inputs/inputs/RequestOrGroupInputs";
 import GroupInputs from "styled/components/creation/creation-inputs/inputs/GroupInputs";
-import Modal from "styled/components/shared/popup/Modal";
+import Modal from "styled/components/shared/modal/Modal";
 
 type Props = {
   selectedOption: string;
