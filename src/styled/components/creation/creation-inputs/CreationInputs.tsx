@@ -9,9 +9,10 @@ type Props = {
   formData: FormData | null;
   handleFormDataChange: (data: FormData) => void;
   handleFormSubmit: () => void;
+  isFormValid: boolean;
 };
 
-const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handleFormSubmit }: Props) => {
+const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handleFormSubmit, isFormValid }: Props) => {
   const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
   const isRequestOrGroupEvent = useMemo(
     () => selectedOption === "request" || selectedOption === "group event",
@@ -27,6 +28,7 @@ const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handle
           formData={formData}
           handleFormDataChange={handleFormDataChange}
           handleFormSubmit={handleFormSubmit}
+          isFormValid={isFormValid}
         />
       )}
       {isRequestOrGroupEvent && (
@@ -35,6 +37,7 @@ const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handle
           handleFormDataChange={handleFormDataChange}
           handleFormSubmit={handleFormSubmit}
           buttonText={isRequest ? "Request Event" : "Create Group Event"}
+          isFormValid={isFormValid}
         />
       )}
       {isGroup && (
@@ -42,6 +45,7 @@ const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handle
           formData={formData}
           handleFormDataChange={handleFormDataChange}
           handleFormSubmit={handleFormSubmit}
+          isFormValid={isFormValid}
         />
       )}
     </>

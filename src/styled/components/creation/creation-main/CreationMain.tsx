@@ -5,7 +5,7 @@ import { useCreation } from "styled/components/creation/useCreation";
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const CreationMain = () => {
-  const { selectedOption, options, formData, handleOptionChange, handleFormDataChange, handleFormSubmit } =
+  const { selectedOption, options, formData, handleOptionChange, handleFormDataChange, handleFormSubmit, isFormValid } =
     useCreation();
 
   return (
@@ -23,6 +23,7 @@ const CreationMain = () => {
           formData={formData}
           handleFormDataChange={handleFormDataChange}
           handleFormSubmit={handleFormSubmit}
+          isFormValid={!isFormValid}
         />
       </SS.ContentContainer>
     </SS.ContentWrapper>
