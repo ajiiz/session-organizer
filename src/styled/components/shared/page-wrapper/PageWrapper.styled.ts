@@ -21,6 +21,7 @@ export const ContentWrapper = styled.section<ContentWrapperProps>`
   }
 
   ${device.mobile} {
+    margin-bottom: 5em;
     padding: 1rem 2.5rem 0 2.5rem;
     height: fit-content;
   }
