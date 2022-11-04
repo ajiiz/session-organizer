@@ -17,6 +17,8 @@ export interface useCreationProps {
   handleFormDataChange: (data: FormData) => void;
   handleFormSubmit: () => void;
   isFormValid: boolean;
+  isModalOpen: boolean;
+  handleModal: (value: boolean) => void;
 }
 
 export type CustomEventFormData = {
@@ -49,6 +51,7 @@ export const useCreation = (): useCreationProps => {
   const [options, setOptions] = useState<string[]>([]);
   const [formData, setFormData] = useState<FormData>(DEFAULT_CUSTOM_FORM_DATA);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
   const isRequestOrGroupEvent = useMemo(
     () => selectedOption === "request" || selectedOption === "group event",
@@ -100,6 +103,7 @@ export const useCreation = (): useCreationProps => {
     if (isGroup) {
       await handleCreateGroup();
     }
+    setIsModalOpen(true);
     resetFormData();
   };
 
@@ -173,6 +177,10 @@ export const useCreation = (): useCreationProps => {
     }
   };
 
+  const handleModal = (value: boolean) => {
+    setIsModalOpen(value);
+  };
+
   useEffect(() => {
     resetFormData();
   }, [selectedOption]);
@@ -198,6 +206,8 @@ export const useCreation = (): useCreationProps => {
     handleOptionChange,
     handleFormDataChange,
     handleFormSubmit,
-    isFormValid
+    isFormValid,
+    isModalOpen,
+    handleModal
   };
 };

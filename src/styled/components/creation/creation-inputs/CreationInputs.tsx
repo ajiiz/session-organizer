@@ -3,7 +3,7 @@ import { FormData } from "styled/components/creation/useCreation";
 import CustomEventInputs from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
 import RequestOrGroupInputs from "styled/components/creation/creation-inputs/inputs/RequestOrGroupInputs";
 import GroupInputs from "styled/components/creation/creation-inputs/inputs/GroupInputs";
-import Popup from "styled/components/shared/popup/Popup";
+import Modal from "styled/components/shared/popup/Modal";
 
 type Props = {
   selectedOption: string;
@@ -11,9 +11,19 @@ type Props = {
   handleFormDataChange: (data: FormData) => void;
   handleFormSubmit: () => void;
   isFormValid: boolean;
+  isModalOpen: boolean;
+  handleModal: (value: boolean) => void;
 };
 
-const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handleFormSubmit, isFormValid }: Props) => {
+const CreationInputs = ({
+  selectedOption,
+  formData,
+  handleFormDataChange,
+  handleFormSubmit,
+  isFormValid,
+  isModalOpen,
+  handleModal
+}: Props) => {
   const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
   const isRequestOrGroupEvent = useMemo(
     () => selectedOption === "request" || selectedOption === "group event",
@@ -49,7 +59,7 @@ const CreationInputs = ({ selectedOption, formData, handleFormDataChange, handle
           isFormValid={isFormValid}
         />
       )}
-      <Popup isOpen={true} handleClose={() => {}} />
+      <Modal isOpen={isModalOpen} handleModal={handleModal} />
     </>
   );
 };
