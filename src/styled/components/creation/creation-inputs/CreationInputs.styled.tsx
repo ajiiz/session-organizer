@@ -61,6 +61,7 @@ export const InputContainer = styled.div<InputContainerProps>`
 
 interface InputProps {
   margin?: Property.Margin;
+  isValid?: boolean;
 }
 
 export const Input = styled.input<InputProps>`
@@ -68,7 +69,7 @@ export const Input = styled.input<InputProps>`
   margin: ${props => (props.margin ? props.margin : "0.4rem 0 0 0")};
   padding: 0.7em 0 0.7em 1em;
   display: flex;
-  border: 1px solid ${Colors.LightBlackColor};
+  border: ${props => (props.isValid ? `1px solid ${Colors.LightBlackColor}` : `1px solid ${Colors.RedColor}`)};
   border-radius: 4px;
   background: ${Colors.DarkWhiteColor};
   color: ${Colors.BlackColor};
@@ -127,6 +128,14 @@ export const Button = styled.button`
 
   &:focus {
     background-color: ${hexToRgba(Colors.BlueColor, 0.3)};
+  }
+
+  &:disabled {
+    background-color: ${hexToRgba(Colors.BlueColor, 0.15)};
+    border: 1px solid ${Colors.LightGrayColor};
+    color: ${Colors.LightGrayColor};
+    pointer-events: none;
+    user-select: none;
   }
 
   ${device.tablet} {
