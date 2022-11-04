@@ -7,6 +7,7 @@ import { createRequestAndGroupEvent } from "network/events/createRequestAndGroup
 import { Status } from "utils/EventUtilities";
 import { createGroup } from "network/groups/createGroup";
 import { generateGroupCode } from "utils/GroupUtilities";
+import { isDateValid, isDescriptionValid, isNameValid, isTimeValid } from "utils/ValidationUtilities";
 
 export interface useCreationProps {
   selectedOption: string;
@@ -15,6 +16,7 @@ export interface useCreationProps {
   handleOptionChange: (option: string) => void;
   handleFormDataChange: (data: FormData) => void;
   handleFormSubmit: () => void;
+  isFormValid: boolean;
 }
 
 export type CustomEventFormData = {
@@ -46,6 +48,7 @@ export const useCreation = (): useCreationProps => {
   const [selectedOption, setSelectedOption] = useState("custom");
   const [options, setOptions] = useState<string[]>([]);
   const [formData, setFormData] = useState<FormData>(DEFAULT_CUSTOM_FORM_DATA);
+  const [isFormValid, setIsFormValid] = useState(false);
   const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
   const isRequestOrGroupEvent = useMemo(
     () => selectedOption === "request" || selectedOption === "group event",
@@ -86,6 +89,8 @@ export const useCreation = (): useCreationProps => {
   };
 
   const handleFormSubmit = async () => {
+    if (!isFormValid) return;
+
     if (isCustom) {
       await handleCreateCustomEvent();
     }
@@ -95,6 +100,7 @@ export const useCreation = (): useCreationProps => {
     if (isGroup) {
       await handleCreateGroup();
     }
+    resetFormData();
   };
 
   const handleCreateCustomEvent = async () => {
@@ -123,7 +129,38 @@ export const useCreation = (): useCreationProps => {
     }
   };
 
-  useEffect(() => {
+  const validateForm = (): boolean => {
+    if (isCustom) {
+      const { name, details, startTime, endTime, startDate, endDate } = formData as CustomEventFormData;
+      return (
+        isNameValid(name) &&
+        isDescriptionValid(details) &&
+        isDateValid(startDate) &&
+        isDateValid(endDate) &&
+        isTimeValid(startTime) &&
+        isTimeValid(endTime)
+      );
+    }
+    if (isRequestOrGroupEvent) {
+      const { name, details, startTime, endTime, startDate, endDate } = formData as RequestAndGroupEventFormData;
+      return (
+        isNameValid(name) &&
+        isDescriptionValid(details) &&
+        isDateValid(startDate) &&
+        isDateValid(endDate) &&
+        isTimeValid(startTime) &&
+        isTimeValid(endTime)
+      );
+    }
+    if (isGroup) {
+      const { name, details } = formData as GroupFormData;
+      return isNameValid(name) && isDescriptionValid(details);
+    }
+
+    return false;
+  };
+
+  const resetFormData = () => {
     if (selectedOption === "custom") {
       setFormData(DEFAULT_CUSTOM_FORM_DATA);
     }
@@ -134,6 +171,10 @@ export const useCreation = (): useCreationProps => {
     if (selectedOption === "group event" || selectedOption === "request") {
       setFormData(DEFAULT_REQUEST_AND_GROUP_EVENT_FORM_DATA);
     }
+  };
+
+  useEffect(() => {
+    resetFormData();
   }, [selectedOption]);
 
   useEffect(() => {
@@ -142,12 +183,21 @@ export const useCreation = (): useCreationProps => {
     }
   }, [status]);
 
+  useEffect(() => {
+    if (validateForm()) {
+      setIsFormValid(true);
+      return;
+    }
+    setIsFormValid(false);
+  }, [formData]);
+
   return {
     selectedOption,
     options,
     formData,
     handleOptionChange,
     handleFormDataChange,
-    handleFormSubmit
+    handleFormSubmit,
+    isFormValid
   };
 };
