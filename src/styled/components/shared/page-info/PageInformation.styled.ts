@@ -13,7 +13,7 @@ export const TextWrapper = styled.div<TextWrapperProps>`
   margin-bottom: 2rem;
 
   ${device.tablet} {
-    text-align: ${props => (props.shouldCenterOnMobile ? "center" : null)};
+    text-align: ${({ shouldCenterOnMobile }) => (shouldCenterOnMobile ? "center" : null)};
   }
 `;
 

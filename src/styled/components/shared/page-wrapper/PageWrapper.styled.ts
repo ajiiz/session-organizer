@@ -9,7 +9,7 @@ export const ContentWrapper = styled.section<ContentWrapperProps>`
   width: 100%;
   height: 100%;
   padding: 8rem 5rem 0 5rem;
-  margin-bottom: ${props => (props.customMargin ? "2.5rem" : null)};
+  margin-bottom: ${({ customMargin }) => (customMargin ? "2.5rem" : null)};
 
   ${device.smalldesktop} {
     width: 100%;

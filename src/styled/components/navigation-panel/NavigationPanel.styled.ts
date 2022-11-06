@@ -27,13 +27,13 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
     position: fixed;
     width: 25rem;
     background-color: ${hexToRgba(Colors.DarkWhiteColor, 1)};
-    transform: ${props => (props.isOpen ? "translateX(0)" : "translateX(-25rem)")};
+    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(-25rem)")};
   }
 
   ${device.tablet} {
     position: fixed;
     width: 100%;
-    transform: ${props => (props.isOpen ? "translateX(0)" : "translateX(-100%)")};
+    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(-100%)")};
   }
 
   ${device.mobile} {
@@ -104,16 +104,16 @@ interface LinkProps {
 export const Link = styled.div<LinkProps>`
   width: 100%;
   padding: 0.2rem 1rem;
-  margin: ${props => props.margin ?? ""};
+  margin: ${({ margin }) => margin ?? ""};
   display: flex;
   align-items: center;
   cursor: pointer;
   border-radius: 4px;
-  transition: 0.2s background linear;
-  background: ${props => (props.isCurrentPath ? hexToRgba(Colors.DarkGrayColor, 0.15) : "")};
+  transition: 0.2s background-color linear;
+  background-color: ${({ isCurrentPath }) => (isCurrentPath ? hexToRgba(Colors.DarkGrayColor, 0.15) : "")};
 
   &:hover {
-    background: ${hexToRgba(Colors.DarkGrayColor, 0.15)};
+    background-color: ${hexToRgba(Colors.DarkGrayColor, 0.15)};
   }
 `;
 
@@ -149,16 +149,16 @@ export const LogoutButton = styled.button`
   text-align: center;
   border: 1px solid ${Colors.RedColor};
   border-radius: 4px;
-  background: ${hexToRgba(Colors.RedColor, 0.25)};
+  background-color: ${hexToRgba(Colors.RedColor, 0.25)};
   font-size: 0.9em;
   color: ${Colors.RedColor};
-  transition: 0.2s background linear;
+  transition: 0.2s background-color linear;
 
   &:hover {
     padding: 0.4rem 1.5rem;
     font-size: 0.9em;
     border: 1px solid ${Colors.RedColor};
-    background: ${hexToRgba(Colors.RedColor, 0.3)};
+    background-color: ${hexToRgba(Colors.RedColor, 0.3)};
     color: ${Colors.RedColor};
   }
 
@@ -166,7 +166,7 @@ export const LogoutButton = styled.button`
     padding: 0.4rem 1.5rem;
     font-size: 0.9em;
     border: 1px solid ${Colors.RedColor};
-    background: ${hexToRgba(Colors.RedColor, 0.25)};
+    background-color: ${hexToRgba(Colors.RedColor, 0.25)};
     color: ${Colors.RedColor};
   }
 `;

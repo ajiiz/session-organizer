@@ -36,13 +36,13 @@ export const Header = styled.h1`
 
 export const Form = styled.form``;
 
-type ButtonProps = {
+interface ButtonProps {
   margin?: Property.Margin;
-};
+}
 
 export const Button = styled.button<ButtonProps>`
   width: 100%;
-  margin: ${props => props.margin ?? ""};
+  margin: ${({ margin }) => margin ?? ""};
   padding: 0.4rem 1.5rem;
   text-align: center;
   border: 1px solid ${Colors.GreenColor};
@@ -72,8 +72,8 @@ interface InputProps {
 }
 
 export const Input = styled.input<InputProps>`
-  width: ${props => (props.width ? props.width : "100%")};
-  margin: ${props => (props.margin ? props.margin : "0.4rem 0 0 0")};
+  width: ${({ width }) => (width ? width : "100%")};
+  margin: ${({ margin }) => (margin ? margin : "0.4rem 0 0 0")};
   padding: 0.7em 0 0.7em 1em;
   display: flex;
   border: 1px solid ${Colors.LightBlackColor};

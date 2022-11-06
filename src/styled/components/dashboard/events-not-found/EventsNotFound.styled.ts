@@ -26,12 +26,7 @@ export const Paragraph = styled.p`
   color: ${Colors.LightGrayColor};
 `;
 
-interface ImageWrapperProps {
-  width?: Property.Width;
-  height?: Property.Height;
-}
-
-export const ImageWrapper = styled.div<ImageWrapperProps>`
+export const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 5rem;

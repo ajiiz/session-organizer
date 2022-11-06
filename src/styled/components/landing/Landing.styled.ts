@@ -95,8 +95,8 @@ interface ImageWrapperProps {
 }
 
 export const ImageWrapper = styled.div<ImageWrapperProps>`
-  width: ${props => (props.width ? props.width : "100%")};
-  height: ${props => (props.height ? props.height : "100%")};
+  width: ${({ width }) => (width ? width : "100%")};
+  height: ${({ height }) => (height ? height : "100%")};
   display: flex;
 
   ${device.smalldesktop} {
