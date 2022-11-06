@@ -4,10 +4,10 @@ import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 import { ModalType } from "./Modal";
 
-type ModalWrapper = {
+interface ModalWrapper {
   isOpen: boolean;
   type: ModalType;
-};
+}
 
 export const ModalWrapper = styled.div<ModalWrapper>`
   position: fixed;

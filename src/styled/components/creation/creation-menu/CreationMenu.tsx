@@ -1,10 +1,10 @@
 import * as S from "styled/components/creation/creation-menu/CreationMenu.styled";
 
-type Props = {
+interface Props {
   selectedOption: string;
   options: string[];
   handleOptionChange: (option: string) => void;
-};
+}
 
 const CreationMenu = ({ selectedOption, options, handleOptionChange }: Props) => {
   return (

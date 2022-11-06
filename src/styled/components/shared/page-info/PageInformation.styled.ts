@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 
-type TextWrapperProps = {
+interface TextWrapperProps {
   shouldCenterOnMobile?: boolean;
-};
+}
 
 export const TextWrapper = styled.div<TextWrapperProps>`
   width: 100%;

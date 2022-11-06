@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { device } from "styled/base/Responsive";
 
-type ContentWrapperProps = {
+interface ContentWrapperProps {
   customMargin?: boolean;
-};
+}
 
 export const ContentWrapper = styled.section<ContentWrapperProps>`
   width: 100%;

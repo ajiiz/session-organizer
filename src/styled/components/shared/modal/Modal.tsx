@@ -5,12 +5,12 @@ import * as S from "./Modal.styled";
 
 export type ModalType = "success" | "error";
 
-type Props = {
+interface Props {
   isOpen: boolean;
   handleModal: (value: boolean) => void;
   text?: string;
   type?: ModalType;
-};
+}
 
 const Modal = ({ isOpen, handleModal, text = defaultModalText, type = "success" }: Props) => {
   useEffect(() => {

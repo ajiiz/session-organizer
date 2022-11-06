@@ -16,9 +16,9 @@ export const OptionsWrapper = styled.div`
   }
 `;
 
-type OptionProps = {
+interface OptionProps {
   isSelected: boolean;
-};
+}
 
 export const Option = styled.button<OptionProps>`
   width: 8rem;
