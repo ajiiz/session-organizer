@@ -12,7 +12,7 @@ const Footer = () => {
             <StyledImage src={LinkedinIcon} width={"18px"} height={"18px"} />
           </S.Link>
           <S.Link href="https://github.com/ajiiz" target="_blank">
-            <S.LinkIcon src={GithubIcon} width={"18px"} height={"18px"} />
+            <StyledImage src={GithubIcon} width={"18px"} height={"18px"} />
           </S.Link>
           <S.Link href="https://www.piotrwrobel.xyz/">Portfolio</S.Link>
           <S.Link href="mailto: piotrwrobel.ajiiz@gmail.com">Email me</S.Link>
