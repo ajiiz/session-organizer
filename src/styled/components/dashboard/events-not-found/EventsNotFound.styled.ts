@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import { Colors } from "styled/base/Colors";
 import { Property } from "csstype";
 import { device } from "styled/base/Responsive";
@@ -42,8 +41,4 @@ export const ImageWrapper = styled.div<ImageWrapperProps>`
   ${device.tablet} {
     margin-top: 6rem;
   }
-`;
-
-export const NotFoundImage = styled(Image)`
-  align-self: center;
 `;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ArroUpIcon from "assets/icons/arrow-up-icon.svg";
 import ArrowDownIcon from "assets/icons/arrow-down-icon.svg";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import * as S from "./Dropdown.styled";
 
 interface DropdownProps {
@@ -27,9 +28,9 @@ const Button = ({ items, selectedItem, onChange }: DropdownProps) => {
       <S.DropdownBox onClick={() => setIsOpen(!isOpen)}>
         {selectedItem.label}
         {isOpen ? (
-          <S.ArrowIcon src={ArroUpIcon} alt="arrow-up-icon" />
+          <StyledImage src={ArroUpIcon} alt="arrow-up-icon" width={"34px"} height={"34px"} />
         ) : (
-          <S.ArrowIcon src={ArrowDownIcon} alt="arrow-down-icon" />
+          <StyledImage src={ArrowDownIcon} alt="arrow-down-icon" width={"34px"} height={"34px"} />
         )}
       </S.DropdownBox>
       {isOpen && (

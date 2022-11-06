@@ -123,8 +123,6 @@ export const LinkParagraph = styled.span`
   font-size: 0.9em;
 `;
 
-export const Icon = styled(Image)``;
-
 export const AuthorizationWrapper = styled.div`
   display: flex;
   flex-direction: column;

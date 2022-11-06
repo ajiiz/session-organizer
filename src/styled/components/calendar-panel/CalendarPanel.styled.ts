@@ -1,4 +1,3 @@
-import Image from "next/image";
 import hexToRgba from "hex-to-rgba";
 import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
@@ -61,5 +60,3 @@ export const CloseIcon = styled.div`
     display: block;
   }
 `;
-
-export const Icon = styled(Image)``;

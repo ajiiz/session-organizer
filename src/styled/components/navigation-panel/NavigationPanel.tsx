@@ -1,4 +1,4 @@
-import { StyledLogo } from "styled/elements/shared/logo/Logo";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import { goToLink, isCurrentPath } from "utils/NavigationUtilities";
 import Logo from "assets/Logo.svg";
 import { LinksContent } from "./LinksContent";
@@ -19,12 +19,12 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
   return (
     <S.SectionWrapper isOpen={isOpen}>
       <S.CloseIcon>
-        <S.Icon src={CloseIcon} alt="Close icon" onClick={() => handleOpen(false)} />
+        <StyledImage src={CloseIcon} alt="Close icon" onClick={() => handleOpen(false)} />
       </S.CloseIcon>
       <S.ContentWrapper>
         <S.LogoContainer>
           <S.LogoWrapper onClick={() => goToLink({ link: "/" })}>
-            <StyledLogo src={Logo} alt="Logo" priority />
+            <StyledImage src={Logo} alt="Logo" width={"34px"} height={"34px"} priority />
             <S.LogoContent>Listic</S.LogoContent>
           </S.LogoWrapper>
         </S.LogoContainer>
@@ -33,7 +33,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
             onClick={() => goToLink({ link: LinksContent[0].url })}
             isCurrentPath={isCurrentPath({ routerPath: router.pathname, currentPath: LinksContent[0].url })}
           >
-            <S.Icon src={LinksContent[0].src} alt={LinksContent[0].alt} />
+            <StyledImage src={LinksContent[0].src} alt={LinksContent[0].alt} width={"34px"} height={"34px"} />
             <S.LinkParagraph>{LinksContent[0].paragraph}</S.LinkParagraph>
           </S.Link>
         </S.CreationButtonWrapper>
@@ -45,7 +45,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
               margin="0.3rem 0"
               isCurrentPath={isCurrentPath({ routerPath: router.pathname, currentPath: element.url })}
             >
-              <S.Icon src={element.src} alt={element.alt} />
+              <StyledImage src={element.src} alt={element.alt} width={"34px"} height={"34px"} />
               <S.LinkParagraph>{element.paragraph}</S.LinkParagraph>
             </S.Link>
           ))}

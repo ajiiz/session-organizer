@@ -1,5 +1,6 @@
 import CheckIcon from "assets/icons/check-icon.svg";
 import { useEffect } from "react";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import * as S from "./Modal.styled";
 
 export type ModalType = "success" | "error";
@@ -23,7 +24,7 @@ const Modal = ({ isOpen, handleModal, text = defaultModalText, type = "success" 
     <S.ModalWrapper isOpen={isOpen} onClick={() => handleModal(false)} type={type}>
       <S.ModalContainer>
         <S.ModalText>{text}</S.ModalText>
-        <S.CheckIcon src={CheckIcon} alt="check" />
+        <StyledImage src={CheckIcon} alt="check" />
       </S.ModalContainer>
     </S.ModalWrapper>
   );

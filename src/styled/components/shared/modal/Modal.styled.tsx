@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import hexToRgba from "hex-to-rgba";
 import { Colors } from "styled/base/Colors";
@@ -59,5 +58,3 @@ export const ModalText = styled.p`
   font-size: 0.85rem;
   color: ${Colors.BlackColor};
 `;
-
-export const CheckIcon = styled(Image)``;

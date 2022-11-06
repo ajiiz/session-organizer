@@ -111,9 +111,3 @@ export const ImageWrapper = styled.div<ImageWrapperProps>`
     display: none;
   }
 `;
-
-export const HeroImage = styled(Image)`
-  width: 100%;
-  height: 100%;
-  align-self: center;
-`;

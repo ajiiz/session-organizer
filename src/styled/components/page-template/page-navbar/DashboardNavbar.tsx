@@ -1,4 +1,4 @@
-import { StyledLogo } from "styled/elements/shared/logo/Logo";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import { Colors } from "styled/base/Colors";
 import Button from "styled/components/shared/button/Button";
 import Logo from "assets/Logo.svg";
@@ -13,7 +13,7 @@ const DashboardNavbar = ({ handleNavigationPanel, handleCallendarPanel }: Props)
   return (
     <S.Wrapper>
       <S.LogoWrapper>
-        <StyledLogo src={Logo} alt="Logo" />
+        <StyledImage src={Logo} alt="Logo" width={"34px"} height={"34px"} />
       </S.LogoWrapper>
       <S.ButtonsWrapper>
         <Button

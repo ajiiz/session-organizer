@@ -1,4 +1,5 @@
 import NotFoundImage from "assets/Not-Found-Image.svg";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import * as S from "./EventsNotFound.styled";
 
 const EventsNotFound = () => {
@@ -9,7 +10,13 @@ const EventsNotFound = () => {
         <S.Paragraph>Change the date to the check other days.</S.Paragraph>
       </S.TextWrapper>
       <S.ImageWrapper>
-        <S.NotFoundImage src={NotFoundImage} alt="Hero" placeholder="blur" blurDataURL={NotFoundImage} />
+        <StyledImage
+          src={NotFoundImage}
+          alt="Hero"
+          placeholder="blur"
+          blurDataURL={NotFoundImage}
+          alignSelf={"center"}
+        />
       </S.ImageWrapper>
     </>
   );

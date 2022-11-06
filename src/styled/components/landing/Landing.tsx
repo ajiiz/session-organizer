@@ -5,6 +5,7 @@ import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
 import Button from "styled/components/shared/button/Button";
 import HeroImage from "assets/Hero-Image.svg";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import * as S from "./Landing.styled";
 
 const Landing = () => {
@@ -33,7 +34,7 @@ const Landing = () => {
           </Button>
         </S.HeroContent>
         <S.ImageWrapper width="40%" height="75%">
-          <S.HeroImage src={HeroImage} alt="Hero" placeholder="blur" blurDataURL={HeroImage} />
+          <StyledImage src={HeroImage} alt="Hero" placeholder="blur" blurDataURL={HeroImage} alignSelf={"center"} />
         </S.ImageWrapper>
       </S.HeroWrapper>
       <Footer />

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import { device } from "styled/base/Responsive";
 import { Colors } from "styled/base/Colors";
 import hexToRgba from "hex-to-rgba";
@@ -45,11 +44,6 @@ export const Links = styled.div`
   ${device.mobile} {
     gap: 0;
   }
-`;
-
-export const LinkIcon = styled(Image)`
-  width: 18px;
-  height: 18px;
 `;
 
 export const Link = styled.a`
