@@ -49,6 +49,6 @@ interface RegisterButtonWrapperProps {
 export const RegisterButtonWrapper = styled.div<RegisterButtonWrapperProps>`
   ${device.mobile} {
     font-size: 0.7em;
-    display: ${props => (props.shouldHide ? "none" : "")};
+    display: ${({ shouldHide }) => (shouldHide ? "none" : "")};
   }
 `;

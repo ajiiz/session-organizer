@@ -1,4 +1,4 @@
-import { StyledLogo } from "styled/elements/shared/logo/Logo";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import { Colors } from "styled/base/Colors";
 import { goToLink } from "utils/NavigationUtilities";
 import Button from "styled/components/shared/button/Button";
@@ -15,7 +15,7 @@ const Navbar = ({ removeLoginButton, removeRegisterButton, hideRegisterButtonOnM
   return (
     <S.Wrapper>
       <S.LogoWrapper onClick={() => goToLink({ link: "/" })}>
-        <StyledLogo src={Logo} alt="Logo" />
+        <StyledImage src={Logo} alt="Logo" height={"34px"} width={"34px"} />
         <S.LogoContent>Listic</S.LogoContent>
       </S.LogoWrapper>
       <S.ButtonsWrapper>

@@ -17,44 +17,44 @@ export const InputsWrapper = styled.section`
   }
 `;
 
-type InputsContainerProps = {
+interface InputsContainerProps {
   margin?: Property.Margin;
   isSmall?: boolean;
-};
+}
 
 export const InputsContainer = styled.div<InputsContainerProps>`
-  width: ${props => (props.isSmall ? "15%" : "30%")};
-  margin: ${props => props.margin ?? "0"};
+  width: ${({ isSmall }) => (isSmall ? "15%" : "30%")};
+  margin: ${({ margin }) => margin ?? "0"};
   display: flex;
   flex-direction: column;
 
   ${device.desktop} {
-    width: ${props => (props.isSmall ? "25%" : "40%")};
+    width: ${({ isSmall }) => (isSmall ? "25%" : "40%")};
   }
 
   ${device.tablet} {
     width: 100%;
-    flex-direction: ${props => (props.isSmall ? "row" : "column")};
+    flex-direction: ${({ isSmall }) => (isSmall ? "row" : "column")};
     justify-content: space-between;
     align-items: center;
   }
 `;
 
-type InputContainerProps = {
+interface InputContainerProps {
   margin?: Property.Margin;
   isSmall?: boolean;
-};
+}
 
 export const InputContainer = styled.div<InputContainerProps>`
   width: 100%;
-  margin: ${props => props.margin ?? "0"};
+  margin: ${({ margin }) => margin ?? "0"};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 
   ${device.tablet} {
-    width: ${props => (props.isSmall ? "48%" : "100%")};
+    width: ${({ isSmall }) => (isSmall ? "48%" : "100%")};
     margin: 0;
   }
 `;
@@ -66,10 +66,10 @@ interface InputProps {
 
 export const Input = styled.input<InputProps>`
   width: 100%;
-  margin: ${props => (props.margin ? props.margin : "0.4rem 0 0 0")};
+  margin: ${({ margin }) => (margin ? margin : "0.4rem 0 0 0")};
   padding: 0.7em 0 0.7em 1em;
   display: flex;
-  border: ${props => (props.isValid ? `1px solid ${Colors.LightBlackColor}` : `1px solid ${Colors.RedColor}`)};
+  border: ${({ isValid }) => (isValid ? `1px solid ${Colors.LightBlackColor}` : `1px solid ${Colors.RedColor}`)};
   border-radius: 4px;
   background: ${Colors.DarkWhiteColor};
   color: ${Colors.BlackColor};

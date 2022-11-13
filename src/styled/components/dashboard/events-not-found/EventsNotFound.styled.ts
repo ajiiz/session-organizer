@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import { Colors } from "styled/base/Colors";
 import { Property } from "csstype";
 import { device } from "styled/base/Responsive";
@@ -27,12 +26,7 @@ export const Paragraph = styled.p`
   color: ${Colors.LightGrayColor};
 `;
 
-interface ImageWrapperProps {
-  width?: Property.Width;
-  height?: Property.Height;
-}
-
-export const ImageWrapper = styled.div<ImageWrapperProps>`
+export const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 5rem;
@@ -42,8 +36,4 @@ export const ImageWrapper = styled.div<ImageWrapperProps>`
   ${device.tablet} {
     margin-top: 6rem;
   }
-`;
-
-export const NotFoundImage = styled(Image)`
-  align-self: center;
 `;

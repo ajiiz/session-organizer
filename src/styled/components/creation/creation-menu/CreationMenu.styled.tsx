@@ -10,22 +10,18 @@ export const OptionsWrapper = styled.div`
   align-items: center;
   border-bottom: 0.5px solid ${hexToRgba(Colors.DarkGrayColor, 0.5)};
   color: ${Colors.BlackColor};
-
-  ${device.tablet} {
-    justify-content: space-between;
-  }
 `;
 
-type OptionProps = {
+interface OptionProps {
   isSelected: boolean;
-};
+}
 
 export const Option = styled.button<OptionProps>`
-  width: 8rem;
+  width: 25%;
   text-transform: capitalize;
   padding: 0.8rem 0;
-  color: ${props => (props.isSelected ? Colors.GreenColor : Colors.BlackColor)};
-  box-shadow: ${props => (props.isSelected ? `0 2px 0 0 ${hexToRgba(Colors.GreenColor, 1)}` : null)};
+  color: ${({ isSelected }) => (isSelected ? Colors.GreenColor : Colors.BlackColor)};
+  box-shadow: ${({ isSelected }) => (isSelected ? `0 2px 0 -0.5px ${hexToRgba(Colors.GreenColor, 1)}` : null)};
   transition: color 150ms linear, box-shadow 150ms linear;
 
   &:focus,
@@ -35,7 +31,7 @@ export const Option = styled.button<OptionProps>`
   }
 
   ${device.tablet} {
-    box-shadow: ${props => (props.isSelected ? `0 2px 0 -0.5px ${hexToRgba(Colors.GreenColor, 1)}` : null)};
+    box-shadow: ${({ isSelected }) => (isSelected ? `0 2px 0 -0.5px ${hexToRgba(Colors.GreenColor, 1)}` : null)};
   }
 
   ${device.mobile} {

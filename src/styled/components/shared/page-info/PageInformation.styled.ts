@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 
-type TextWrapperProps = {
+interface TextWrapperProps {
   shouldCenterOnMobile?: boolean;
-};
+}
 
 export const TextWrapper = styled.div<TextWrapperProps>`
   width: 100%;
@@ -13,7 +13,7 @@ export const TextWrapper = styled.div<TextWrapperProps>`
   margin-bottom: 2rem;
 
   ${device.tablet} {
-    text-align: ${props => (props.shouldCenterOnMobile ? "center" : null)};
+    text-align: ${({ shouldCenterOnMobile }) => (shouldCenterOnMobile ? "center" : null)};
   }
 `;
 

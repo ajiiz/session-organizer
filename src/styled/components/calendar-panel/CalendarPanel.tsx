@@ -3,6 +3,7 @@ import { RootState } from "redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDate } from "redux/dateSlice";
 import CloseIcon from "assets/icons/navigation-panel/close-icon.svg";
+import { StyledImage } from "styled/elements/shared/StyledImage";
 import * as S from "./CalendarPanel.styled";
 
 interface Props {
@@ -21,7 +22,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
   return (
     <S.SectionWrapper isOpen={isOpen}>
       <S.CloseIcon>
-        <S.Icon src={CloseIcon} alt="Close icon" onClick={() => handleOpen(false)} />
+        <StyledImage src={CloseIcon} alt="Close icon" onClick={() => handleOpen(false)} />
       </S.CloseIcon>
       <S.CallendarWrapper>
         <Calendar locale="en-EN" onChange={(date: Date) => handleDateChange(date)} value={currentDate} />

@@ -5,7 +5,7 @@ import RequestOrGroupInputs from "styled/components/creation/creation-inputs/inp
 import GroupInputs from "styled/components/creation/creation-inputs/inputs/GroupInputs";
 import Modal from "styled/components/shared/modal/Modal";
 
-type Props = {
+interface Props {
   selectedOption: string;
   formData: FormData | null;
   handleFormDataChange: (data: FormData) => void;
@@ -13,7 +13,7 @@ type Props = {
   isFormValid: boolean;
   isModalOpen: boolean;
   handleModal: (value: boolean) => void;
-};
+}
 
 const CreationInputs = ({
   selectedOption,

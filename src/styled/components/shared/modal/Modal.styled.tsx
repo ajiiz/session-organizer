@@ -1,14 +1,13 @@
-import Image from "next/image";
 import styled from "styled-components";
 import hexToRgba from "hex-to-rgba";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 import { ModalType } from "./Modal";
 
-type ModalWrapper = {
+interface ModalWrapper {
   isOpen: boolean;
   type: ModalType;
-};
+}
 
 export const ModalWrapper = styled.div<ModalWrapper>`
   position: fixed;
@@ -59,5 +58,3 @@ export const ModalText = styled.p`
   font-size: 0.85rem;
   color: ${Colors.BlackColor};
 `;
-
-export const CheckIcon = styled(Image)``;

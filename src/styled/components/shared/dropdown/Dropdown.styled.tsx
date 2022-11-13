@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
-import Image from "next/image";
 import hexToRgba from "hex-to-rgba";
 
 export const DropdownWrapper = styled.div`
@@ -27,11 +26,6 @@ export const DropdownBox = styled.div`
   &:hover {
     border: 1px solid ${Colors.GreenColor};
   }
-`;
-
-export const ArrowIcon = styled(Image)`
-  width: 34px;
-  height: 34px;
 `;
 
 export const OptionsContainer = styled.div`

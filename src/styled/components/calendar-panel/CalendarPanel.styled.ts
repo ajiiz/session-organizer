@@ -1,4 +1,3 @@
-import Image from "next/image";
 import hexToRgba from "hex-to-rgba";
 import styled from "styled-components";
 import { Colors } from "styled/base/Colors";
@@ -28,13 +27,13 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
     right: 0;
     width: 25rem;
     background-color: ${hexToRgba(Colors.DarkWhiteColor, 1)};
-    transform: ${props => (props.isOpen ? "translateX(0)" : "translateX(25rem)")};
+    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(25rem)")};
   }
 
   ${device.tablet} {
     position: fixed;
     width: 100%;
-    transform: ${props => (props.isOpen ? "translateX(0)" : "translateX(100%)")};
+    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")};
   }
 
   ${device.mobile} {
@@ -61,5 +60,3 @@ export const CloseIcon = styled.div`
     display: block;
   }
 `;
-
-export const Icon = styled(Image)``;

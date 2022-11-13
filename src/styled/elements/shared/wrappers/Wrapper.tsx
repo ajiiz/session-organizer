@@ -13,13 +13,13 @@ interface WrapperProps {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  width: ${props => (props.width ? props.width : "100%")};
-  height: ${props => (props.height ? props.height : "100%")};
-  display: ${props => (props.display ? props.display : "flex")};
-  flex-direction: ${props => (props.flexDirection ? props.flexDirection : "row")};
-  justify-content: ${props => (props.justifyContent ? props.justifyContent : "center")};
-  align-items: ${props => (props.alignItems ? props.alignItems : "center")};
-  margin: ${props => (props.margin ? props.margin : "0 0 0 0")};
-  padding: ${props => (props.padding ? props.padding : "0 0 0 0")};
+  width: ${({ width }) => (width ? width : "100%")};
+  height: ${({ height }) => (height ? height : "100%")};
+  margin: ${({ margin }) => (margin ? margin : "0 0 0 0")};
+  padding: ${({ padding }) => (padding ? padding : "0 0 0 0")};
+  display: ${({ display }) => (display ? display : "flex")};
+  flex-direction: ${({ flexDirection }) => (flexDirection ? flexDirection : "row")};
+  justify-content: ${({ justifyContent }) => (justifyContent ? justifyContent : "center")};
+  align-items: ${({ alignItems }) => (alignItems ? alignItems : "center")};
   overflow: auto;
 `;
