@@ -1,4 +1,4 @@
-import * as S from "styled/components/creation/creation-menu/CreationMenu.styled";
+import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
 interface Props {
   selectedOption: string;
@@ -6,7 +6,7 @@ interface Props {
   handleOptionChange: (option: string) => void;
 }
 
-const CreationMenu = ({ selectedOption, options, handleOptionChange }: Props) => {
+const RowMenu = ({ selectedOption, options, handleOptionChange }: Props) => {
   return (
     <S.OptionsWrapper>
       {options.map((option, key) => (
@@ -18,4 +18,4 @@ const CreationMenu = ({ selectedOption, options, handleOptionChange }: Props) =>
   );
 };
 
-export default CreationMenu;
+export default RowMenu;
