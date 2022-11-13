@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 import { GroupFormData } from "styled/components/creation/useCreation";
 import { InputsProps } from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
-import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
 import { isDescriptionValid, isNameValid } from "utils/ValidationUtilities";
+import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
 const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit, isFormValid }: InputsProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

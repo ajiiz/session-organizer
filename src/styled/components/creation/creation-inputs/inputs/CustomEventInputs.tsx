@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { CustomEventFormData, FormData } from "styled/components/creation/useCreation";
-import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
 import { isDateValid, isDescriptionValid, isNameValid, isTimeValid } from "utils/ValidationUtilities";
+import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
 export interface InputsProps {
   formData: FormData | null;

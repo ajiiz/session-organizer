@@ -3,8 +3,8 @@ import { RequestAndGroupEventFormData } from "styled/components/creation/useCrea
 import { InputsProps } from "styled/components/creation/creation-inputs/inputs/CustomEventInputs";
 import Dropdown, { Item } from "styled/components/shared/dropdown/Dropdown";
 import { getGroups } from "network/groups/getGroups";
-import * as S from "styled/components/creation/creation-inputs/CreationInputs.styled";
 import { isDateValid, isDescriptionValid, isNameValid, isTimeValid } from "utils/ValidationUtilities";
+import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
 const CustomEventInputs = ({
   formData,
