@@ -52,9 +52,14 @@ export const useAccountSettings = (): useAccountSettingsProps => {
 
   const handleGetAccount = async () => {
     setIsLoading(true);
-    const user = session?.user;
+
+    const loggedUserEmail = session?.user?.email;
+    if (!loggedUserEmail) {
+      return;
+    }
+
     try {
-      const data = await getAccount({ userEmail: user?.email ?? "" });
+      const data = await getAccount({ userEmail: loggedUserEmail });
       setFormData({ ...data, password: formData?.password ?? "defaultPassword" });
       setIsLoading(false);
     } catch (error) {
