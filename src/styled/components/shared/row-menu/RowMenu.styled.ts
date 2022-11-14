@@ -121,8 +121,15 @@ export const Input = styled.input<InputProps>`
     border: 1px solid ${Colors.GreenColor};
   }
 
+  &[type="password"] {
+    &:disabled {
+      color: ${hexToRgba(Colors.LightGrayColor, 0.3)};
+    }
+  }
+
   &:disabled {
     color: ${Colors.LightGrayColor};
+    border: 1px solid ${Colors.LightBlackColor};
   }
 `;
 
