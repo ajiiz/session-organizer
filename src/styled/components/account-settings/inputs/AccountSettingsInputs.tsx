@@ -1,8 +1,8 @@
 import { FormData } from "styled/components/account-settings/useAccountSettings";
 import Modal from "styled/components/shared/modal/Modal";
+import AccountInputs from "styled/components/account-settings/inputs/AccountInputs";
 
 interface Props {
-  selectedOption: string;
   formData: FormData | null;
   handleFormDataChange: (data: FormData) => void;
   handleAccountSave: () => void;
@@ -13,7 +13,6 @@ interface Props {
 }
 
 const AccuntSettingsInputs = ({
-  selectedOption,
   formData,
   handleFormDataChange,
   handleAccountSave,
@@ -24,7 +23,16 @@ const AccuntSettingsInputs = ({
 }: Props) => {
   return (
     <>
-      {isAccount ? <p>Account</p> : <p>Not account</p>}
+      {isAccount ? (
+        <AccountInputs
+          formData={formData}
+          handleFormDataChange={handleFormDataChange}
+          handleAccountSave={handleAccountSave}
+          isFormValid={isFormValid}
+        />
+      ) : (
+        <p>Not account</p>
+      )}
       <Modal isOpen={isModalOpen} handleModal={handleModal} />
     </>
   );
