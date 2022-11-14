@@ -1,5 +1,5 @@
 import PageTemplate from "styled/components/page-template/PageTemplate";
-import AccountSettingsMain from "./AccountSettingsMain";
+import AccountSettingsMain from "./account-settings-main/AccountSettingsMain";
 
 const AccountSettingsComponent = () => {
   return (
