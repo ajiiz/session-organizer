@@ -1,6 +1,6 @@
 import PageInformation from "styled/components/shared/page-info/PageInformation";
 import RowMenu from "styled/components/shared/row-menu/RowMenu";
-import AccountSettingsInputs from "styled/components/account-settings/account-settings-inputs/AccountSettingsInputs";
+import AccountSettingsInputs from "styled/components/account-settings/inputs/AccountSettingsInputs";
 import { useAccountSettings } from "styled/components/account-settings/useAccountSettings";
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
@@ -27,7 +27,6 @@ const AccountSettingsMain = () => {
         />
         <RowMenu selectedOption={selectedOption} handleOptionChange={handleOptionChange} options={options} />
         <AccountSettingsInputs
-          selectedOption={selectedOption}
           formData={formData}
           handleFormDataChange={handleFormDataChange}
           handleAccountSave={handleAccountSave}
