@@ -1,3 +1,5 @@
+import { getAccount } from "network/users/getAccount";
+import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 
 export interface useAccountSettingsProps {
@@ -27,6 +29,7 @@ const DEFAULT_OPTIONS = ["account", "group"];
 const DEFAULT_ACCOUNT_FORM_DATA = { email: "", firstName: "", lastName: "", password: "defaultPassword", number: "" };
 
 export const useAccountSettings = (): useAccountSettingsProps => {
+  const { data: session, status } = useSession();
   const [selectedOption, setSelectedOption] = useState<string>("account");
   const [options, setOptions] = useState<string[]>([]);
   const [formData, setFormData] = useState<FormData>(DEFAULT_ACCOUNT_FORM_DATA);
@@ -42,6 +45,16 @@ export const useAccountSettings = (): useAccountSettingsProps => {
   const handleGetOptions = async () => {
     const filteredOptions = await getOptions();
     setOptions(filteredOptions);
+  };
+
+  const handleGetAccount = async () => {
+    const user = session?.user;
+    try {
+      const data = await getAccount({ userEmail: user?.email ?? "" });
+      setFormData({ ...data, password: formData?.password ?? "defaultPassword" });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleOptionChange = (option: string) => {
@@ -83,8 +96,11 @@ export const useAccountSettings = (): useAccountSettingsProps => {
   };
 
   useEffect(() => {
-    handleGetOptions();
-  }, []);
+    if (status !== "loading") {
+      handleGetOptions();
+      handleGetAccount();
+    }
+  }, [status]);
 
   useEffect(() => {
     if (selectedOption === "account") {
