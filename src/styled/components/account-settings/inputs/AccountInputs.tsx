@@ -1,5 +1,13 @@
 import { ChangeEvent } from "react";
-import { isDateValid, isDescriptionValid, isNameValid, isTimeValid } from "utils/ValidationUtilities";
+import {
+  isDateValid,
+  isDescriptionValid,
+  isEmailValid,
+  isFirstNameValid,
+  isNameValid,
+  isNumberValid,
+  isTimeValid
+} from "utils/ValidationUtilities";
 import { AccountFormData, FormData } from "styled/components/account-settings/useAccountSettings";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
@@ -29,7 +37,7 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter email..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isNameValid((formData as AccountFormData)?.email)}
+              isValid={isEmailValid((formData as AccountFormData)?.email)}
             />
           </S.InputContainer>
           <S.InputContainer>
@@ -40,7 +48,6 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter password..."
               type="password"
               onChange={event => handleChange(event)}
-              isValid={isDescriptionValid((formData as AccountFormData)?.password)}
               disabled={true}
             />
           </S.InputContainer>
@@ -54,7 +61,7 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter name..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isDateValid((formData as AccountFormData)?.firstName)}
+              isValid={isFirstNameValid((formData as AccountFormData)?.firstName)}
             />
           </S.InputContainer>
           <S.InputContainer isSmall={true}>
@@ -65,7 +72,7 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter surname..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isDateValid((formData as AccountFormData)?.lastName)}
+              isValid={isFirstNameValid((formData as AccountFormData)?.lastName)}
             />
           </S.InputContainer>
         </S.InputsContainer>
@@ -78,7 +85,7 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter number..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isTimeValid((formData as AccountFormData)?.number)}
+              isValid={isNumberValid((formData as AccountFormData)?.number)}
             />
           </S.InputContainer>
         </S.InputsContainer>

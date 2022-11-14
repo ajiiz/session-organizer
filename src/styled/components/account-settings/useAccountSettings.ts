@@ -1,6 +1,7 @@
 import { getAccount } from "network/users/getAccount";
 import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
+import { isEmailValid, isFirstNameValid, isNumberValid } from "utils/ValidationUtilities";
 
 export interface useAccountSettingsProps {
   selectedOption: string;
@@ -85,8 +86,8 @@ export const useAccountSettings = (): useAccountSettingsProps => {
 
   const validateForm = (): boolean => {
     if (isAccount) {
-      const { email, firstName, lastName, password, number } = formData as AccountFormData;
-      return true;
+      const { email, firstName, lastName, number } = formData as AccountFormData;
+      return isEmailValid(email) && isFirstNameValid(firstName) && isFirstNameValid(lastName) && isNumberValid(number);
     }
     return true;
   };
@@ -104,7 +105,7 @@ export const useAccountSettings = (): useAccountSettingsProps => {
 
   useEffect(() => {
     if (selectedOption === "account") {
-      // TODO: fetchAccountDetails();
+      handleGetAccount();
     }
   }, [selectedOption]);
 
