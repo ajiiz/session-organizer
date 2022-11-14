@@ -24,7 +24,7 @@ export type AccountFormData = {
 export type FormData = AccountFormData | null;
 
 const DEFAULT_OPTIONS = ["account", "group"];
-const DEFAULT_ACCOUNT_FORM_DATA = { email: "", firstName: "", lastName: "", password: "", number: "" };
+const DEFAULT_ACCOUNT_FORM_DATA = { email: "", firstName: "", lastName: "", password: "defaultPassword", number: "" };
 
 export const useAccountSettings = (): useAccountSettingsProps => {
   const [selectedOption, setSelectedOption] = useState<string>("account");
