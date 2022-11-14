@@ -14,6 +14,7 @@ export interface useAccountSettingsProps {
   isFormValid: boolean;
   isModalOpen: boolean;
   isAccount: boolean;
+  isLoading: boolean;
 }
 
 export type AccountFormData = {
@@ -31,6 +32,7 @@ const DEFAULT_ACCOUNT_FORM_DATA = { email: "", firstName: "", lastName: "", pass
 
 export const useAccountSettings = (): useAccountSettingsProps => {
   const { data: session, status } = useSession();
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState<string>("account");
   const [options, setOptions] = useState<string[]>([]);
   const [formData, setFormData] = useState<FormData>(DEFAULT_ACCOUNT_FORM_DATA);
@@ -49,10 +51,12 @@ export const useAccountSettings = (): useAccountSettingsProps => {
   };
 
   const handleGetAccount = async () => {
+    setIsLoading(true);
     const user = session?.user;
     try {
       const data = await getAccount({ userEmail: user?.email ?? "" });
       setFormData({ ...data, password: formData?.password ?? "defaultPassword" });
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -127,6 +131,7 @@ export const useAccountSettings = (): useAccountSettingsProps => {
     handleAccountSave,
     isFormValid,
     isModalOpen,
-    isAccount
+    isAccount,
+    isLoading
   };
 };

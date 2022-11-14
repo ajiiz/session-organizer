@@ -15,7 +15,8 @@ const AccountSettingsMain = () => {
     isFormValid,
     handleModal,
     isModalOpen,
-    isAccount
+    isAccount,
+    isLoading
   } = useAccountSettings();
 
   return (
@@ -26,15 +27,17 @@ const AccountSettingsMain = () => {
           paragraph={"Change your password, email, name and surname. Also you can delete your account."}
         />
         <RowMenu selectedOption={selectedOption} handleOptionChange={handleOptionChange} options={options} />
-        <AccountSettingsInputs
-          formData={formData}
-          handleFormDataChange={handleFormDataChange}
-          handleAccountSave={handleAccountSave}
-          isFormValid={!isFormValid}
-          handleModal={handleModal}
-          isModalOpen={isModalOpen}
-          isAccount={isAccount}
-        />
+        {!isLoading && (
+          <AccountSettingsInputs
+            formData={formData}
+            handleFormDataChange={handleFormDataChange}
+            handleAccountSave={handleAccountSave}
+            isFormValid={!isFormValid}
+            handleModal={handleModal}
+            isModalOpen={isModalOpen}
+            isAccount={isAccount}
+          />
+        )}
       </SS.ContentContainer>
     </SS.ContentWrapper>
   );
