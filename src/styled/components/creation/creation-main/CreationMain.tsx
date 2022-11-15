@@ -3,6 +3,8 @@ import CreationInputs from "styled/components/creation/creation-inputs/CreationI
 import { useCreation } from "styled/components/creation/useCreation";
 import RowMenu from "styled/components/shared/row-menu/RowMenu";
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
+import { Loader } from "styled/elements/shared/Loader";
+import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 
 const CreationMain = () => {
   const {
@@ -14,7 +16,8 @@ const CreationMain = () => {
     handleFormSubmit,
     isFormValid,
     handleModal,
-    isModalOpen
+    isModalOpen,
+    isLoading
   } = useCreation();
 
   return (
@@ -27,15 +30,21 @@ const CreationMain = () => {
           }
         />
         <RowMenu selectedOption={selectedOption} handleOptionChange={handleOptionChange} options={options} />
-        <CreationInputs
-          selectedOption={selectedOption}
-          formData={formData}
-          handleFormDataChange={handleFormDataChange}
-          handleFormSubmit={handleFormSubmit}
-          isFormValid={!isFormValid}
-          handleModal={handleModal}
-          isModalOpen={isModalOpen}
-        />
+        {isLoading ? (
+          <Wrapper width={"100%"} height={"10rem"} display={"flex"}>
+            <Loader />
+          </Wrapper>
+        ) : (
+          <CreationInputs
+            selectedOption={selectedOption}
+            formData={formData}
+            handleFormDataChange={handleFormDataChange}
+            handleFormSubmit={handleFormSubmit}
+            isFormValid={!isFormValid}
+            handleModal={handleModal}
+            isModalOpen={isModalOpen}
+          />
+        )}
       </SS.ContentContainer>
     </SS.ContentWrapper>
   );

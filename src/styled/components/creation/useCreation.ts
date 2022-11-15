@@ -19,6 +19,7 @@ export interface useCreationProps {
   isFormValid: boolean;
   isModalOpen: boolean;
   handleModal: (value: boolean) => void;
+  isLoading: boolean;
 }
 
 export type CustomEventFormData = {
@@ -47,6 +48,7 @@ const DEFAULT_GROUP_FORM_DATA = { name: "", details: "", groupCode: "" };
 
 export const useCreation = (): useCreationProps => {
   const { data: session, status } = useSession();
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState("custom");
   const [options, setOptions] = useState<string[]>([]);
   const [formData, setFormData] = useState<FormData>(DEFAULT_CUSTOM_FORM_DATA);
@@ -81,6 +83,7 @@ export const useCreation = (): useCreationProps => {
   const handleGetOptions = async () => {
     const filteredOptions = await getOptions();
     setOptions(filteredOptions);
+    setIsLoading(false);
   };
 
   const handleOptionChange = (option: string) => {
@@ -94,6 +97,8 @@ export const useCreation = (): useCreationProps => {
   const handleFormSubmit = async () => {
     if (!isFormValid) return;
 
+    setIsLoading(true);
+
     if (isCustom) {
       await handleCreateCustomEvent();
     }
@@ -103,7 +108,9 @@ export const useCreation = (): useCreationProps => {
     if (isGroup) {
       await handleCreateGroup();
     }
+
     setIsModalOpen(true);
+    setIsLoading(false);
     resetFormData();
   };
 
@@ -208,6 +215,7 @@ export const useCreation = (): useCreationProps => {
     handleFormSubmit,
     isFormValid,
     isModalOpen,
-    handleModal
+    handleModal,
+    isLoading
   };
 };

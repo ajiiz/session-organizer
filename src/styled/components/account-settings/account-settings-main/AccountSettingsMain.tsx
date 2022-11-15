@@ -29,12 +29,11 @@ const AccountSettingsMain = () => {
           paragraph={"Change your password, email, name and surname. Also you can delete your account."}
         />
         <RowMenu selectedOption={selectedOption} handleOptionChange={handleOptionChange} options={options} />
-        {isLoading && (
-          <Wrapper width={"100%"} height={"15rem"} display={"flex"}>
+        {isLoading ? (
+          <Wrapper width={"100%"} height={"10rem"} display={"flex"}>
             <Loader />
           </Wrapper>
-        )}
-        {!isLoading && (
+        ) : (
           <AccountSettingsInputs
             formData={formData}
             handleFormDataChange={handleFormDataChange}

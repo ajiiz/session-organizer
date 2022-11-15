@@ -61,9 +61,10 @@ export const useAccountSettings = (): useAccountSettingsProps => {
     try {
       const data = await getAccount({ userEmail: loggedUserEmail });
       setFormData({ ...data, password: formData?.password ?? "defaultPassword" });
-      setIsLoading(false);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
