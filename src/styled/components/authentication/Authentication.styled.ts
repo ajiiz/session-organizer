@@ -64,6 +64,14 @@ export const Button = styled.button<ButtonProps>`
   &:focus {
     background-color: ${hexToRgba(Colors.GreenColor, 0.3)};
   }
+
+  &:disabled {
+    background-color: ${hexToRgba(Colors.BlueColor, 0.15)};
+    border: 1px solid ${Colors.LightGrayColor};
+    color: ${Colors.LightGrayColor};
+    pointer-events: none;
+    user-select: none;
+  }
 `;
 
 interface InputProps {

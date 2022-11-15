@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { signIn } from "next-auth/react";
 import { validateEmail } from "network/auth/validateEmail";
-import { isEmail } from "utils/FormUtilities";
+import { isEmailValid as isEmail } from "utils/ValidationUtilities";
 import { goToLink } from "utils/NavigationUtilities";
 import { LoginResponseMessages } from "./ResponseMessages";
 import Navbar from "styled/components/navbar/Navbar";
@@ -93,7 +93,12 @@ const Login = ({ csrfToken }: Props) => {
               <S.Button
                 type={"button"}
                 onClick={() => handleEmailValidation()}
-                margin={statusMessage === LoginResponseMessages.Null ? "" : "1rem 0 0 0"}
+                margin={statusMessage === LoginResponseMessages.Empty ? "" : "1rem 0 0 0"}
+                disabled={
+                  !isEmail(email) ||
+                  statusMessage === LoginResponseMessages.Empty ||
+                  statusMessage === LoginResponseMessages.Invalid
+                }
               >
                 {"Continue with your email"}
               </S.Button>
