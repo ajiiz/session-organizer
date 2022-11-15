@@ -1,13 +1,5 @@
 import { ChangeEvent } from "react";
-import {
-  isDateValid,
-  isDescriptionValid,
-  isEmailValid,
-  isFirstNameValid,
-  isNameValid,
-  isNumberValid,
-  isTimeValid
-} from "utils/ValidationUtilities";
+import { isEmailValid, isFirstNameValid, isNumberValid } from "utils/ValidationUtilities";
 import { AccountFormData, FormData } from "styled/components/account-settings/useAccountSettings";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
