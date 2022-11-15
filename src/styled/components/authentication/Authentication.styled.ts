@@ -66,7 +66,7 @@ export const Button = styled.button<ButtonProps>`
   }
 
   &:disabled {
-    background-color: ${hexToRgba(Colors.BlueColor, 0.15)};
+    background-color: ${hexToRgba(Colors.GreenColor, 0.15)};
     border: 1px solid ${Colors.LightGrayColor};
     color: ${Colors.LightGrayColor};
     pointer-events: none;

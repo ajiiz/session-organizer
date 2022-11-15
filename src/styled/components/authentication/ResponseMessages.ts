@@ -6,6 +6,6 @@ export enum LoginResponseMessages {
 }
 
 export enum RegisterResponseMessages {
-  Invalid = "Your provided email is invalid. Please insert correct email.",
+  Invalid = "Your provided data is invalid. Please insert correct data.",
   Error = "The error has occured when trying to sign up. Please try again."
 }

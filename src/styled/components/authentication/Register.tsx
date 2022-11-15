@@ -1,9 +1,9 @@
 import { signup } from "network/auth/signup";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useMemo } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { goToLink } from "utils/NavigationUtilities";
 import { SignupRequest } from "../../../../pages/api/auth/signup";
-import { isEmailValid as isEmail } from "utils/ValidationUtilities";
+import { isEmailValid as isEmail, isNameValid } from "utils/ValidationUtilities";
 import { RegisterResponseMessages } from "./ResponseMessages";
 import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
@@ -18,13 +18,19 @@ const Signup = () => {
     groupCode: ""
   });
   const [statusMessage, setStatusMessage] = useState<null | string>(null);
+  const isFormDataValid = useMemo(
+    () => !isNameValid(formData.firstName) || !isNameValid(formData.lastName) || !isEmail(formData.email),
+    [formData]
+  );
 
   const handleSignup = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isEmail(formData.email)) {
+
+    if (isFormDataValid) {
       setStatusMessage(RegisterResponseMessages.Invalid);
       return;
     }
+
     try {
       await signup(formData);
       goToLink({ link: "/signin" });
@@ -93,7 +99,7 @@ const Signup = () => {
               onChange={event => handleChange(event)}
               margin="0.4rem 0 0.6rem 0"
             />
-            <S.Button type="submit" margin="1rem 0 0 0">
+            <S.Button type="submit" margin="1rem 0 0 0" disabled={isFormDataValid}>
               {"Register"}
             </S.Button>
           </S.Form>
