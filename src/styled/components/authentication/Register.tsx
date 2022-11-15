@@ -3,7 +3,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { goToLink } from "utils/NavigationUtilities";
 import { SignupRequest } from "../../../../pages/api/auth/signup";
-import { isEmail } from "utils/FormUtilities";
+import { isEmailValid as isEmail } from "utils/ValidationUtilities";
 import { RegisterResponseMessages } from "./ResponseMessages";
 import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
