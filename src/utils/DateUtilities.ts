@@ -4,6 +4,10 @@ export const getTime = (date: Date): string => {
   return moment(date).format("HH:mm");
 };
 
+export const getDate = (date: Date): string => {
+  return moment(date).format("DD/MM/YYYY");
+};
+
 export const getDateTimeFromString = (date: string, time: string): Date => {
   const dateArray = date.split(".").map(Number);
   const timeArray = time.split(":").map(Number);
