@@ -1,4 +1,8 @@
+import { Group } from "@prisma/client";
+import { getGroups } from "network/groups/getGroups";
+import { joinGroup } from "network/groups/joinGroup";
 import { getAccount } from "network/users/getAccount";
+import { updateAccount } from "network/users/updateAccount";
 import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 import { isEmailValid, isFirstNameValid, isNumberValid } from "utils/ValidationUtilities";
@@ -9,7 +13,9 @@ export interface useAccountSettingsProps {
   handleOptionChange: (option: string) => void;
   handleModal: (value: boolean) => void;
   formData: FormData;
+  groups: Group[];
   handleFormDataChange: (data: FormData) => void;
+  handleJoinGroup: () => void;
   handleAccountSave: () => void;
   isFormValid: boolean;
   isModalOpen: boolean;
@@ -25,34 +31,34 @@ export type AccountFormData = {
   number: string;
 };
 
-export type FormData = AccountFormData | null;
+export type GroupFormData = {
+  groupCode: string;
+};
+
+export type FormData = AccountFormData | GroupFormData | null;
 
 const DEFAULT_OPTIONS = ["account", "group"];
 const DEFAULT_ACCOUNT_FORM_DATA = { email: "", firstName: "", lastName: "", password: "defaultPassword", number: "" };
+const DEFAULT_GROUP_FORM_DATA = { groupCode: "" };
 
 export const useAccountSettings = (): useAccountSettingsProps => {
   const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState<string>("account");
-  const [options, setOptions] = useState<string[]>([]);
+  const [options, setOptions] = useState<typeof DEFAULT_OPTIONS>([]);
   const [formData, setFormData] = useState<FormData>(DEFAULT_ACCOUNT_FORM_DATA);
   const [isFormValid, setIsFormValid] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [groups, setGroups] = useState<Group[]>([]);
   const isAccount = useMemo(() => selectedOption === "account", [selectedOption]);
   const isGroup = useMemo(() => selectedOption === "group", [selectedOption]);
 
-  const getOptions = async () => {
-    return DEFAULT_OPTIONS;
-  };
-
   const handleGetOptions = async () => {
-    const filteredOptions = await getOptions();
-    setOptions(filteredOptions);
+    setOptions(DEFAULT_OPTIONS);
   };
 
   const handleGetAccount = async () => {
     setIsLoading(true);
-
     const loggedUserEmail = session?.user?.email;
     if (!loggedUserEmail) {
       return;
@@ -60,7 +66,26 @@ export const useAccountSettings = (): useAccountSettingsProps => {
 
     try {
       const data = await getAccount({ userEmail: loggedUserEmail });
-      setFormData({ ...data, password: formData?.password ?? "defaultPassword" });
+      const newFormData = { ...data, password: (formData as AccountFormData)?.password ?? "defaultPassword" };
+      setFormData(newFormData);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGetGroups = async () => {
+    setIsLoading(true);
+    const loggedUserEmail = session?.user?.email;
+    if (!loggedUserEmail) {
+      return;
+    }
+
+    try {
+      const data = await getGroups();
+      setGroups(data.groups);
+      setFormData(DEFAULT_GROUP_FORM_DATA);
     } catch (error) {
       console.error(error);
     } finally {
@@ -80,17 +105,43 @@ export const useAccountSettings = (): useAccountSettingsProps => {
     if (!isFormValid) return;
 
     if (isAccount) {
-      await updateAccount();
+      await updateAccountData();
     }
 
     setIsModalOpen(true);
   };
 
-  const updateAccount = async () => {
+  const handleJoinGroup = async () => {
+    if (!isFormValid) return;
+
+    if (isGroup) {
+      await joinSelectedGroup();
+      await handleGetGroups();
+    }
+
+    setIsModalOpen(true);
+  };
+
+  const updateAccountData = async () => {
+    setIsLoading(true);
     try {
-      // TODO: update account
+      await updateAccount(formData as AccountFormData);
+      await handleGetAccount();
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const joinSelectedGroup = async () => {
+    setIsLoading(true);
+    try {
+      await joinGroup({ groupCode: (formData as GroupFormData).groupCode });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -114,8 +165,12 @@ export const useAccountSettings = (): useAccountSettingsProps => {
   }, [status]);
 
   useEffect(() => {
-    if (selectedOption === "account") {
+    if (isAccount) {
       handleGetAccount();
+    }
+
+    if (isGroup) {
+      handleGetGroups();
     }
   }, [selectedOption]);
 
@@ -138,6 +193,8 @@ export const useAccountSettings = (): useAccountSettingsProps => {
     isFormValid,
     isModalOpen,
     isAccount,
-    isLoading
+    isLoading,
+    groups,
+    handleJoinGroup
   };
 };
