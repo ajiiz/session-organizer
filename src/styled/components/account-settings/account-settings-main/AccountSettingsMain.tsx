@@ -18,7 +18,9 @@ const AccountSettingsMain = () => {
     handleModal,
     isModalOpen,
     isAccount,
-    isLoading
+    isLoading,
+    groups,
+    handleJoinGroup
   } = useAccountSettings();
 
   return (
@@ -42,6 +44,8 @@ const AccountSettingsMain = () => {
             handleModal={handleModal}
             isModalOpen={isModalOpen}
             isAccount={isAccount}
+            handleJoinGroup={handleJoinGroup}
+            groups={groups}
           />
         )}
       </SS.ContentContainer>

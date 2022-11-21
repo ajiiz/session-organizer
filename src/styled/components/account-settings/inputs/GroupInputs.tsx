@@ -2,16 +2,18 @@ import { ChangeEvent } from "react";
 import { isGroupCodeValid } from "utils/ValidationUtilities";
 import { FormData, GroupFormData } from "styled/components/account-settings/useAccountSettings";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
+import { Group } from "@prisma/client";
 
 export interface InputsProps {
   formData: FormData | null;
   handleFormDataChange: (data: FormData) => void;
-  handleAccountSave: () => void;
+  handleJoinGroup: () => void;
   buttonText?: string;
   isFormValid: boolean;
+  groups: Group[];
 }
 
-const GroupInputs = ({ formData, handleFormDataChange, handleAccountSave, isFormValid }: InputsProps) => {
+const GroupInputs = ({ formData, handleFormDataChange, handleJoinGroup, isFormValid, groups }: InputsProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     handleFormDataChange({ ...formData, [name]: value } as GroupFormData);
@@ -34,11 +36,14 @@ const GroupInputs = ({ formData, handleFormDataChange, handleAccountSave, isForm
           </S.InputContainer>
         </S.InputsContainer>
         <S.InputsContainer isSmall={false} margin="2rem 0 0 0">
-          <S.Button type="button" onClick={handleAccountSave} disabled={isFormValid} width={"100%"} margin={"0"}>
+          <S.Button type="button" onClick={handleJoinGroup} disabled={isFormValid} width={"100%"} margin={"0"}>
             Join Group
           </S.Button>
         </S.InputsContainer>
       </S.InputsWrapper>
+      {groups.map(group => (
+        <p key={group.id}>{group.name}</p>
+      ))}
     </>
   );
 };
