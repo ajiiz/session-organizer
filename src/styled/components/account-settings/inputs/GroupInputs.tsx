@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import { isGroupCodeValid } from "utils/ValidationUtilities";
 import { FormData, GroupFormData } from "styled/components/account-settings/useAccountSettings";
 import { GroupType } from "../../../../../pages/api/groups/getGroups";
+import { getDate } from "utils/DateUtilities";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 import * as SS from "styled/components/account-settings/inputs/AccountInputs.styled";
 
@@ -42,11 +43,20 @@ const GroupInputs = ({ formData, handleFormDataChange, handleJoinGroup, isFormVa
           </S.Button>
         </S.InputsContainer>
       </S.InputsWrapper>
-      <SS.GroupsWrapper>
+      <SS.TableWrapper>
+        <SS.GroupsColumnNames>
+          <SS.GroupsColumnNamesItem>Name</SS.GroupsColumnNamesItem>
+          <SS.GroupsColumnNamesItem>Number of students</SS.GroupsColumnNamesItem>
+          <SS.GroupsColumnNamesItem>Creation Date</SS.GroupsColumnNamesItem>
+        </SS.GroupsColumnNames>
         {groups.map(group => (
-          <p key={group.id}>{group.numberOfStudents}</p>
+          <SS.Group key={group.id}>
+            <SS.GroupsItem>{group.name}</SS.GroupsItem>
+            <SS.GroupsItem>{group.numberOfStudents}</SS.GroupsItem>
+            <SS.GroupsItem>{getDate(group.createdAt)}</SS.GroupsItem>
+          </SS.Group>
         ))}
-      </SS.GroupsWrapper>
+      </SS.TableWrapper>
     </>
   );
 };
