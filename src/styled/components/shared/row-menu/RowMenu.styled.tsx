@@ -148,9 +148,14 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-start;
 `;
 
-export const Button = styled.button`
-  width: 20rem;
-  margin-top: 2.5rem;
+type ButtonProps = {
+  width?: Property.Width;
+  margin?: Property.Margin;
+};
+
+export const Button = styled.button<ButtonProps>`
+  width: ${({ width }) => (width ? width : "20rem")};
+  margin: ${({ margin }) => (margin ? margin : "2.5rem 0 0 0")};
   padding: 0.5rem 1.5rem;
   text-align: center;
   border: 1px solid ${Colors.BlueColor};
