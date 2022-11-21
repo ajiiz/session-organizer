@@ -36,7 +36,8 @@ export const createGroup: NextApiHandler<GroupFormData> = async (req, res) => {
     data: {
       name,
       description: details,
-      groupCode: groupCode
+      groupCode: groupCode,
+      creatorId: user.id
     }
   });
   if (!newGroup) {
