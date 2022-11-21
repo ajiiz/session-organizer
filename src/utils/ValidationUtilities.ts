@@ -32,3 +32,8 @@ export const isNumberValid = (number: string): boolean => {
   const numberRegex = /^[0-9]+$/;
   return numberRegex.test(number) && number.length === 9;
 };
+
+export const isGroupCodeValid = (code: string): boolean => {
+  const codeRegex = /^[A-Z0-9]+$/;
+  return codeRegex.test(code) && code.length === 13 && code.substring(0, 3) === "GRP";
+};
