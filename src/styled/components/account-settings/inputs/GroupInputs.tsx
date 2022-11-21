@@ -1,8 +1,9 @@
 import { ChangeEvent } from "react";
 import { isGroupCodeValid } from "utils/ValidationUtilities";
 import { FormData, GroupFormData } from "styled/components/account-settings/useAccountSettings";
+import { GroupType } from "../../../../../pages/api/groups/getGroups";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
-import { Group } from "@prisma/client";
+import * as SS from "styled/components/account-settings/inputs/AccountInputs.styled";
 
 export interface InputsProps {
   formData: FormData | null;
@@ -10,7 +11,7 @@ export interface InputsProps {
   handleJoinGroup: () => void;
   buttonText?: string;
   isFormValid: boolean;
-  groups: Group[];
+  groups: GroupType[];
 }
 
 const GroupInputs = ({ formData, handleFormDataChange, handleJoinGroup, isFormValid, groups }: InputsProps) => {
@@ -41,9 +42,11 @@ const GroupInputs = ({ formData, handleFormDataChange, handleJoinGroup, isFormVa
           </S.Button>
         </S.InputsContainer>
       </S.InputsWrapper>
-      {groups.map(group => (
-        <p key={group.id}>{group.name}</p>
-      ))}
+      <SS.GroupsWrapper>
+        {groups.map(group => (
+          <p key={group.id}>{group.numberOfStudents}</p>
+        ))}
+      </SS.GroupsWrapper>
     </>
   );
 };

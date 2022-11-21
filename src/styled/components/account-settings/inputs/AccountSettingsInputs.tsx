@@ -2,7 +2,7 @@ import { FormData } from "styled/components/account-settings/useAccountSettings"
 import Modal from "styled/components/shared/modal/Modal";
 import AccountInputs from "styled/components/account-settings/inputs/AccountInputs";
 import GroupInputs from "styled/components/account-settings/inputs/GroupInputs";
-import { Group } from "@prisma/client";
+import { GroupType } from "../../../../../pages/api/groups/getGroups";
 
 interface Props {
   formData: FormData | null;
@@ -13,7 +13,7 @@ interface Props {
   handleModal: (value: boolean) => void;
   isAccount: boolean;
   handleJoinGroup: () => void;
-  groups: Group[];
+  groups: GroupType[];
 }
 
 const AccuntSettingsInputs = ({

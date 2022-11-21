@@ -1,4 +1,3 @@
-import { Group } from "@prisma/client";
 import { getGroups } from "network/groups/getGroups";
 import { joinGroup } from "network/groups/joinGroup";
 import { getAccount } from "network/users/getAccount";
@@ -6,6 +5,7 @@ import { updateAccount } from "network/users/updateAccount";
 import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 import { isEmailValid, isFirstNameValid, isNumberValid } from "utils/ValidationUtilities";
+import { GroupType } from "../../../../pages/api/groups/getGroups";
 
 export interface useAccountSettingsProps {
   selectedOption: string;
@@ -13,7 +13,7 @@ export interface useAccountSettingsProps {
   handleOptionChange: (option: string) => void;
   handleModal: (value: boolean) => void;
   formData: FormData;
-  groups: Group[];
+  groups: GroupType[];
   handleFormDataChange: (data: FormData) => void;
   handleJoinGroup: () => void;
   handleAccountSave: () => void;
@@ -49,7 +49,7 @@ export const useAccountSettings = (): useAccountSettingsProps => {
   const [formData, setFormData] = useState<FormData>(DEFAULT_ACCOUNT_FORM_DATA);
   const [isFormValid, setIsFormValid] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [groups, setGroups] = useState<Group[]>([]);
+  const [groups, setGroups] = useState<GroupType[]>([]);
   const isAccount = useMemo(() => selectedOption === "account", [selectedOption]);
   const isGroup = useMemo(() => selectedOption === "group", [selectedOption]);
 
