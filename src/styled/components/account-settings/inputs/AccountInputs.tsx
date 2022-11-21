@@ -29,14 +29,14 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter email..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isEmailValid((formData as AccountFormData)?.email)}
+              isValid={isEmailValid((formData as AccountFormData)?.email ?? "")}
             />
           </S.InputContainer>
           <S.InputContainer>
             <S.InputLabel>password</S.InputLabel>
             <S.Input
               name="password"
-              value={(formData as AccountFormData)?.password}
+              value={(formData as AccountFormData)?.password ?? ""}
               placeholder="Enter password..."
               type="password"
               onChange={event => handleChange(event)}
@@ -53,7 +53,7 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter name..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isFirstNameValid((formData as AccountFormData)?.firstName)}
+              isValid={isFirstNameValid((formData as AccountFormData)?.firstName ?? "")}
             />
           </S.InputContainer>
           <S.InputContainer isSmall={true}>
@@ -64,7 +64,7 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter surname..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isFirstNameValid((formData as AccountFormData)?.lastName)}
+              isValid={isFirstNameValid((formData as AccountFormData)?.lastName ?? "")}
             />
           </S.InputContainer>
         </S.InputsContainer>
@@ -77,7 +77,7 @@ const AccountInputs = ({ formData, handleFormDataChange, handleAccountSave, isFo
               placeholder="Enter number..."
               type="text"
               onChange={event => handleChange(event)}
-              isValid={isNumberValid((formData as AccountFormData)?.number)}
+              isValid={isNumberValid((formData as AccountFormData)?.number ?? "")}
             />
           </S.InputContainer>
         </S.InputsContainer>
