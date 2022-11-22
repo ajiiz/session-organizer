@@ -31,11 +31,15 @@ export const GroupsColumnNamesItem = styled.span`
   color: ${Colors.LightGrayColor};
   text-transform: uppercase;
   user-select: none;
+
+  ${device.mobile} {
+    margin-right: 0;
+    font-size: 0.5em;
+  }
 `;
 
 export const Group = styled.div`
   width: 100%;
-  height: fit-content;
   padding: 1.5em 1em;
   display: flex;
   justify-content: flex-start;
@@ -46,13 +50,29 @@ export const Group = styled.div`
   &:hover {
     background-color: ${hexToRgba(Colors.DarkGrayColor, 0.15)};
   }
+
+  ${device.mobile} {
+    padding: 1.5em 0.3em;
+  }
 `;
 
-export const GroupsItem = styled.div`
+type GroupItemProps = {
+  centerOnMobile?: boolean;
+};
+
+export const GroupsItem = styled.div<GroupItemProps>`
   width: 25%;
   margin-right: 1em;
   font-size: 0.8em;
   text-align: left;
+  word-break: break-word;
+
+  ${device.mobile} {
+    height: fit-content;
+    margin-right: 0;
+    font-size: 0.7em;
+    text-align: ${({ centerOnMobile }) => (centerOnMobile ? "center" : "left")};
+  }
 `;
 
 export const Button = styled.button`
@@ -88,8 +108,8 @@ export const Button = styled.button`
     user-select: none;
   }
 
-  ${device.tablet} {
-    width: 100%;
-    margin-bottom: 2.5rem;
+  ${device.mobile} {
+    width: 25%;
+    padding: 0.2rem 1rem;
   }
 `;

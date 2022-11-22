@@ -60,7 +60,7 @@ const GroupInputs = ({
         {groups.map(group => (
           <SS.Group key={group.id}>
             <SS.GroupsItem>{group.name}</SS.GroupsItem>
-            <SS.GroupsItem>{group.numberOfStudents}</SS.GroupsItem>
+            <SS.GroupsItem centerOnMobile>{group.numberOfStudents}</SS.GroupsItem>
             <SS.GroupsItem>{getDate(group.createdAt)}</SS.GroupsItem>
             <SS.Button type="button" onClick={() => handleLeaveGroup(group.id)}>
               Leave
