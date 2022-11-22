@@ -20,7 +20,8 @@ const AccountSettingsMain = () => {
     isAccount,
     isLoading,
     groups,
-    handleJoinGroup
+    handleJoinGroup,
+    handleLeaveGroup
   } = useAccountSettings();
 
   return (
@@ -46,6 +47,7 @@ const AccountSettingsMain = () => {
             isAccount={isAccount}
             handleJoinGroup={handleJoinGroup}
             groups={groups}
+            handleLeaveGroup={handleLeaveGroup}
           />
         )}
       </SS.ContentContainer>

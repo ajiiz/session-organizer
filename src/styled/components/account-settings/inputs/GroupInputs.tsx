@@ -10,12 +10,20 @@ export interface InputsProps {
   formData: FormData | null;
   handleFormDataChange: (data: FormData) => void;
   handleJoinGroup: () => void;
+  handleLeaveGroup: (groupId: string) => void;
   buttonText?: string;
   isFormValid: boolean;
   groups: GroupType[];
 }
 
-const GroupInputs = ({ formData, handleFormDataChange, handleJoinGroup, isFormValid, groups }: InputsProps) => {
+const GroupInputs = ({
+  formData,
+  handleFormDataChange,
+  handleJoinGroup,
+  handleLeaveGroup,
+  isFormValid,
+  groups
+}: InputsProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     handleFormDataChange({ ...formData, [name]: value } as GroupFormData);
@@ -54,6 +62,9 @@ const GroupInputs = ({ formData, handleFormDataChange, handleJoinGroup, isFormVa
             <SS.GroupsItem>{group.name}</SS.GroupsItem>
             <SS.GroupsItem>{group.numberOfStudents}</SS.GroupsItem>
             <SS.GroupsItem>{getDate(group.createdAt)}</SS.GroupsItem>
+            <SS.Button type="button" onClick={() => handleLeaveGroup(group.id)}>
+              Leave
+            </SS.Button>
           </SS.Group>
         ))}
       </SS.TableWrapper>

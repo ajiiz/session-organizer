@@ -13,6 +13,7 @@ interface Props {
   handleModal: (value: boolean) => void;
   isAccount: boolean;
   handleJoinGroup: () => void;
+  handleLeaveGroup: (groupId: string) => void;
   groups: GroupType[];
 }
 
@@ -25,6 +26,7 @@ const AccuntSettingsInputs = ({
   handleModal,
   isAccount,
   handleJoinGroup,
+  handleLeaveGroup,
   groups
 }: Props) => {
   return (
@@ -41,6 +43,7 @@ const AccuntSettingsInputs = ({
           formData={formData}
           handleFormDataChange={handleFormDataChange}
           handleJoinGroup={handleJoinGroup}
+          handleLeaveGroup={handleLeaveGroup}
           isFormValid={isFormValid}
           groups={groups}
         />
