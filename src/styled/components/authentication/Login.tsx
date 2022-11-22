@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { signIn } from "next-auth/react";
 import { validateEmail } from "network/auth/validateEmail";
@@ -42,10 +42,6 @@ const Login = ({ csrfToken }: Props) => {
       event.preventDefault();
     }
 
-    if (!isEmail(email)) {
-      setStatusMessage(LoginResponseMessages.Invalid);
-      return;
-    }
     try {
       const data = await validateEmail({ email });
       setIsEmailValid(data.isEmailValid);
@@ -59,6 +55,12 @@ const Login = ({ csrfToken }: Props) => {
       setStatusMessage(LoginResponseMessages.Invalid);
     }
   };
+
+  useEffect(() => {
+    if (isEmail(email)) {
+      setStatusMessage(null);
+    }
+  }, [email]);
 
   return (
     <Wrapper flexDirection="column" height="100vh" alignItems="flex-start" justifyContent="flex-start">
