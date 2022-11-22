@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 const load = async (): Promise<void> => {
   const newFirstGroup = await prisma.group.create({
     data: {
-      name: "FirstTestGroup",
+      name: "First Test Group",
       description: "TestDescription",
       groupCode: "GRP12345679"
     }
@@ -14,7 +14,7 @@ const load = async (): Promise<void> => {
 
   const secondNewGroup = await prisma.group.create({
     data: {
-      name: "SecondTestGroup",
+      name: "Second Test Group",
       description: "TestDescription",
       groupCode: "GRP222333444"
     }
@@ -22,7 +22,7 @@ const load = async (): Promise<void> => {
 
   const thirdNewGroup = await prisma.group.create({
     data: {
-      name: "ThirdTestGroup",
+      name: "Third Test Group",
       description: "TestDescription",
       groupCode: "GRP555666777"
     }
