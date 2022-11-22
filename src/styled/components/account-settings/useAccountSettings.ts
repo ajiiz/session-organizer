@@ -1,10 +1,11 @@
 import { getGroups } from "network/groups/getGroups";
 import { joinGroup } from "network/groups/joinGroup";
+import { leaveGroup } from "network/groups/leaveGroup";
 import { getAccount } from "network/users/getAccount";
 import { updateAccount } from "network/users/updateAccount";
 import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
-import { isEmailValid, isFirstNameValid, isNumberValid } from "utils/ValidationUtilities";
+import { isEmailValid, isFirstNameValid, isGroupCodeValid, isNumberValid } from "utils/ValidationUtilities";
 import { GroupType } from "../../../../pages/api/groups/getGroups";
 
 export interface useAccountSettingsProps {
@@ -17,6 +18,7 @@ export interface useAccountSettingsProps {
   handleFormDataChange: (data: FormData) => void;
   handleJoinGroup: () => void;
   handleAccountSave: () => void;
+  handleLeaveGroup: (groupId: string) => void;
   isFormValid: boolean;
   isModalOpen: boolean;
   isAccount: boolean;
@@ -122,6 +124,15 @@ export const useAccountSettings = (): useAccountSettingsProps => {
     setIsModalOpen(true);
   };
 
+  const handleLeaveGroup = async (groupId: string) => {
+    if (isGroup) {
+      await leaveSelectedGroup(groupId);
+      await handleGetGroups();
+    }
+
+    setIsModalOpen(true);
+  };
+
   const updateAccountData = async () => {
     setIsLoading(true);
     try {
@@ -145,10 +156,25 @@ export const useAccountSettings = (): useAccountSettingsProps => {
     }
   };
 
+  const leaveSelectedGroup = async (groupId: string) => {
+    setIsLoading(true);
+    try {
+      await leaveGroup({ groupId });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const validateForm = (): boolean => {
     if (isAccount) {
       const { email, firstName, lastName, number } = formData as AccountFormData;
       return isEmailValid(email) && isFirstNameValid(firstName) && isFirstNameValid(lastName) && isNumberValid(number);
+    }
+    if (isGroup) {
+      const { groupCode } = formData as GroupFormData;
+      return isGroupCodeValid(groupCode);
     }
     return true;
   };
@@ -195,6 +221,7 @@ export const useAccountSettings = (): useAccountSettingsProps => {
     isAccount,
     isLoading,
     groups,
-    handleJoinGroup
+    handleJoinGroup,
+    handleLeaveGroup
   };
 };
