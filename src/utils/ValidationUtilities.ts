@@ -22,3 +22,18 @@ export const isDescriptionValid = (name: string): boolean => {
   const nameRegex = /^[a-zA-Z0-9\s.,;]+$/;
   return nameRegex.test(name) && name.length > 4 && name.length < 50;
 };
+
+export const isFirstNameValid = (name: string): boolean => {
+  const nameRegex = /^[a-zA-Z\s,]+$/;
+  return nameRegex.test(name) && name.length > 4 && name.length < 30;
+};
+
+export const isNumberValid = (number: string): boolean => {
+  const numberRegex = /^[0-9]+$/;
+  return numberRegex.test(number) && number.length === 9;
+};
+
+export const isGroupCodeValid = (code: string): boolean => {
+  const codeRegex = /^[A-Z0-9]+$/;
+  return codeRegex.test(code) && code.length === 13 && code.substring(0, 3) === "GRP";
+};

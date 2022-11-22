@@ -1,33 +1,35 @@
 import PageInformation from "styled/components/shared/page-info/PageInformation";
-import CreationInputs from "styled/components/creation/creation-inputs/CreationInputs";
-import { useCreation } from "styled/components/creation/useCreation";
 import RowMenu from "styled/components/shared/row-menu/RowMenu";
-import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
+import AccountSettingsInputs from "styled/components/account-settings/inputs/AccountSettingsInputs";
+import { useAccountSettings } from "styled/components/account-settings/useAccountSettings";
 import { Loader } from "styled/elements/shared/Loader";
+import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 
-const CreationMain = () => {
+const AccountSettingsMain = () => {
   const {
     selectedOption,
     options,
-    formData,
     handleOptionChange,
+    formData,
     handleFormDataChange,
-    handleFormSubmit,
+    handleAccountSave,
     isFormValid,
     handleModal,
     isModalOpen,
-    isLoading
-  } = useCreation();
+    isAccount,
+    isLoading,
+    groups,
+    handleJoinGroup,
+    handleLeaveGroup
+  } = useAccountSettings();
 
   return (
     <SS.ContentWrapper>
       <SS.ContentContainer>
         <PageInformation
-          header={"Creation Panel"}
-          paragraph={
-            "Make new events. If you are group administrator - request group exams. Also create events for groups."
-          }
+          header={"Manage your account"}
+          paragraph={"Change your password, email, name and surname. Also you can delete your account."}
         />
         <RowMenu selectedOption={selectedOption} handleOptionChange={handleOptionChange} options={options} />
         {isLoading ? (
@@ -35,14 +37,17 @@ const CreationMain = () => {
             <Loader />
           </Wrapper>
         ) : (
-          <CreationInputs
-            selectedOption={selectedOption}
+          <AccountSettingsInputs
             formData={formData}
             handleFormDataChange={handleFormDataChange}
-            handleFormSubmit={handleFormSubmit}
+            handleAccountSave={handleAccountSave}
             isFormValid={!isFormValid}
             handleModal={handleModal}
             isModalOpen={isModalOpen}
+            isAccount={isAccount}
+            handleJoinGroup={handleJoinGroup}
+            groups={groups}
+            handleLeaveGroup={handleLeaveGroup}
           />
         )}
       </SS.ContentContainer>
@@ -50,4 +55,4 @@ const CreationMain = () => {
   );
 };
 
-export default CreationMain;
+export default AccountSettingsMain;

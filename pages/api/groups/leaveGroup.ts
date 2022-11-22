@@ -3,9 +3,11 @@ import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 import { GroupFormData } from "styled/components/creation/useCreation";
 
-export const path = "api/groups/createGroup";
+export type LeaveGroupRequest = { groupId: string };
 
-export const createGroup: NextApiHandler<GroupFormData> = async (req, res) => {
+export const path = "api/groups/leaveGroup";
+
+export const leaveGroup: NextApiHandler<LeaveGroupRequest> = async (req, res) => {
   const prisma = new PrismaClient();
 
   const session = await getSession({ req });
@@ -24,24 +26,35 @@ export const createGroup: NextApiHandler<GroupFormData> = async (req, res) => {
     return;
   }
 
-  const { name, details, groupCode } = req.body.params as GroupFormData;
+  const { groupId } = req.body.params as LeaveGroupRequest;
 
-  if (!name || !details || !groupCode) {
+  if (!groupId) {
     res.statusMessage = `Malformed request data`;
     res.status(400).end();
     return;
   }
 
-  const newGroup = await prisma.group.create({
+  const group = await prisma.group.findFirst({
+    where: { id: groupId }
+  });
+  if (!group) {
+    res.statusMessage = `Group could not be found`;
+    res.status(400).end();
+    return;
+  }
+
+  const updatedUser = await prisma.user.update({
+    where: { email: session.user.email },
     data: {
-      name,
-      description: details,
-      groupCode: groupCode,
-      creatorId: user.id
+      groups: {
+        disconnect: {
+          id: group.id
+        }
+      }
     }
   });
-  if (!newGroup) {
-    res.statusMessage = `Group could not be created`;
+  if (!updatedUser) {
+    res.statusMessage = `User could not be connected to the group`;
     res.status(400).end();
     return;
   }
@@ -51,4 +64,4 @@ export const createGroup: NextApiHandler<GroupFormData> = async (req, res) => {
   res.status(200).end();
 };
 
-export default createGroup;
+export default leaveGroup;

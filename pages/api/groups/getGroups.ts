@@ -4,7 +4,11 @@ import { getSession } from "next-auth/react";
 
 export const path = "api/groups/getGroups";
 
-export type GetGroupsResponse = { groups: Group[] };
+export interface GroupType extends Group {
+  numberOfStudents: number;
+}
+
+export type GetGroupsResponse = { groups: GroupType[] };
 
 export const getGroups: NextApiHandler<GetGroupsResponse> = async (req, res) => {
   const prisma = new PrismaClient();
@@ -18,7 +22,7 @@ export const getGroups: NextApiHandler<GetGroupsResponse> = async (req, res) => 
 
   const user = await prisma.user.findFirst({
     where: { email: session.user.email },
-    include: { groups: true }
+    include: { groups: { include: { users: true } } }
   });
   if (!user) {
     res.statusMessage = `User could not be found`;
@@ -32,9 +36,15 @@ export const getGroups: NextApiHandler<GetGroupsResponse> = async (req, res) => 
     return;
   }
 
+  let response: GroupType[] = [];
+  for (const group of user.groups) {
+    const numberOfStudents = group.users.length;
+    response.push({ ...group, numberOfStudents });
+  }
+
   prisma.$disconnect();
 
-  res.json({ groups: user.groups });
+  res.json({ groups: response });
 };
 
 export default getGroups;
