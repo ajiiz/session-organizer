@@ -1,29 +1,14 @@
 import { useEffect, useState } from "react";
 import { Event } from "@prisma/client";
 import { getEvents } from "network/events/getEvents";
-import { RootState } from "redux/store";
-import { useSelector } from "react-redux";
 import PageInformation from "styled/components/shared/page-info/PageInformation";
+import { useManagement } from "../useManagement";
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const ManagementMain = () => {
-  const currentDate = useSelector((state: RootState) => state.calendar.date);
   const [, setEvents] = useState<null | Event[]>();
-  const [] = useState(false);
 
-  useEffect(() => {
-    fetchEvents();
-  }, [currentDate]);
-
-  const fetchEvents = async () => {
-    try {
-      const data = await getEvents({ date: currentDate });
-      setEvents(data.events);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { selectedOption, options, handleOptionChange, isLoading, events } = useManagement();
 
   return (
     <SS.ContentWrapper>
