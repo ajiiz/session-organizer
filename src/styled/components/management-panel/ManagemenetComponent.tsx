@@ -1,9 +1,10 @@
 import PageTemplate from "styled/components/page-template/PageTemplate";
+import ManagementMain from "./management-main/ManagementMain";
 
 const ManagemenetComponent = () => {
   return (
     <PageTemplate>
-      <p>Management Panel</p>
+      <ManagementMain />
     </PageTemplate>
   );
 };
