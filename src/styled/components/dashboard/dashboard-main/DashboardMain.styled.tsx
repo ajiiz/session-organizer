@@ -13,7 +13,7 @@ export const Button = styled.button`
   background: ${hexToRgba(Colors.BlueColor, 0.25)};
   font-size: 0.9em;
   color: ${Colors.BlueColor};
-  transition: 0.2s background linear;
+  transition: 0.2s background-color linear;
 
   &:hover {
     padding: 0.4rem 1.5rem;

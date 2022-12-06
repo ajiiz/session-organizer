@@ -3,7 +3,7 @@ import moment from "moment";
 import type { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 
-export type GetEventsRequest = { date: Date };
+export type GetEventsRequest = { date: Date | null };
 
 export type GetEventsResponse = { events: Event[] };
 
@@ -37,15 +37,18 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
     return;
   }
 
-  const allEvents = [...user.events, ...user.groups.map(group => group.events)]
+  let allEvents = [...user.events, ...user.groups.map(group => group.events)]
     .flat()
-    .sort((a, b) => Number(a.startDate) - Number(b.endDate))
-    .filter(event => {
+    .sort((a, b) => Number(a.startDate) - Number(b.endDate));
+
+  if (date) {
+    allEvents.filter(event => {
       const selectedDate = moment(date).format("YYYY MM DD");
       const startDate = moment(event.startDate).format("YYYY MM DD");
       const endDate = moment(event.endDate).format("YYYY MM DD");
       return selectedDate >= startDate && selectedDate <= endDate;
     });
+  }
 
   prisma.$disconnect();
 
