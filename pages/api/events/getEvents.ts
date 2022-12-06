@@ -3,7 +3,7 @@ import moment from "moment";
 import type { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 
-export type GetEventsRequest = { date: Date | null };
+export type GetEventsRequest = { date?: Date };
 
 export type GetEventsResponse = { events: Event[] };
 
