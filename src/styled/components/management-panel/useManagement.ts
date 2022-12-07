@@ -3,14 +3,14 @@ import { useSession } from "next-auth/react";
 import { getEvents } from "network/events/getEvents";
 import { Event } from "@prisma/client";
 
-type EventType = null | Event[];
+export type EventsType = Event[];
 
 export interface useCreationProps {
   selectedOption: string;
   options: string[];
   handleOptionChange: (option: string) => void;
   isLoading: boolean;
-  events: EventType;
+  events: EventsType;
 }
 
 const DEFAULT_OPTIONS = ["all", "past", "future"];
@@ -20,7 +20,7 @@ export const useManagement = (): useCreationProps => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState("all");
   const [options, setOptions] = useState<string[]>([]);
-  const [events, setEvents] = useState<EventType>(null);
+  const [events, setEvents] = useState<EventsType>([]);
   const isAllEvents = useMemo(() => selectedOption === "all", [selectedOption]);
   const isPastEvents = useMemo(() => selectedOption === "past", [selectedOption]);
   const isFutureEvents = useMemo(() => selectedOption === "future", [selectedOption]);
