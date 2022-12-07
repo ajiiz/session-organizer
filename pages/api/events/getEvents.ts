@@ -14,12 +14,6 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
 
   const { date } = req.query as unknown as GetEventsRequest;
 
-  if (!date) {
-    res.statusMessage = `Malformed request data`;
-    res.status(400).end();
-    return;
-  }
-
   const session = await getSession({ req });
   if (!session?.user?.email) {
     res.statusMessage = `User is not logged in`;
