@@ -27,7 +27,6 @@ export const useManagement = (): useCreationProps => {
 
   const handleGetOptions = async () => {
     setOptions(DEFAULT_OPTIONS);
-    setIsLoading(false);
   };
 
   const handleOptionChange = (option: string) => {
@@ -41,11 +40,14 @@ export const useManagement = (): useCreationProps => {
       console.log(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   // todo: reset events data when option changes
   const resetEventsData = () => {
+    setIsLoading(false);
     return;
   };
 
@@ -60,16 +62,14 @@ export const useManagement = (): useCreationProps => {
   };
 
   useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  useEffect(() => {
+    setIsLoading(true);
     resetEventsData();
   }, [selectedOption]);
 
   useEffect(() => {
     if (status !== "loading") {
       handleGetOptions();
+      fetchEvents();
     }
   }, [status]);
 
