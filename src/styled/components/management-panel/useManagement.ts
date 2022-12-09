@@ -56,10 +56,9 @@ export const useManagement = (): useCreationProps => {
     return;
   };
 
-  // todo: modify event
-  const handleModifyEvent = (eventId: string) => {
-    return;
-  };
+  // todo: add filter events
+
+  // todo: add isGroupEvent props so remove button can be disabled
 
   useEffect(() => {
     setIsLoading(true);
