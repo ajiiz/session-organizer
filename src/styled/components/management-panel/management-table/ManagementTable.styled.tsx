@@ -1,9 +1,10 @@
+import { Property } from "csstype";
 import hexToRgba from "hex-to-rgba";
 import styled, { css } from "styled-components";
 import { Colors } from "styled/base/Colors";
 import { device } from "styled/base/Responsive";
 
-export const TableWrapper = styled.section`
+export const TableWrapper = styled.table`
   width: 100%;
   height: fit-content;
   padding: 1rem 0;
@@ -11,34 +12,46 @@ export const TableWrapper = styled.section`
   flex-direction: column;
 `;
 
-export const GroupsColumnNames = styled.div`
+export const ColumnNamesRow = styled.tr`
   width: 100%;
-  height: 1.8rem;
-  padding: 0 1em;
+  padding: 0.5em 1em;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   border-radius: 4px;
   background-color: ${hexToRgba(Colors.DarkGrayColor, 0.15)};
+
+  ${device.mobile} {
+    padding: 0.5em 0.3em;
+  }
 `;
 
-export const GroupsColumnNamesItem = styled.span`
-  width: 25%;
-  margin-right: 1em;
+type GroupsColumnNamesItemProps = {
+  width?: Property.Width;
+  hideOnMobile?: boolean;
+};
+
+export const ColumnName = styled.span<GroupsColumnNamesItemProps>`
+  width: ${({ width }) => width || "12%"};
+  margin-right: 5px;
   font-size: 0.55em;
   font-family: InterRegular;
   letter-spacing: 0.1em;
   color: ${Colors.LightGrayColor};
   text-transform: uppercase;
   user-select: none;
+  text-align: left;
+  word-break: break-word;
 
   ${device.mobile} {
-    margin-right: 0;
+    width: 15%;
+    display: ${({ hideOnMobile }) => (hideOnMobile ? "none" : "block")};
+    height: fit-content;
     font-size: 0.5em;
   }
 `;
 
-export const Group = styled.div`
+export const TableItem = styled.th`
   width: 100%;
   padding: 1.5em 1em;
   display: flex;
@@ -57,21 +70,22 @@ export const Group = styled.div`
 `;
 
 type GroupItemProps = {
-  centerOnMobile?: boolean;
+  width?: Property.Width;
+  hideOnMobile?: boolean;
 };
 
-export const GroupsItem = styled.div<GroupItemProps>`
-  width: 25%;
-  margin-right: 1em;
-  font-size: 0.8em;
+export const TableRow = styled.tr<GroupItemProps>`
+  width: ${({ width }) => width || "12%"};
+  margin-right: 6px;
+  font-size: 0.7em;
   text-align: left;
   word-break: break-word;
 
   ${device.mobile} {
+    width: 15%;
+    display: ${({ hideOnMobile }) => (hideOnMobile ? "none" : "block")};
     height: fit-content;
-    margin-right: 0;
-    font-size: 0.7em;
-    text-align: ${({ centerOnMobile }) => (centerOnMobile ? "center" : "left")};
+    font-size: 0.6em;
   }
 `;
 
@@ -96,40 +110,22 @@ const RemoveButtonStyles = css`
   }
 `;
 
-const ModifyButtonStyles = css`
-  background-color: ${hexToRgba(Colors.BlueColor, 0.25)};
-  border: 1px solid ${Colors.BlueColor};
-  color: ${Colors.BlueColor};
-
-  &:hover,
-  &:focus {
-    border: 1px solid ${Colors.BlueColor};
-    background-color: ${hexToRgba(Colors.BlueColor, 0.35)};
-    color: ${Colors.BlueColor};
-  }
-
-  &:focus {
-    background-color: ${hexToRgba(Colors.BlueColor, 0.3)};
-  }
-
-  &:disabled {
-    background-color: ${hexToRgba(Colors.BlueColor, 0.15)};
-  }
-`;
-
 type ButtonProps = {
   variant?: string;
 };
 
 export const Button = styled.button<ButtonProps>`
-  width: 20%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0.3rem 1.5rem;
   text-align: center;
   border-radius: 4px;
   font-size: 0.7em;
   transition: background-color 0.2s linear;
-  ${({ variant }) => (variant === "modify" ? ModifyButtonStyles : RemoveButtonStyles)}
+  ${RemoveButtonStyles};
 
   &:hover,
   &:focus {
@@ -145,7 +141,61 @@ export const Button = styled.button<ButtonProps>`
   }
 
   ${device.mobile} {
-    width: 25%;
-    padding: 0.2rem 1rem;
+    width: 13%;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.5em;
+    margin-left: 5px;
+
+    &:hover,
+    &:focus {
+      padding: 0.1rem 0.5rem;
+      font-size: 0.5em;
+    }
+  }
+`;
+
+type StatusIndicatorProps = {
+  status: string;
+};
+
+export const StatusIndicator = styled.div<StatusIndicatorProps>`
+  width: 80%;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  font-family: InterBold;
+  letter-spacing: 0.1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.15rem;
+  background-color: ${({ status }) => {
+    switch (status) {
+      case "inProgress":
+        return hexToRgba(Colors.GreenColor, 0.3);
+      case "future":
+        return hexToRgba(Colors.PurpleColor, 0.3);
+      case "requested":
+        return hexToRgba(Colors.BlueColor, 0.3);
+      default:
+        return hexToRgba(Colors.LightGrayColor, 0.3);
+    }
+  }};
+  color: ${({ status }) => {
+    switch (status) {
+      case "inProgress":
+        return Colors.GreenColor;
+      case "future":
+        return Colors.PurpleColor;
+      case "requested":
+        return Colors.BlueColor;
+      default:
+        return Colors.LightGrayColor;
+    }
+  }};
+
+  ${device.mobile} {
+    width: 100%;
+    font-size: 0.6em;
   }
 `;
