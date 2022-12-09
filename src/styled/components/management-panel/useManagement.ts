@@ -13,12 +13,12 @@ export interface useCreationProps {
   events: EventsType;
 }
 
-const DEFAULT_OPTIONS = ["all", "past", "future"];
+const DEFAULT_OPTIONS = ["future", "all", "past"];
 
 export const useManagement = (): useCreationProps => {
   const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedOption, setSelectedOption] = useState("all");
+  const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTIONS[0]);
   const [options, setOptions] = useState<string[]>([]);
   const [events, setEvents] = useState<EventsType>([]);
   const isAllEvents = useMemo(() => selectedOption === "all", [selectedOption]);
