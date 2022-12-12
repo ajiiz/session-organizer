@@ -18,7 +18,7 @@ export interface useCreationProps {
 const DEFAULT_OPTIONS = ["future", "all", "past"];
 
 export const useManagement = (): useCreationProps => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTIONS[0]);
   const [options, setOptions] = useState<string[]>([]);
@@ -38,21 +38,13 @@ export const useManagement = (): useCreationProps => {
   const fetchEvents = async () => {
     try {
       const data = await getEvents({});
-      setEvents(data.events);
+      filterEvents(data.events);
     } catch (error) {
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // todo: reset events data when option changes
-  const resetEventsData = () => {
-    setIsLoading(false);
-    return;
-  };
-
-  // todo: remove selected event
   const handleRemoveEvent = async (eventId: string) => {
     setIsLoading(true);
     try {
@@ -63,13 +55,22 @@ export const useManagement = (): useCreationProps => {
     }
   };
 
-  // todo: add filter events
-
-  // todo: add isGroupEvent props so remove button can be disabled
+  const filterEvents = (events: EventsType) => {
+    if (isAllEvents) {
+      setEvents(events);
+    }
+    if (isPastEvents) {
+      console.log(events);
+      setEvents(events.filter(event => new Date(event.endDate) < new Date()));
+    }
+    if (isFutureEvents) {
+      setEvents(events.filter(event => new Date(event.startDate) > new Date()));
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
-    resetEventsData();
+    fetchEvents();
   }, [selectedOption]);
 
   useEffect(() => {
