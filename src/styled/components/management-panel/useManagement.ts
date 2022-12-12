@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSession } from "next-auth/react";
 import { getEvents } from "network/events/getEvents";
 import { Event } from "@prisma/client";
+import { removeEvent } from "network/events/removeEvent";
 
 export type EventsType = (Event & { isGroupEvent: boolean })[];
 
@@ -11,6 +12,7 @@ export interface useCreationProps {
   handleOptionChange: (option: string) => void;
   isLoading: boolean;
   events: EventsType;
+  handleRemoveEvent: (eventId: string) => void;
 }
 
 const DEFAULT_OPTIONS = ["future", "all", "past"];
@@ -37,7 +39,6 @@ export const useManagement = (): useCreationProps => {
     try {
       const data = await getEvents({});
       setEvents(data.events);
-      console.log(data);
     } catch (error) {
       console.error(error);
     } finally {
@@ -52,8 +53,14 @@ export const useManagement = (): useCreationProps => {
   };
 
   // todo: remove selected event
-  const handlyRemoveEvent = (eventId: string) => {
-    return;
+  const handleRemoveEvent = async (eventId: string) => {
+    setIsLoading(true);
+    try {
+      await removeEvent({ eventId });
+      await fetchEvents();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // todo: add filter events
@@ -77,6 +84,7 @@ export const useManagement = (): useCreationProps => {
     options,
     handleOptionChange,
     isLoading,
-    events
+    events,
+    handleRemoveEvent
   };
 };

@@ -7,7 +7,7 @@ import { ManagementTable } from "styled/components/management-panel/management-t
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const ManagementMain = () => {
-  const { selectedOption, options, handleOptionChange, isLoading, events } = useManagement();
+  const { selectedOption, options, handleOptionChange, isLoading, events, handleRemoveEvent } = useManagement();
 
   return (
     <SS.ContentWrapper>
@@ -25,7 +25,7 @@ const ManagementMain = () => {
             <Loader />
           </Wrapper>
         ) : (
-          <ManagementTable events={events} />
+          <ManagementTable events={events} handleRemoveEvent={handleRemoveEvent} />
         )}
       </SS.ContentContainer>
     </SS.ContentWrapper>

@@ -4,9 +4,10 @@ import * as SS from "./ManagementTable.styled";
 
 type Props = {
   events: EventsType;
+  handleRemoveEvent: (eventId: string) => void;
 };
 
-export const ManagementTable = ({ events }: Props) => {
+export const ManagementTable = ({ events, handleRemoveEvent }: Props) => {
   return (
     <SS.TableWrapper>
       <thead>
@@ -32,7 +33,7 @@ export const ManagementTable = ({ events }: Props) => {
             </SS.TableRow>
             <SS.Button
               type="button"
-              onClick={() => console.log("remove")}
+              onClick={() => handleRemoveEvent(event.id)}
               style={{ display: event.isGroupEvent ? "none" : "flex" }}
             >
               Remove
