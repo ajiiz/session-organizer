@@ -3,9 +3,9 @@ import moment from "moment";
 import type { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 
-export type GetEventsRequest = { date: Date };
+export type GetEventsRequest = { date?: Date };
 
-export type GetEventsResponse = { events: Event[] };
+export type GetEventsResponse = { events: (Event & { isGroupEvent: boolean })[] };
 
 export const path = "api/events/getEvents";
 
@@ -13,12 +13,6 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
   const prisma = new PrismaClient();
 
   const { date } = req.query as unknown as GetEventsRequest;
-
-  if (!date) {
-    res.statusMessage = `Malformed request data`;
-    res.status(400).end();
-    return;
-  }
 
   const session = await getSession({ req });
   if (!session?.user?.email) {
@@ -37,15 +31,19 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
     return;
   }
 
-  const allEvents = [...user.events, ...user.groups.map(group => group.events)]
-    .flat()
-    .sort((a, b) => Number(a.startDate) - Number(b.endDate))
-    .filter(event => {
+  const userEvents = user.events.map(event => ({ ...event, isGroupEvent: false }));
+  const groupEvents = user.groups.map(group => group.events.map(event => ({ ...event, isGroupEvent: true }))).flat();
+
+  let allEvents = [...userEvents, ...groupEvents].flat().sort((a, b) => Number(a.startDate) - Number(b.endDate));
+
+  if (date) {
+    allEvents.filter(event => {
       const selectedDate = moment(date).format("YYYY MM DD");
       const startDate = moment(event.startDate).format("YYYY MM DD");
       const endDate = moment(event.endDate).format("YYYY MM DD");
       return selectedDate >= startDate && selectedDate <= endDate;
     });
+  }
 
   prisma.$disconnect();
 

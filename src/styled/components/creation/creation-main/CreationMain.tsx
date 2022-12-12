@@ -2,9 +2,9 @@ import PageInformation from "styled/components/shared/page-info/PageInformation"
 import CreationInputs from "styled/components/creation/creation-inputs/CreationInputs";
 import { useCreation } from "styled/components/creation/useCreation";
 import RowMenu from "styled/components/shared/row-menu/RowMenu";
-import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 import { Loader } from "styled/elements/shared/Loader";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
+import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const CreationMain = () => {
   const {

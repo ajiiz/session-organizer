@@ -1,17 +1,17 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
-import Register from "styled/components/authentication/Register";
+import ManagemenetComponent from "styled/components/management-panel/ManagemenetComponent";
 
-const signIn: NextPage = () => {
-  return <Register />;
+const ManagementPanel: NextPage = () => {
+  return <ManagemenetComponent />;
 };
 
-export default signIn;
+export default ManagementPanel;
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
 
-  if (session?.user) {
+  if (!session?.user) {
     return {
       redirect: {
         permanent: false,

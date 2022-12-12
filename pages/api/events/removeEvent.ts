@@ -1,13 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
-import { GroupFormData } from "styled/components/creation/useCreation";
 
-export type LeaveGroupRequest = { groupId: string };
+export type RemoveEventRequest = { eventId: string };
 
-export const path = "api/groups/leaveGroup";
+export const path = "api/events/removeEvent";
 
-export const leaveGroup: NextApiHandler<LeaveGroupRequest> = async (req, res) => {
+export const removeEvent: NextApiHandler<RemoveEventRequest> = async (req, res) => {
   const prisma = new PrismaClient();
 
   const session = await getSession({ req });
@@ -26,19 +25,19 @@ export const leaveGroup: NextApiHandler<LeaveGroupRequest> = async (req, res) =>
     return;
   }
 
-  const { groupId } = req.body.params as LeaveGroupRequest;
+  const { eventId } = req.query as RemoveEventRequest;
 
-  if (!groupId) {
+  if (!eventId) {
     res.statusMessage = `Malformed request data`;
     res.status(400).end();
     return;
   }
 
-  const group = await prisma.group.findFirst({
-    where: { id: groupId }
+  const event = await prisma.event.findFirst({
+    where: { id: eventId }
   });
-  if (!group) {
-    res.statusMessage = `Group could not be found`;
+  if (!event) {
+    res.statusMessage = `Event could not be found`;
     res.status(400).end();
     return;
   }
@@ -46,15 +45,15 @@ export const leaveGroup: NextApiHandler<LeaveGroupRequest> = async (req, res) =>
   const updatedUser = await prisma.user.update({
     where: { email: session.user.email },
     data: {
-      groups: {
+      events: {
         disconnect: {
-          id: group.id
+          id: event.id
         }
       }
     }
   });
   if (!updatedUser) {
-    res.statusMessage = `User could not be disconnected to the group`;
+    res.statusMessage = `User could not be disconnected from the event`;
     res.status(400).end();
     return;
   }
@@ -64,4 +63,4 @@ export const leaveGroup: NextApiHandler<LeaveGroupRequest> = async (req, res) =>
   res.status(200).end();
 };
 
-export default leaveGroup;
+export default removeEvent;
