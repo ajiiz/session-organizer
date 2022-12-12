@@ -47,8 +47,6 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
 
   prisma.$disconnect();
 
-  console.log(allEvents);
-
   res.json({ events: allEvents });
 };
 
