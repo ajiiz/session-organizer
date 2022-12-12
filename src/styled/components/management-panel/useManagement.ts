@@ -40,6 +40,7 @@ export const useManagement = (): useCreationProps => {
       const data = await getEvents({});
       filterEvents(data.events);
     } catch (error) {
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
