@@ -53,7 +53,7 @@ export const signup: NextApiHandler<SignupRequest> = async (req, res) => {
   }
 
   if (groupCode) {
-    const foundGroup = await prisma.group.findFirst({ where: { invitationCode: groupCode } });
+    const foundGroup = await prisma.group.findFirst({ where: { groupCode: groupCode } });
     if (foundGroup) {
       await prisma.user.update({
         where: { id: newUser.id },
