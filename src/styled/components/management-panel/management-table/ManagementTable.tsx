@@ -30,7 +30,11 @@ export const ManagementTable = ({ events }: Props) => {
             <SS.TableRow width={"15%"}>
               <SS.StatusIndicator status={event.status.toLowerCase()}>{event.status}</SS.StatusIndicator>
             </SS.TableRow>
-            <SS.Button type="button" onClick={() => console.log("remove")}>
+            <SS.Button
+              type="button"
+              onClick={() => console.log("remove")}
+              style={{ display: event.isGroupEvent ? "none" : "flex" }}
+            >
               Remove
             </SS.Button>
           </SS.TableItem>

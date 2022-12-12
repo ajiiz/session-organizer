@@ -5,7 +5,7 @@ import { getSession } from "next-auth/react";
 
 export type GetEventsRequest = { date?: Date };
 
-export type GetEventsResponse = { events: Event[] };
+export type GetEventsResponse = { events: (Event & { isGroupEvent: boolean })[] };
 
 export const path = "api/events/getEvents";
 
@@ -31,9 +31,10 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
     return;
   }
 
-  let allEvents = [...user.events, ...user.groups.map(group => group.events)]
-    .flat()
-    .sort((a, b) => Number(a.startDate) - Number(b.endDate));
+  const userEvents = user.events.map(event => ({ ...event, isGroupEvent: false }));
+  const groupEvents = user.groups.map(group => group.events.map(event => ({ ...event, isGroupEvent: true }))).flat();
+
+  let allEvents = [...userEvents, ...groupEvents].flat().sort((a, b) => Number(a.startDate) - Number(b.endDate));
 
   if (date) {
     allEvents.filter(event => {
@@ -45,6 +46,8 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
   }
 
   prisma.$disconnect();
+
+  console.log(allEvents);
 
   res.json({ events: allEvents });
 };

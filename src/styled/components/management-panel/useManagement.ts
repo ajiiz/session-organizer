@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { getEvents } from "network/events/getEvents";
 import { Event } from "@prisma/client";
 
-export type EventsType = Event[];
+export type EventsType = (Event & { isGroupEvent: boolean })[];
 
 export interface useCreationProps {
   selectedOption: string;
