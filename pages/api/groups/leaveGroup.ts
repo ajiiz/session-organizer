@@ -54,7 +54,7 @@ export const leaveGroup: NextApiHandler<LeaveGroupRequest> = async (req, res) =>
     }
   });
   if (!updatedUser) {
-    res.statusMessage = `User could not be connected to the group`;
+    res.statusMessage = `User could not be disconnected to the group`;
     res.status(400).end();
     return;
   }
