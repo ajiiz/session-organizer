@@ -175,7 +175,7 @@ export const StatusIndicator = styled.div<StatusIndicatorProps>`
         return hexToRgba(Colors.GreenColor, 0.3);
       case "future":
         return hexToRgba(Colors.PurpleColor, 0.3);
-      case "requested":
+      case "request":
         return hexToRgba(Colors.BlueColor, 0.3);
       default:
         return hexToRgba(Colors.LightGrayColor, 0.3);
@@ -187,7 +187,7 @@ export const StatusIndicator = styled.div<StatusIndicatorProps>`
         return Colors.GreenColor;
       case "future":
         return Colors.PurpleColor;
-      case "requested":
+      case "request":
         return Colors.BlueColor;
       default:
         return Colors.LightGrayColor;
