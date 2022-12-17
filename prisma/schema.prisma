@@ -42,7 +42,7 @@ model Event {
   description String
   startDate   DateTime
   endDate     DateTime
-  // Status Type: requested | inProgress | future | ended
+  // Status Type: requested | inProgress | future | ended | cancelled
   status      String
   hasEnded    Boolean  @default(false)
   user        User?    @relation(fields: [userId], references: [id])
