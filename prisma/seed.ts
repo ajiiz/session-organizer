@@ -52,7 +52,7 @@ const load = async (): Promise<void> => {
         description: "Test Case Event 1 description - keep going. One step closer to the end.",
         startDate: new Date(),
         endDate: new Date(),
-        status: "Future",
+        status: "future",
         userId: newUser.id
       },
       {
@@ -60,7 +60,7 @@ const load = async (): Promise<void> => {
         description: "Test Case Event 2 description - keep going. One step closer to the end.",
         startDate: new Date(),
         endDate: new Date(),
-        status: "Future",
+        status: "future",
         userId: newUser.id
       },
       {
@@ -68,7 +68,7 @@ const load = async (): Promise<void> => {
         description: "Test Case Event 3 description - keep going. One step closer to the end.",
         startDate: new Date(2022, 9, 21),
         endDate: new Date(2022, 9, 21),
-        status: "Future",
+        status: "future",
         userId: newUser.id
       }
     ]
@@ -82,7 +82,7 @@ const load = async (): Promise<void> => {
         description: "Test Case Event 1 description - keep going. One step closer to the end.",
         startDate: new Date(2022, 9, 21),
         endDate: new Date(2022, 9, 21),
-        status: "Future",
+        status: "future",
         groupId: newFirstGroup.id
       },
       {
@@ -90,7 +90,23 @@ const load = async (): Promise<void> => {
         description: "Test Case Event 2 description - keep going. One step closer to the end.",
         startDate: new Date(),
         endDate: new Date(),
-        status: "Future",
+        status: "future",
+        groupId: newFirstGroup.id
+      },
+      {
+        name: "Test Case Group Event 2",
+        description: "Test Case Event 2 description - keep going. One step closer to the end.",
+        startDate: new Date(),
+        endDate: new Date(),
+        status: "request",
+        groupId: newFirstGroup.id
+      },
+      {
+        name: "Test Case Group Event 2",
+        description: "Test Case Event 2 description - keep going. One step closer to the end.",
+        startDate: new Date(),
+        endDate: new Date(),
+        status: "request",
         groupId: newFirstGroup.id
       }
     ]
