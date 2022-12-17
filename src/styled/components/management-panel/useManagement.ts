@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { getEvents } from "network/events/getEvents";
 import { Event } from "@prisma/client";
@@ -61,7 +61,6 @@ export const useManagement = (): useCreationProps => {
       setEvents(events);
     }
     if (isPastEvents) {
-      console.log(events);
       setEvents(events.filter(event => new Date(event.endDate) < new Date()));
     }
     if (isFutureEvents) {
