@@ -1,4 +1,4 @@
-export type Status = "in progress" | "request" | "future" | "ended";
+export type Status = "in progress" | "future" | "ended";
 
 export const getEventStatus = (startDate: Date, endDate: Date): Status => {
   const currentDate = new Date();
