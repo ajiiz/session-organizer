@@ -1,4 +1,4 @@
-export type Status = "in progress" | "future" | "ended";
+export type Status = "in progress" | "future" | "ended" | "cancelled";
 
 export const getEventStatus = (startDate: Date, endDate: Date): Status => {
   const currentDate = new Date();
@@ -11,7 +11,7 @@ export const getEventStatus = (startDate: Date, endDate: Date): Status => {
   if (endDate < currentDate) {
     return "ended";
   }
-  return "ended";
+  return "cancelled";
 };
 
 export const areDatesValid = (startDate: Date, endDate: Date): boolean => {
