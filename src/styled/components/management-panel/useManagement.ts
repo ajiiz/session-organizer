@@ -38,7 +38,7 @@ export const useManagement = (): useCreationProps => {
   const fetchEvents = async () => {
     try {
       const data = await getEvents({});
-      filterEvents(data.events);
+      filterEvents(data.events.filter(event => event.status !== "cancelled" && event.status !== "request"));
     } catch (error) {
       console.error(error);
     } finally {
