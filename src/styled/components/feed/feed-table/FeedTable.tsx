@@ -2,9 +2,9 @@ import { EventsType } from "styled/components/management-panel/useManagement";
 import { getDate, getTime } from "utils/DateUtilities";
 import AcceptIcon from "assets/icons/ring-arrow-green-icon.svg";
 import DenyIcon from "assets/icons/ring-cross-red-icon.svg";
-import * as SS from "./FeedTable.styled";
 import { StyledImage } from "styled/elements/shared/StyledImage";
 import { getEventStatus, Status } from "utils/EventUtilities";
+import * as SS from "./FeedTable.styled";
 
 type Props = {
   events: EventsType;
