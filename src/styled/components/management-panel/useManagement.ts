@@ -23,9 +23,9 @@ export const useManagement = (): useCreationProps => {
   const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTIONS[0]);
   const [options, setOptions] = useState<string[]>([]);
   const [events, setEvents] = useState<EventsType>([]);
-  const isAllEvents = useMemo(() => selectedOption === "all", [selectedOption]);
-  const isPastEvents = useMemo(() => selectedOption === "past", [selectedOption]);
-  const isFutureEvents = useMemo(() => selectedOption === "future", [selectedOption]);
+  const isAllEvents = selectedOption === "all";
+  const isPastEvents = selectedOption === "past";
+  const isFutureEvents = selectedOption === "future";
 
   const handleGetOptions = async () => {
     setOptions(DEFAULT_OPTIONS);

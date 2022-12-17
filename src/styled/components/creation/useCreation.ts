@@ -54,12 +54,9 @@ export const useCreation = (): useCreationProps => {
   const [formData, setFormData] = useState<FormData>(DEFAULT_CUSTOM_FORM_DATA);
   const [isFormValid, setIsFormValid] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
-  const isRequestOrGroupEvent = useMemo(
-    () => selectedOption === "request" || selectedOption === "group event",
-    [selectedOption]
-  );
-  const isGroup = useMemo(() => selectedOption === "group", [selectedOption]);
+  const isCustom = selectedOption === "custom";
+  const isRequestOrGroupEvent = selectedOption === "request" || selectedOption === "group event";
+  const isGroup = selectedOption === "group";
 
   const getOptions = async () => {
     const userRole = session?.user.role;
