@@ -1,4 +1,5 @@
 import { getEvents } from "network/events/getEvents";
+import { updateEvent } from "network/events/updateEvent";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { EventsType } from "styled/components/management-panel/useManagement";
@@ -42,9 +43,14 @@ export const useFeed = (): useFeedProps => {
     }
   };
 
-  // todo: handle request status change on yes/no button click
   const handleRequest = async (requestId: string, desiredStatus: "in progress" | "future" | "ended" | "cancelled") => {
-    console.log(desiredStatus);
+    setIsLoading(true);
+    try {
+      await updateEvent({ eventId: requestId, status: desiredStatus });
+      await fetchEvents();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const filterEvents = (events: EventsType) => {
