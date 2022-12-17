@@ -4,7 +4,7 @@ import { leaveGroup } from "network/groups/leaveGroup";
 import { getAccount } from "network/users/getAccount";
 import { updateAccount } from "network/users/updateAccount";
 import { useSession } from "next-auth/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { isEmailValid, isFirstNameValid, isGroupCodeValid, isNumberValid } from "utils/ValidationUtilities";
 import { GroupType } from "../../../../pages/api/groups/getGroups";
 
