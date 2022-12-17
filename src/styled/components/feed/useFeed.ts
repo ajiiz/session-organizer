@@ -7,7 +7,7 @@ export interface useFeedProps {
   selectedOption: string;
   options: string[];
   handleOptionChange: (option: string) => void;
-  handleRequest: (requestId: string, desiredStatus: "inProgress" | "future" | "ended" | "cancelled") => void;
+  handleRequest: (requestId: string, desiredStatus: "in progress" | "future" | "ended" | "cancelled") => void;
   isLoading: boolean;
   events: EventsType;
 }
@@ -43,8 +43,8 @@ export const useFeed = (): useFeedProps => {
   };
 
   // todo: handle request status change on yes/no button click
-  const handleRequest = async (requestId: string, desiredStatus: "inProgress" | "future" | "ended" | "cancelled") => {
-    return;
+  const handleRequest = async (requestId: string, desiredStatus: "in progress" | "future" | "ended" | "cancelled") => {
+    console.log(desiredStatus);
   };
 
   const filterEvents = (events: EventsType) => {
@@ -52,7 +52,7 @@ export const useFeed = (): useFeedProps => {
       setEvents(events.filter(event => event.status === "cancelled"));
     }
     if (isRequestEvents) {
-      setEvents(events.filter(event => event.status === "requested"));
+      setEvents(events.filter(event => event.status === "request"));
     }
   };
 
