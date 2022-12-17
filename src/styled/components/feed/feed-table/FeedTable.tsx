@@ -35,18 +35,22 @@ export const FeedTable = ({ events, handleRequest }: Props) => {
             <SS.TableRow width={"15%"}>
               <SS.StatusIndicator status={event.status.toLowerCase()}>{event.status}</SS.StatusIndicator>
             </SS.TableRow>
-            <SS.TableRow>
-              <SS.TableRowImage>
-                <StyledImage
-                  src={AcceptIcon}
-                  alt="accept"
-                  onClick={() => handleRequest(event.id, getEventStatus(event.startDate, event.endDate))}
-                />
-              </SS.TableRowImage>
-              <SS.TableRowImage>
-                <StyledImage src={DenyIcon} alt="deny" onClick={() => handleRequest(event.id, "cancelled")} />
-              </SS.TableRowImage>
-            </SS.TableRow>
+            {event.status === "request" && (
+              <SS.TableRow>
+                <SS.TableRowImage>
+                  <StyledImage
+                    src={AcceptIcon}
+                    alt="accept"
+                    onClick={() =>
+                      handleRequest(event.id, getEventStatus(new Date(event.startDate), new Date(event.endDate)))
+                    }
+                  />
+                </SS.TableRowImage>
+                <SS.TableRowImage>
+                  <StyledImage src={DenyIcon} alt="deny" onClick={() => handleRequest(event.id, "cancelled")} />
+                </SS.TableRowImage>
+              </SS.TableRow>
+            )}
           </SS.TableItem>
         ))}
       </tbody>
