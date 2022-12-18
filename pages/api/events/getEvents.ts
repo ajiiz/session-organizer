@@ -37,7 +37,7 @@ export const getEvents: NextApiHandler<GetEventsResponse> = async (req, res) => 
   let allEvents = [...userEvents, ...groupEvents].flat().sort((a, b) => Number(a.startDate) - Number(b.endDate));
 
   if (date) {
-    allEvents.filter(event => {
+    allEvents = allEvents.filter(event => {
       const selectedDate = moment(date).format("YYYY MM DD");
       const startDate = moment(event.startDate).format("YYYY MM DD");
       const endDate = moment(event.endDate).format("YYYY MM DD");
