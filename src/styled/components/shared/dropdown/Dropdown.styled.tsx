@@ -10,7 +10,7 @@ export const DropdownWrapper = styled.div`
 export const DropdownBox = styled.div`
   width: 100%;
   margin: 0.4rem 0 0 0;
-  padding: 0.4em 1em;
+  padding: 0.1em 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
