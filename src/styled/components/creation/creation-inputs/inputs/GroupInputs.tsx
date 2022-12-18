@@ -19,7 +19,7 @@ const GroupInputs = ({ formData, handleFormDataChange, handleFormSubmit, isFormV
             <S.Input
               name="name"
               value={(formData as GroupFormData).name}
-              placeholder="Enter event name..."
+              placeholder="Enter group name..."
               type="text"
               onChange={event => handleChange(event)}
               isValid={isNameValid((formData as GroupFormData).name)}

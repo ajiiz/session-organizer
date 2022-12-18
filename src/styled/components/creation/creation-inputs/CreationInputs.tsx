@@ -24,13 +24,10 @@ const CreationInputs = ({
   isModalOpen,
   handleModal
 }: Props) => {
-  const isCustom = useMemo(() => selectedOption === "custom", [selectedOption]);
-  const isRequestOrGroupEvent = useMemo(
-    () => selectedOption === "request" || selectedOption === "group event",
-    [selectedOption]
-  );
-  const isGroup = useMemo(() => selectedOption === "group", [selectedOption]);
-  const isRequest = useMemo(() => selectedOption === "request", [selectedOption]);
+  const isCustom = selectedOption === "custom";
+  const isRequestOrGroupEvent = selectedOption === "request" || selectedOption === "group event";
+  const isGroup = selectedOption === "group";
+  const isRequest = selectedOption === "request";
 
   return (
     <>

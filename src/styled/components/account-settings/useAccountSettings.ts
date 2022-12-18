@@ -4,7 +4,7 @@ import { leaveGroup } from "network/groups/leaveGroup";
 import { getAccount } from "network/users/getAccount";
 import { updateAccount } from "network/users/updateAccount";
 import { useSession } from "next-auth/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { isEmailValid, isFirstNameValid, isGroupCodeValid, isNumberValid } from "utils/ValidationUtilities";
 import { GroupType } from "../../../../pages/api/groups/getGroups";
 
@@ -52,8 +52,8 @@ export const useAccountSettings = (): useAccountSettingsProps => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [groups, setGroups] = useState<GroupType[]>([]);
-  const isAccount = useMemo(() => selectedOption === "account", [selectedOption]);
-  const isGroup = useMemo(() => selectedOption === "group", [selectedOption]);
+  const isAccount = selectedOption === "account";
+  const isGroup = selectedOption === "group";
 
   const handleGetOptions = async () => {
     setOptions(DEFAULT_OPTIONS);

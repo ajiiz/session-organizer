@@ -3,8 +3,8 @@ import RowMenu from "styled/components/shared/row-menu/RowMenu";
 import AccountSettingsInputs from "styled/components/account-settings/inputs/AccountSettingsInputs";
 import { useAccountSettings } from "styled/components/account-settings/useAccountSettings";
 import { Loader } from "styled/elements/shared/Loader";
-import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
+import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const AccountSettingsMain = () => {
   const {

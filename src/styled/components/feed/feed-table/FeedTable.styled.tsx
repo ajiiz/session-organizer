@@ -89,6 +89,15 @@ export const TableRow = styled.tr<GroupItemProps>`
   }
 `;
 
+export const TableRowImage = styled.span`
+  margin: 0 0.3em;
+  cursor: pointer;
+
+  ${device.mobile} {
+    margin: 0 0.1em;
+  }
+`;
+
 const RemoveButtonStyles = css`
   background-color: ${hexToRgba(Colors.RedColor, 0.25)};
   border: 1px solid ${Colors.RedColor};
