@@ -6,8 +6,7 @@ export interface useAdminPanelProps {
   options: string[];
   handleOptionChange: (option: string) => void;
   isLoading: boolean;
-  groups: any[];
-  users: any[];
+  handleGroupForemanChange: (groupId: string, foremanId: string) => Promise<void>;
   isGroupsOption: boolean;
   isUsersOption: boolean;
 }
@@ -16,13 +15,11 @@ const DEFAULT_OPTIONS = ["users", "groups"];
 
 export const useAdminPanel = (): useAdminPanelProps => {
   const { data: session, status } = useSession();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTIONS[0]);
   const [options, setOptions] = useState<string[]>([]);
   const [groups, setGroups] = useState([]);
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [selectedGroup, setSelectedGroup] = useState(null);
   const isUsersOption = selectedOption === "users";
   const isGroupsOption = selectedOption === "groups";
 
@@ -38,21 +35,14 @@ export const useAdminPanel = (): useAdminPanelProps => {
     setSelectedOption(option);
   };
 
-  const fetchUsers = async () => {
-    setIsLoading(false);
+  const handleGroupForemanChange = async (groupId: string, foremanId: string) => {
+    console.log(groupId);
+    console.log(foremanId);
   };
-
-  const fecthGroups = async () => {};
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetchUsers();
-  }, [selectedOption]);
 
   useEffect(() => {
     if (status !== "loading") {
       handleGetOptions();
-      fetchUsers();
     }
   }, [status]);
 
@@ -61,8 +51,7 @@ export const useAdminPanel = (): useAdminPanelProps => {
     options,
     handleOptionChange,
     isLoading,
-    groups,
-    users,
+    handleGroupForemanChange,
     isGroupsOption,
     isUsersOption
   };
