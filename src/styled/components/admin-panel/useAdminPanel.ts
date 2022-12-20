@@ -27,6 +27,7 @@ export const useAdminPanel = (): useAdminPanelProps => {
       setOptions(DEFAULT_OPTIONS);
     } else if (session?.user?.role === "examinator") {
       setOptions(DEFAULT_OPTIONS.filter(option => option !== "users"));
+      setSelectedOption(DEFAULT_OPTIONS[1]);
     }
   };
 
