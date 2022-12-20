@@ -41,9 +41,64 @@ const load = async (): Promise<void> => {
       groups: { connect: [{ id: newFirstGroup.id }, { id: secondNewGroup.id }, { id: thirdNewGroup.id }] }
     }
   });
-  console.log("Added default user");
+
+  const hashedUserOnePassword = await hash("password", 12);
+  const student1 = await prisma.user.create({
+    data: {
+      email: "student1@gmail.com",
+      firstName: "First Name",
+      lastName: "Last Name",
+      password: hashedUserOnePassword,
+      number: "111222333",
+      role: "student"
+    }
+  });
+
+  const student2 = await prisma.user.create({
+    data: {
+      email: "student2@gmail.com",
+      firstName: "First Name",
+      lastName: "Last Name",
+      password: hashedUserOnePassword,
+      number: "111222333",
+      role: "student"
+    }
+  });
+
+  const student3 = await prisma.user.create({
+    data: {
+      email: "student3@gmail.com",
+      firstName: "First Name",
+      lastName: "Last Name",
+      password: hashedUserOnePassword,
+      number: "111222333",
+      role: "student"
+    }
+  });
+
+  const examinator = await prisma.user.create({
+    data: {
+      email: "examinator@gmail.com",
+      firstName: "First Name",
+      lastName: "Last Name",
+      password: hashedUserOnePassword,
+      number: "111222333",
+      role: "examinator"
+    }
+  });
+
+  console.log("Added default users");
 
   await prisma.group.update({ where: { id: newFirstGroup.id }, data: { foremanId: newUser.id } });
+
+  await prisma.group.update({
+    where: { id: secondNewGroup.id },
+    data: {
+      users: {
+        connect: [{ id: student1.id }, { id: student2.id }, { id: student3.id }, { id: examinator.id }]
+      }
+    }
+  });
 
   await prisma.event.createMany({
     data: [
