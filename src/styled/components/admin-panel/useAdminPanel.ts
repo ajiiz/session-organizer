@@ -1,3 +1,4 @@
+import { updateGroup } from "network/groups/updateGroup";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
@@ -18,8 +19,6 @@ export const useAdminPanel = (): useAdminPanelProps => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTIONS[0]);
   const [options, setOptions] = useState<string[]>([]);
-  const [groups, setGroups] = useState([]);
-  const [users, setUsers] = useState([]);
   const isUsersOption = selectedOption === "users";
   const isGroupsOption = selectedOption === "groups";
 
@@ -36,8 +35,14 @@ export const useAdminPanel = (): useAdminPanelProps => {
   };
 
   const handleGroupForemanChange = async (groupId: string, foremanId: string) => {
-    console.log(groupId);
-    console.log(foremanId);
+    setIsLoading(true);
+    try {
+      await updateGroup({ groupId, foremanId });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {

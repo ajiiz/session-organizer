@@ -7,8 +7,15 @@ import GroupsInputs from "../admin-inputs/GroupsInputs";
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const AdminMain = () => {
-  const { selectedOption, options, handleOptionChange, isLoading, groups, users, isGroupsOption, isUsersOption } =
-    useAdminPanel();
+  const {
+    selectedOption,
+    options,
+    handleOptionChange,
+    isLoading,
+    handleGroupForemanChange,
+    isGroupsOption,
+    isUsersOption
+  } = useAdminPanel();
   return (
     <SS.ContentWrapper>
       <SS.ContentContainer>
@@ -19,9 +26,9 @@ const AdminMain = () => {
             <Loader />
           </Wrapper>
         ) : isGroupsOption ? (
-          <GroupsInputs />
+          <GroupsInputs handleGroupForemanChange={handleGroupForemanChange} />
         ) : isUsersOption ? (
-          users
+          <p>users</p>
         ) : null}
       </SS.ContentContainer>
     </SS.ContentWrapper>
