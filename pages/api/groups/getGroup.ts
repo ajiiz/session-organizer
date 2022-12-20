@@ -47,6 +47,7 @@ export const getGroup: NextApiHandler<GetGroupResponse> = async (req, res) => {
     res.status(400).end();
     return;
   }
+  const filteredGroup = { ...group, users: group.users.filter(user => user.email !== session?.user?.email) };
 
   let foreman = null;
   if (group.foremanId) {
@@ -58,7 +59,7 @@ export const getGroup: NextApiHandler<GetGroupResponse> = async (req, res) => {
 
   prisma.$disconnect();
 
-  res.json({ ...group, foreman });
+  res.json({ ...filteredGroup, foreman });
 };
 
 export default getGroup;
