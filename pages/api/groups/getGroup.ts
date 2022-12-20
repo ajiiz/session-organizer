@@ -43,7 +43,7 @@ export const getGroup: NextApiHandler<GetGroupResponse> = async (req, res) => {
 
   const group = user.groups.find(group => group.id === groupId);
   if (!group) {
-    res.statusMessage = `User is not in the group`;
+    res.statusMessage = `Group could not be found`;
     res.status(400).end();
     return;
   }
