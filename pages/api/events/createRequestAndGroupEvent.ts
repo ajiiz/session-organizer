@@ -47,7 +47,7 @@ export const createRequestAndGroupEvent: NextApiHandler<RequestAndGroupEventType
     return;
   }
 
-  const eventStatus = statusType === "request" ? "requested" : getEventStatus(convertedStartDate, convertedEndDate);
+  const eventStatus = statusType === "request" ? "request" : getEventStatus(convertedStartDate, convertedEndDate);
 
   const newEvent = await prisma.event.create({
     data: {

@@ -5,10 +5,10 @@ import EventsNotFound from "../events-not-found/EventsNotFound";
 import EventSection from "../events-section/EventSection";
 import { RootState } from "redux/store";
 import { useSelector } from "react-redux";
-import * as S from "./DashboardMain.styled";
-import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { Loader } from "styled/elements/shared/Loader";
+import * as S from "./DashboardMain.styled";
+import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const DashboardMain = () => {
   const currentDate = useSelector((state: RootState) => state.calendar.date);
@@ -31,7 +31,8 @@ const DashboardMain = () => {
     setIsLoading(true);
     try {
       const data = await getEvents({ date: currentDate });
-      setEvents(data.events);
+      const filteredEvents = data.events.filter(event => event.status !== "request");
+      setEvents(filteredEvents);
     } catch (error) {
       console.error(error);
     } finally {
