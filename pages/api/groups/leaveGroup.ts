@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
-import { GroupFormData } from "styled/components/creation/useCreation";
 
 export type LeaveGroupRequest = { groupId: string };
 
