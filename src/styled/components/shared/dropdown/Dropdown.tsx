@@ -26,7 +26,7 @@ const Button = ({ items, selectedItem, onChange }: DropdownProps) => {
   return (
     <S.DropdownWrapper>
       <S.DropdownBox onClick={() => setIsOpen(!isOpen)}>
-        {selectedItem.label}
+        {selectedItem?.label}
         {isOpen ? (
           <StyledImage src={ArroUpIcon} alt="arrow-up-icon" width={"34px"} height={"34px"} />
         ) : (

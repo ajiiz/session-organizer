@@ -16,6 +16,30 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
   const { data } = useSession();
   const router = useRouter();
 
+  const getLinks = (): JSX.Element[] => {
+    const userRole = data?.user?.role;
+    const filteredLinks = LinksContent.slice(1).filter(link => {
+      if (link.url === "/admin-panel" || link.url === "/feed") {
+        if (userRole === "administrator" || userRole === "examinator") {
+          return true;
+        }
+        return false;
+      }
+      return true;
+    });
+
+    return filteredLinks.map((element, index) => (
+      <S.Link
+        key={index}
+        onClick={() => goToLink({ link: element.url })}
+        isCurrentPath={isCurrentPath({ routerPath: router.pathname, currentPath: element.url })}
+      >
+        <StyledImage src={element.src} alt={element.alt} width={"34px"} height={"34px"} />
+        <S.LinkParagraph>{element.paragraph}</S.LinkParagraph>
+      </S.Link>
+    ));
+  };
+
   return (
     <S.SectionWrapper isOpen={isOpen}>
       <S.CloseIcon>
@@ -37,19 +61,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
             <S.LinkParagraph>{LinksContent[0].paragraph}</S.LinkParagraph>
           </S.Link>
         </S.CreationButtonWrapper>
-        <S.LinksWrapper>
-          {LinksContent.slice(1).map((element, index) => (
-            <S.Link
-              key={index}
-              onClick={() => goToLink({ link: element.url })}
-              margin="0.3rem 0"
-              isCurrentPath={isCurrentPath({ routerPath: router.pathname, currentPath: element.url })}
-            >
-              <StyledImage src={element.src} alt={element.alt} width={"34px"} height={"34px"} />
-              <S.LinkParagraph>{element.paragraph}</S.LinkParagraph>
-            </S.Link>
-          ))}
-        </S.LinksWrapper>
+        <S.LinksWrapper>{getLinks()}</S.LinksWrapper>
       </S.ContentWrapper>
       <S.AuthorizationWrapper>
         <S.UserInformation>

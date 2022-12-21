@@ -1,12 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
-import FeedComponent from "styled/components/feed/FeedComponent";
+import AdminPanelComponent from "styled/components/admin-panel/AdminPanelComponent";
 
-const Feed: NextPage = () => {
-  return <FeedComponent />;
+const AdminPanel: NextPage = () => {
+  return <AdminPanelComponent />;
 };
 
-export default Feed;
+export default AdminPanel;
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
