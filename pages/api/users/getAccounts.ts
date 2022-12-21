@@ -2,11 +2,11 @@ import { PrismaClient } from "@prisma/client";
 import type { NextApiHandler } from "next";
 import { getSession } from "next-auth/react";
 
-export type GetUsersResponse = { id: string; email: string; firstName: string; lastName: string; role: string }[];
+export type GetAccountsResponse = { id: string; email: string; firstName: string; lastName: string; role: string }[];
 
-export const path = "api/users/getUsers";
+export const path = "api/users/getAccounts";
 
-export const getUsers: NextApiHandler<GetUsersResponse> = async (req, res) => {
+export const getAccounts: NextApiHandler<GetAccountsResponse> = async (req, res) => {
   const prisma = new PrismaClient();
 
   const session = await getSession({ req });
@@ -49,4 +49,4 @@ export const getUsers: NextApiHandler<GetUsersResponse> = async (req, res) => {
   res.json(filteredUsers);
 };
 
-export default getUsers;
+export default getAccounts;

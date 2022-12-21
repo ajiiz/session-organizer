@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Dropdown, { Item } from "styled/components/shared/dropdown/Dropdown";
-import { getUsers } from "network/users/getUsers";
-import { GetUsersResponse } from "../../../../../pages/api/users/getUsers";
+import { getAccounts } from "network/users/getAccounts";
+import { GetAccountsResponse } from "../../../../../pages/api/users/getAccounts";
 import { UserRole } from "../useAdminPanel";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
@@ -14,11 +14,11 @@ const UserInputs = ({ handleUserChange }: UserInputsProps) => {
   const [selectedUserOption, setSelectedUserOption] = useState({ value: "", label: "" });
   const [dropdownRoleOptions, setRoleOptions] = useState<Item[]>([]);
   const [selectedRoleOption, setSelectedRoleOption] = useState({ value: "", label: "" });
-  const [allUsers, setAllUsers] = useState<GetUsersResponse>([]);
+  const [allUsers, setAllUsers] = useState<GetAccountsResponse>([]);
 
   const handleGetUsers = async () => {
     try {
-      const data = await getUsers();
+      const data = await getAccounts();
       const users = data.map(user => ({ value: user.id, label: user.email }));
       setAllUsers(data);
       setDropdownUserOptions(users);
