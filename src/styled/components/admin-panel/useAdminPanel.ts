@@ -1,6 +1,9 @@
 import { updateGroup } from "network/groups/updateGroup";
+import { updateAccountRole } from "network/users/updateAccountRole";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+
+export type UserRole = "student" | "examinator" | "administrator";
 
 export interface useAdminPanelProps {
   selectedOption: string;
@@ -8,6 +11,7 @@ export interface useAdminPanelProps {
   handleOptionChange: (option: string) => void;
   isLoading: boolean;
   handleGroupForemanChange: (groupId: string, foremanId: string) => Promise<void>;
+  handleUserRoleChange: (userId: string, role: UserRole) => Promise<void>;
   isGroupsOption: boolean;
   isUsersOption: boolean;
 }
@@ -46,6 +50,17 @@ export const useAdminPanel = (): useAdminPanelProps => {
     }
   };
 
+  const handleUserRoleChange = async (userId: string, role: UserRole) => {
+    setIsLoading(true);
+    try {
+      await updateAccountRole({ userId, role });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (status !== "loading") {
       handleGetOptions();
@@ -58,6 +73,7 @@ export const useAdminPanel = (): useAdminPanelProps => {
     handleOptionChange,
     isLoading,
     handleGroupForemanChange,
+    handleUserRoleChange,
     isGroupsOption,
     isUsersOption
   };
