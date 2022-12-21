@@ -96,7 +96,8 @@ const load = async (): Promise<void> => {
     data: {
       users: {
         connect: [{ id: student1.id }, { id: student2.id }, { id: student3.id }, { id: examinator.id }]
-      }
+      },
+      creatorId: examinator.id
     }
   });
 
