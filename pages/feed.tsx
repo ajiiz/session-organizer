@@ -11,7 +11,7 @@ export default Feed;
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
 
-  if (!session?.user) {
+  if (!session?.user || (session?.user?.role !== "administrator" && session?.user?.role !== "examinator")) {
     return {
       redirect: {
         permanent: false,
