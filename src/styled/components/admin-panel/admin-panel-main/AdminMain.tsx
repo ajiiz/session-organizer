@@ -4,6 +4,7 @@ import { Loader } from "styled/elements/shared/Loader";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { useAdminPanel } from "../useAdminPanel";
 import GroupsInputs from "../admin-inputs/GroupsInputs";
+import UserInputs from "../admin-inputs/UserInputs";
 import * as SS from "styled/components/shared/page-wrapper/PageWrapper.styled";
 
 const AdminMain = () => {
@@ -16,6 +17,7 @@ const AdminMain = () => {
     isGroupsOption,
     isUsersOption
   } = useAdminPanel();
+
   return (
     <SS.ContentWrapper>
       <SS.ContentContainer>
@@ -28,7 +30,7 @@ const AdminMain = () => {
         ) : isGroupsOption ? (
           <GroupsInputs handleGroupForemanChange={handleGroupForemanChange} />
         ) : isUsersOption ? (
-          <p>users</p>
+          <UserInputs handleUserChange={(userId, newRole) => {}} />
         ) : null}
       </SS.ContentContainer>
     </SS.ContentWrapper>
