@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import Dropdown, { Item } from "styled/components/shared/dropdown/Dropdown";
 import { getUsers } from "network/users/getUsers";
 import { GetUsersResponse } from "../../../../../pages/api/users/getUsers";
+import { UserRole } from "../useAdminPanel";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
 type UserInputsProps = {
   handleUserChange: (userId: string, newRole: UserRole) => void;
 };
-
-type UserRole = "student" | "examinator" | "administrator";
 
 const UserInputs = ({ handleUserChange }: UserInputsProps) => {
   const [dropdownUserOptions, setDropdownUserOptions] = useState<Item[]>([]);
