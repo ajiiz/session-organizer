@@ -4,14 +4,14 @@ import { getGroups } from "network/groups/getGroups";
 import { getGroup } from "network/groups/getGroup";
 import * as S from "styled/components/shared/row-menu/RowMenu.styled";
 
-type CustomEventInputsProps = {
+type GroupInputsProps = {
   handleGroupForemanChange: (groupId: string, foremanId: string) => void;
 };
 
-const CustomEventInputs = ({ handleGroupForemanChange }: CustomEventInputsProps) => {
+const GroupInputs = ({ handleGroupForemanChange }: GroupInputsProps) => {
   const [dropdownGroupOptions, setDropdownGroupOptions] = useState<Item[]>([]);
   const [selectedGroupOption, setSelectedGroupOption] = useState({ value: "", label: "" });
-  const [dropdownForemanOptions, setDropdownForremanOptions] = useState<Item[]>([]);
+  const [dropdownForemanOptions, setDropdownForemanOptions] = useState<Item[]>([]);
   const [selectedForemanOption, setSelectedForemanOption] = useState({ value: "", label: "" });
 
   const handleGetGroups = async () => {
@@ -39,7 +39,7 @@ const CustomEventInputs = ({ handleGroupForemanChange }: CustomEventInputsProps)
         setSelectedForemanOption({ value: "", label: "" });
       }
       const usersOptions = users.map(user => ({ value: user.id, label: user.email }));
-      setDropdownForremanOptions(usersOptions);
+      setDropdownForemanOptions(usersOptions);
     } catch (error) {
       console.error(error);
     }
@@ -93,4 +93,4 @@ const CustomEventInputs = ({ handleGroupForemanChange }: CustomEventInputsProps)
   );
 };
 
-export default CustomEventInputs;
+export default GroupInputs;
