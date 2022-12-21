@@ -14,6 +14,7 @@ const AdminMain = () => {
     handleOptionChange,
     isLoading,
     handleGroupForemanChange,
+    handleUserRoleChange,
     isGroupsOption,
     isUsersOption
   } = useAdminPanel();
@@ -30,7 +31,7 @@ const AdminMain = () => {
         ) : isGroupsOption ? (
           <GroupsInputs handleGroupForemanChange={handleGroupForemanChange} />
         ) : isUsersOption ? (
-          <UserInputs handleUserChange={(userId, newRole) => {}} />
+          <UserInputs handleUserChange={handleUserRoleChange} />
         ) : null}
       </SS.ContentContainer>
     </SS.ContentWrapper>
