@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 
 export const path = "api/tasks/createTask";
 
-export type CreateTaskRequest = { text: string };
+export type CreateTaskRequest = { task: string };
 
 export const createTask: NextApiHandler<CreateTaskRequest> = async (req, res) => {
   const prisma = new PrismaClient();
@@ -17,7 +17,8 @@ export const createTask: NextApiHandler<CreateTaskRequest> = async (req, res) =>
   }
 
   const user = await prisma.user.findFirst({
-    where: { email: session.user.email }
+    where: { email: session.user.email },
+    include: { todos: true }
   });
   if (!user) {
     res.statusMessage = `User could not be found`;
@@ -25,9 +26,15 @@ export const createTask: NextApiHandler<CreateTaskRequest> = async (req, res) =>
     return;
   }
 
-  const { text } = req.body.params as CreateTaskRequest;
+  if (user.todos.length >= 6) {
+    res.statusMessage = `User has too many tasks. Maximum value is 6.`;
+    res.status(400).end();
+    return;
+  }
 
-  if (!text) {
+  const { task } = req.body.params as CreateTaskRequest;
+
+  if (!task) {
     res.statusMessage = `Malformed request data`;
     res.status(400).end();
     return;
@@ -35,7 +42,7 @@ export const createTask: NextApiHandler<CreateTaskRequest> = async (req, res) =>
 
   const newTodo = await prisma.dailyToDo.create({
     data: {
-      text,
+      text: task,
       userId: user.id
     }
   });
