@@ -25,7 +25,7 @@ export const deleteTask: NextApiHandler<DeleteTaskRequest> = async (req, res) =>
     return;
   }
 
-  const { taskId } = req.body.params as DeleteTaskRequest;
+  const { taskId } = req.query as DeleteTaskRequest;
 
   if (!taskId) {
     res.statusMessage = `Malformed request data`;
