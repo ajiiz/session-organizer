@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeDate } from "redux/dateSlice";
 import CloseIcon from "assets/icons/navigation-panel/close-icon.svg";
 import { StyledImage } from "styled/elements/shared/StyledImage";
+import ToDoList from "./todo-list/ToDoList";
 import * as S from "./CalendarPanel.styled";
 
 interface Props {
@@ -27,6 +28,7 @@ const NavigationPanel = ({ isOpen, handleOpen }: Props) => {
       <S.CallendarWrapper>
         <Calendar locale="en-EN" onChange={(date: Date) => handleDateChange(date)} value={currentDate} />
       </S.CallendarWrapper>
+      <ToDoList />
     </S.SectionWrapper>
   );
 };
