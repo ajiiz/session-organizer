@@ -27,3 +27,22 @@ export const ToDoListInput = styled.input`
     border-radius: 4px;
   }
 `;
+
+export const TaskList = styled.ul`
+  padding: 0;
+`;
+
+export const TaskItemWrapper = styled.li`
+  margin-top: 0.2em;
+  padding: 0 0 0 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+`;
+
+export const TaskItem = styled.div`
+  width: 90%;
+  margin: 0 0 0 0.2em;
+  font-size: 0.8em;
+`;
