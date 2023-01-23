@@ -25,7 +25,7 @@ export const isDescriptionValid = (name: string): boolean => {
 
 export const isFirstNameValid = (name: string): boolean => {
   const nameRegex = /^[a-zA-Z\s,]+$/;
-  return nameRegex.test(name) && name.length > 4 && name.length < 30;
+  return nameRegex.test(name) && name.length >= 3 && name.length < 30;
 };
 
 export const isNumberValid = (number: string): boolean => {
