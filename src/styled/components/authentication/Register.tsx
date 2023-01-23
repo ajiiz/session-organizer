@@ -3,7 +3,7 @@ import { useState, ChangeEvent, FormEvent, useMemo } from "react";
 import { Wrapper } from "styled/elements/shared/wrappers/Wrapper";
 import { goToLink } from "utils/NavigationUtilities";
 import { SignupRequest } from "../../../../pages/api/auth/signup";
-import { isEmailValid as isEmail, isNameValid } from "utils/ValidationUtilities";
+import { isEmailValid as isEmail, isFirstNameValid } from "utils/ValidationUtilities";
 import { RegisterResponseMessages } from "./ResponseMessages";
 import Navbar from "styled/components/navbar/Navbar";
 import Footer from "styled/components/footer/Footer";
@@ -19,7 +19,7 @@ const Signup = () => {
   });
   const [statusMessage, setStatusMessage] = useState<null | string>(null);
   const isFormDataValid = useMemo(
-    () => !isNameValid(formData.firstName) || !isNameValid(formData.lastName) || !isEmail(formData.email),
+    () => !isFirstNameValid(formData.firstName) || !isFirstNameValid(formData.lastName) || !isEmail(formData.email),
     [formData]
   );
 
