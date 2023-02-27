@@ -1,8 +1,12 @@
 # session-organizer
 
+Made for my engineering thesis.
+
 *session-organizer* is an app to make your exam session easier.
 It provides tools to organize exams and display them for the students.
-Made for my engineering thesis.
+The work presents the development and implementation of the web application that supports the management of an exam session. 
+The website allows users to create individual and group events, and filter them by date using calendar. 
+In addition, the group system was implemented, which allows users, depending on their role, to create, modify and manage them.
 
 ## Table of contents
 * [Status](#status)
