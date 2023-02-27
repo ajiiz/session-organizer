@@ -43,7 +43,23 @@ In addition, the group system was implemented, which allows users, depending on 
 ## Gallery
 * Landing page
 
-  ![Loading Screen](https://github.com/ajiiz/session-organizer/blob/develop/src/assets/Main-Page.png)
+  ![Landing page](https://github.com/ajiiz/session-organizer/blob/develop/src/assets/Main-Page.png)
+ 
+* Login page
+
+  ![Login page](https://github.com/ajiiz/session-organizer/blob/develop/src/assets/Login-Page.png)
+
+* Register page
+
+  ![Register page](https://github.com/ajiiz/session-organizer/blob/develop/src/assets/Register-Page.png)
+
+* Dashboard page
+
+  ![Dasboard page](https://github.com/ajiiz/session-organizer/blob/develop/src/assets/Dashboard-Creation-Page.png)
+  
+* Creation page
+
+  ![Creation page](https://github.com/ajiiz/session-organizer/blob/develop/src/assets/Creation-Toast-Page.png)
   
 
 ## License
