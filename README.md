@@ -12,18 +12,32 @@ Made for my engineering thesis.
 * [Contact](#contact)
 
 ## Status
-#### In progress
+#### Done
 
 ## Technologies
 #### Project is created with:
-* Nextjs
+* Typescript
+* Next.js
+* NextAuth.js
+* React redux-toolkit
+* Styled-Components
 * Prisma
-* PostgeSQL
+* PostgreSQL
 * Axios
+* Jest & React Testing Library
 
 ## Routes
+* / - landing
+* /signin - login
+* /signup - register
+* /dashboard - events
+* /creation-panel - create individual & group events and groups
+* /account-settings
+* /feed
+* /management-panel
 
 ## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Contact
 #### Contact me via e-mail: piotrwrobel.ajiiz@gmail.com
