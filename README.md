@@ -40,6 +40,12 @@ In addition, the group system was implemented, which allows users, depending on 
 * /feed
 * /management-panel
 
+## Gallery
+* Landing page
+
+  ![Loading Screen](https://github.com/ajiiz/session-organizer/blob/develop/src/assets/Main-Page.png)
+  
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
