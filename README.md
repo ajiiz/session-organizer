@@ -1,5 +1,5 @@
 # session-organizer
-Project created as aengineering thesis.
+Project created as an engineering thesis.
 
 ## Table of contents
 * [Introduction](#introduction)
